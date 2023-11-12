@@ -1,8 +1,64 @@
-# React + Vite
+# Malker [React + Vite + Flask]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Run the app
 
-Currently, two official plugins are available:
+### Run frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```sh
+npm run dev
+```
+
+### Run backend
+
+```sh
+npm run start-api
+```
+
+Or:
+
+```sh
+cd backend
+python app.py
+```
+
+
+## Setup 
+
+### Setup frontend
+
+```sh
+npm install
+```
+
+### Set-up backend
+
+Navigate to Flask directory
+
+```sh
+cd backend
+```
+
+Create virtual environment
+
+```sh
+python -m venv venv
+```
+
+Activate environment
+
+#### En Windows
+```sh
+venv\Scripts\activate
+```
+#### En Unix o MacOS
+```sh
+source venv/bin/activate
+```
+Install pip packages: 
+```sh
+pip install -r requirements.txt
+```
+### Backup packages
+```sh
+pip freeze > requirements.txt
+```
