@@ -48,7 +48,7 @@ source venv/bin/activate
 ```
 Install pip packages: 
 ```sh
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 ### Backup packages
 ```sh
