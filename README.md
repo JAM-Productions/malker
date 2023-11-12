@@ -14,6 +14,14 @@ npm run dev
 npm run start-api
 ```
 
+Or:
+
+```sh
+cd backend
+python app.py
+```
+
+
 ## Setup 
 
 ### Setup frontend
