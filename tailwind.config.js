@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [],
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html"
+  ],
   theme: {
     extend: {
       colors: {
-        'pattens-blue': {
+        'malker': {
           '50': '#f0faff',
           '100': '#dcf1fd',
           '200': '#bce7fb',
