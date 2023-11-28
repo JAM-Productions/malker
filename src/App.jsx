@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/malker.jpeg'
+import malkerLogo from '/malker.png'
 import './App.css'
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
     <>
       <div>
         <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+          <img src={malkerLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
