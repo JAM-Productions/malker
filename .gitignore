@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 **/__pycache__/
 backend/venv/*
+malker-jam-firebase-adminsdk.json
