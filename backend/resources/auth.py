@@ -1,12 +1,16 @@
 from flask_restful import Resource
 from models.user import User
+from flask import jsonify
 
 # just for testing db connection
 class Auth(Resource):
 
     def get(self):
         try:
-            User.add_user(User('elonmusk', 'elon@musk.com', '1234'))
-            return User.get_user('elon@musk.com').json(), 200
+            u = User('elonmusk')
+            User.add_user(u)
+            return User.get_user(u._uuid).json(), 200
+
         except Exception as e:
-            return {"message":"error"}, 500
+            raise e
+            #return {"message": "error fetching data"}, 500
