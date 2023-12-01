@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: "https://malker-backend.onrender.com/", //"http://127.0.0.1:5000",
+        target: "https://malker-backend.onrender.com/", // "http://127.0.0.1:5000"
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

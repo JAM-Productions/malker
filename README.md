@@ -62,3 +62,7 @@ pip install -r requirements.txt
 ```sh
 pip freeze > requirements.txt
 ```
+
+### Key setup
+
+Download the [key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing) and put it into the backend directory.
