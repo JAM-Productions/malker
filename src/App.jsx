@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0)
@@ -30,10 +31,11 @@ function App() {
       min-h-screen
     '>
       <Header />
-      <div className='pt-20'>
+      <div className='pt-20 min-h-[88vh]'>
         <p>The current time is {currentTime}.</p>
         <ToastContainer />
       </div>
+      <Footer />
     </div>
   )
 }
