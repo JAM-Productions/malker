@@ -35,7 +35,6 @@ const PlanForm = () => {
             location,
             description
         };
-        console.log(stateToSave);
         localStorage.setItem("planFormState", JSON.stringify(stateToSave));
     }, [title, author, date, location, description]);
 
@@ -46,10 +45,9 @@ const PlanForm = () => {
             return;
         }
 
-        // Perform the post plan logic here
-        // ...
+        // call post endpoint
+        // [TODO]
 
-        // Reset the form
         resetForm();
         toast.success("Plan created successfully");
     };

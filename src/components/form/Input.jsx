@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Input = ({ 
     label, 
@@ -8,13 +8,17 @@ const Input = ({
     error, 
     maxLength 
 }) => {
-    const [currentCharacters, setCurrentCharacters] = useState(0);
+    const [currentCharacters, setCurrentCharacters] = useState(value.length);
 
     const handleInputChange = (e) => {
         const value = e.target.value;
         setCurrentCharacters(value.length);
         onChange(value);
     };
+
+    useEffect(() => {
+        setCurrentCharacters(value.length);
+    } , [value]);
 
     return (
         <div className="relative">
