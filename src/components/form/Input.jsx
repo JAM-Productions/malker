@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Input = ({ 
     label, 
     type, 
+    value,
     onChange, 
     error, 
     maxLength 
@@ -53,6 +54,7 @@ const Input = ({
                 `}
                 onChange={handleInputChange}
                 error={error}
+                value={value}
                 maxLength={maxLength}
             />
             {currentCharacters > 0 && maxLength && (

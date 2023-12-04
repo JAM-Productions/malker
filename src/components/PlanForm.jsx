@@ -11,21 +11,23 @@ const PlanForm = () => {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const savedState = localStorage.getItem("planFormState");
-        console.log(savedState);
         if (savedState) {
             const parsedState = JSON.parse(savedState);
             setTitle(parsedState.title);
             setAuthor(parsedState.author);
             setDate(parsedState.date);
             setLocation(parsedState.location);
-            setDescription(parsedState.description);
+            setDescription(parsedState.description)
         }
+        setLoading(false);
     }, []);
 
     useEffect(() => {
+        if (loading) return;
         const stateToSave = {
             title,
             author,
@@ -33,7 +35,7 @@ const PlanForm = () => {
             location,
             description
         };
-        // console.log(stateToSave);
+        console.log(stateToSave);
         localStorage.setItem("planFormState", JSON.stringify(stateToSave));
     }, [title, author, date, location, description]);
 
@@ -158,6 +160,7 @@ const PlanForm = () => {
                             <BigInput
                                 label={"description"}
                                 onChange={setDescription}
+                                value={description}
                                 error={error && !description}
                                 maxLength={250}
                             />
