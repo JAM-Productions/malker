@@ -1,24 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Input = ({ label, type }) => {
+const Input = ({ label, type, onChange, error, maxLength }) => {
+    const [currentCharacters, setCurrentCharacters] = useState(0);
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setCurrentCharacters(value.length);
+        onChange(value);
+    };
 
     return (
-        <div class="relative">
+        <div className="relative">
             <label for={label} 
-                class="
+                className="
                     leading-7 
                     text-sm 
                     text-gray-600
                 ">
-                    {label.charAt(0).toUpperCase() + label.slice(1) }
-                </label>
-            <input 
+                {label.charAt(0).toUpperCase() + label.slice(1)}
+            </label>
+            <input
                 type={type}
                 id={label} 
                 title={label} 
-                class="
+                className="
                     w-full 
-                    bg-gray-100 
+                    bg-gray-100
                     bg-opacity-50 
                     rounded 
                     border 
@@ -31,13 +38,22 @@ const Input = ({ label, type }) => {
                     outline-none 
                     text-gray-700 
                     py-1 
+                    pb-3
                     px-3 
                     leading-8 
                     transition-colors 
                     duration-200 
                     ease-in-out
                 "
+                onChange={handleInputChange}
+                error={error}
+                maxLength={maxLength}
             />
+            {currentCharacters > 0 && maxLength && (
+                <div className="absolute right-2 bottom-1 text-xs text-gray-500">
+                    {currentCharacters} / {maxLength}
+                </div>
+            )}
         </div>
     );
 };
