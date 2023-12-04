@@ -17,7 +17,7 @@ const Input = ({
 
     return (
         <div className="relative">
-            <label for={label} 
+            <label htmlFor={label}
                 className="
                     leading-7 
                     text-sm 

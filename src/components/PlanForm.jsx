@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "./form/Input";
 import Button from "./form/Button";
 import { toast } from "react-toastify";
@@ -11,6 +11,30 @@ const PlanForm = () => {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        const savedState = localStorage.getItem("planFormState");
+        console.log(savedState);
+        if (savedState) {
+            const parsedState = JSON.parse(savedState);
+            setTitle(parsedState.title);
+            setAuthor(parsedState.author);
+            setDate(parsedState.date);
+            setLocation(parsedState.location);
+            setDescription(parsedState.description);
+        }
+    }, []);
+
+    useEffect(() => {
+        const stateToSave = {
+            title,
+            author,
+            date,
+            location,
+            description
+        };
+        localStorage.setItem("planFormState", JSON.stringify(stateToSave));
+    }, [title, author, date, location, description]);
 
     const handlePostPlan = () => {
         if (!title || !author || !description) {
@@ -30,9 +54,16 @@ const PlanForm = () => {
     const resetForm = () => {
         setTitle("");
         setAuthor("");
+        setDate("");
+        setLocation("");
         setDescription("");
         setError("");
-    }
+    };
+
+    const handleClear = () => {
+        resetForm();
+        toast.info("Form cleared");
+    };
 
     return (
         <section className="
@@ -131,7 +162,10 @@ const PlanForm = () => {
                             />
                         </div>
 
-                        <div class="p-2 w-full">
+                        <div className="p-2 w-full flex flex-row items-center">
+                            <Button text={"Clear"} 
+                                onClick={handleClear}
+                            />
                             <Button text={"Create"} 
                                 onClick={handlePostPlan}
                             />

@@ -2,7 +2,7 @@ import React from "react";
 
 const Button = ({ text, onClick }) => {
     return (
-        <button class="
+        <button className="
                 flex 
                 mx-auto 
                 text-white 
