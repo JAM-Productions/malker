@@ -29,7 +29,7 @@ const Input = ({
                 type={type}
                 id={label} 
                 title={label} 
-                className="
+                className={`
                     w-full 
                     bg-gray-100
                     bg-opacity-50 
@@ -43,14 +43,14 @@ const Input = ({
                     text-base 
                     outline-none 
                     text-gray-700 
-                    py-1 
-                    pb-3
-                    px-3 
+                    py-1
+                    pb-3 
+                    px-3
                     leading-8 
                     transition-colors 
                     duration-200 
                     ease-in-out
-                "
+                `}
                 onChange={handleInputChange}
                 error={error}
                 maxLength={maxLength}

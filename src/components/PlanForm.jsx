@@ -7,6 +7,8 @@ import BigInput from "./form/BigInput";
 const PlanForm = () => {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
+    const [date, setDate] = useState("");
+    const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [error, setError] = useState("");
 
@@ -98,6 +100,25 @@ const PlanForm = () => {
                                 onChange={(e) => setAuthor(e.target.value)}
                                 error={error && !author}
                                 maxLength={20}
+                            />
+                        </div>
+                        <div className="p-2 w-1/2">
+                            <Input
+                                label={"date"}
+                                type={"date"}
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                error={error}
+                            />
+                        </div>
+                        <div className="p-2 w-1/2">
+                            <Input
+                                label={"location"}
+                                type={"text"}
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
+                                error={error}
+                                maxLength={30}
                             />
                         </div>
 
