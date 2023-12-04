@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "./form/Input";
+import Button from "./form/Button";
 import { toast } from "react-toastify";
-import BigInput from "./BigInput";
+import BigInput from "./form/BigInput";
 
 const PlanForm = () => {
     const [title, setTitle] = useState("");
