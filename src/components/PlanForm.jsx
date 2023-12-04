@@ -1,5 +1,7 @@
 import React from "react";
 import Input from "./Input";
+import Button from "./Button";
+import { toast } from "react-toastify";
 
 const PlanForm = () => {
     return (
@@ -99,21 +101,11 @@ const PlanForm = () => {
                             </div>
                         </div>
                         <div class="p-2 w-full">
-                            <button class="
-                                flex 
-                                mx-auto 
-                                text-white 
-                                bg-blue-500 
-                                border-0 
-                                py-2 
-                                px-8 
-                                focus:outline-none 
-                                hover:bg-blue-600 
-                                rounded 
-                                text-lg
-                            ">
-                                Create
-                            </button>
+                            <Button text={"Create"} 
+                                onClick={() => {
+                                    toast.success("Plan created!");
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
