@@ -33,6 +33,7 @@ const PlanForm = () => {
             location,
             description
         };
+        // console.log(stateToSave);
         localStorage.setItem("planFormState", JSON.stringify(stateToSave));
     }, [title, author, date, location, description]);
 
@@ -118,7 +119,7 @@ const PlanForm = () => {
                                 label={"title"}
                                 type={"text"}
                                 value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={setTitle}
                                 error={error}
                                 maxLength={30}
                             />
@@ -128,7 +129,7 @@ const PlanForm = () => {
                                 label={"author"}
                                 type={"text"}
                                 value={author}
-                                onChange={(e) => setAuthor(e.target.value)}
+                                onChange={setAuthor}
                                 error={error && !author}
                                 maxLength={20}
                             />
@@ -138,7 +139,7 @@ const PlanForm = () => {
                                 label={"date"}
                                 type={"date"}
                                 value={date}
-                                onChange={(e) => setDate(e.target.value)}
+                                onChange={setDate}
                                 error={error}
                             />
                         </div>
@@ -147,7 +148,7 @@ const PlanForm = () => {
                                 label={"location"}
                                 type={"text"}
                                 value={location}
-                                onChange={(e) => setLocation(e.target.value)}
+                                onChange={setLocation}
                                 error={error}
                                 maxLength={30}
                             />
@@ -156,7 +157,7 @@ const PlanForm = () => {
                         <div className="p-2 w-full">
                             <BigInput
                                 label={"description"}
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={setDescription}
                                 error={error && !description}
                                 maxLength={250}
                             />
