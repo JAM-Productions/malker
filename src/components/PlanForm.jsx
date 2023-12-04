@@ -1,4 +1,5 @@
 import React from "react";
+import Input from "./Input";
 
 const PlanForm = () => {
     return (
@@ -50,80 +51,14 @@ const PlanForm = () => {
                         -m-2
                     ">
                         <div class="p-2 w-1/2">
-                            <div class="relative">
-                                <label for="title" 
-                                    class="
-                                        leading-7 
-                                        text-sm 
-                                        text-gray-600
-                                    ">
-                                        Title
-                                    </label>
-                                <input 
-                                    type="text" 
-                                    id="title" 
-                                    title="title" 
-                                    class="
-                                        w-full 
-                                        bg-gray-100 
-                                        bg-opacity-50 
-                                        rounded 
-                                        border 
-                                        border-gray-300 
-                                        focus:border-blue-500 
-                                        focus:bg-white 
-                                        focus:ring-2 
-                                        focus:ring-blue-200 
-                                        text-base 
-                                        outline-none 
-                                        text-gray-700 
-                                        py-1 
-                                        px-3 
-                                        leading-8 
-                                        transition-colors 
-                                        duration-200 
-                                        ease-in-out
-                                    "
-                                />
-                            </div>
+                            <Input label={"title"} 
+                                type={"text"}
+                            />
                         </div>
                         <div class="p-2 w-1/2">
-                            <div class="relative">
-                                <label for="author" 
-                                    class="
-                                        leading-7 
-                                        text-sm 
-                                        text-gray-600
-                                    ">
-                                        Author
-                                    </label>
-                                <input 
-                                    type="text" 
-                                    id="author" 
-                                    title="author" 
-                                    class="
-                                        w-full 
-                                        bg-gray-100 
-                                        bg-opacity-50 
-                                        rounded 
-                                        border 
-                                        border-gray-300 
-                                        focus:border-blue-500 
-                                        focus:bg-white 
-                                        focus:ring-2 
-                                        focus:ring-blue-200 
-                                        text-base 
-                                        outline-none 
-                                        text-gray-700 
-                                        py-1 
-                                        px-3 
-                                        leading-8 
-                                        transition-colors 
-                                        duration-200 
-                                        ease-in-out
-                                    "
-                                />
-                            </div>
+                            <Input label={"author"} 
+                                type={"text"}
+                            />
                         </div>
                         
                         <div class="p-2 w-full">

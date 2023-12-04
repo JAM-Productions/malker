@@ -1,0 +1,45 @@
+import React from "react";
+
+const Input = ({ label, type }) => {
+
+    return (
+        <div class="relative">
+            <label for={label} 
+                class="
+                    leading-7 
+                    text-sm 
+                    text-gray-600
+                ">
+                    {label.charAt(0).toUpperCase() + label.slice(1) }
+                </label>
+            <input 
+                type={type}
+                id={label} 
+                title={label} 
+                class="
+                    w-full 
+                    bg-gray-100 
+                    bg-opacity-50 
+                    rounded 
+                    border 
+                    border-gray-300 
+                    focus:border-blue-500 
+                    focus:bg-white 
+                    focus:ring-2 
+                    focus:ring-blue-200 
+                    text-base 
+                    outline-none 
+                    text-gray-700 
+                    py-1 
+                    px-3 
+                    leading-8 
+                    transition-colors 
+                    duration-200 
+                    ease-in-out
+                "
+            />
+        </div>
+    );
+};
+
+export default Input;
