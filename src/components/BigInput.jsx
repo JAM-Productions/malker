@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const Input = ({ 
+const BigInput = ({ 
     label, 
-    type, 
     onChange, 
-    error, 
+    value, 
+    error,
     maxLength 
 }) => {
     const [currentCharacters, setCurrentCharacters] = useState(0);
@@ -17,51 +17,53 @@ const Input = ({
 
     return (
         <div className="relative">
-            <label for={label} 
+            <label
+                htmlFor={label}
                 className="
                     leading-7 
                     text-sm 
                     text-gray-600
-                ">
+                "
+            >
                 {label.charAt(0).toUpperCase() + label.slice(1)}
             </label>
-            <input
-                type={type}
-                id={label} 
-                title={label} 
+            <textarea
+                id={label}
+                title={label}
                 className="
                     w-full 
-                    bg-gray-100
+                    bg-gray-100 
                     bg-opacity-50 
-                    rounded 
-                    border 
+                    rounded border 
                     border-gray-300 
                     focus:border-blue-500 
                     focus:bg-white 
                     focus:ring-2 
                     focus:ring-blue-200 
+                    h-32 
                     text-base 
                     outline-none 
                     text-gray-700 
                     py-1 
-                    pb-3
                     px-3 
-                    leading-8 
+                    resize-none 
+                    leading-6 
                     transition-colors 
                     duration-200 
                     ease-in-out
                 "
+                value={value}
                 onChange={handleInputChange}
                 error={error}
                 maxLength={maxLength}
-            />
+            ></textarea>
             {currentCharacters > 0 && maxLength && (
-                <div className="absolute right-2 bottom-1 text-xs text-gray-500">
+                <div className="absolute right-2 bottom-3 text-xs text-gray-500">
                     {currentCharacters} / {maxLength}
                 </div>
             )}
         </div>
     );
-};
+}
 
-export default Input;
+export default BigInput;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import { toast } from "react-toastify";
+import BigInput from "./BigInput";
 
 const PlanForm = () => {
     const [title, setTitle] = useState("");
@@ -101,47 +102,12 @@ const PlanForm = () => {
                         </div>
 
                         <div className="p-2 w-full">
-                            <div className="relative">
-                                <label
-                                    htmlFor="description"
-                                    className="
-                                        leading-7 
-                                        text-sm 
-                                        text-gray-600
-                                    "
-                                >
-                                    Description
-                                </label>
-                                <textarea
-                                    id="description"
-                                    title="description"
-                                    className="
-                                        w-full 
-                                        bg-gray-100 
-                                        bg-opacity-50 
-                                        rounded border 
-                                        border-gray-300 
-                                        focus:border-blue-500 
-                                        focus:bg-white 
-                                        focus:ring-2 
-                                        focus:ring-blue-200 
-                                        h-32 
-                                        text-base 
-                                        outline-none 
-                                        text-gray-700 
-                                        py-1 
-                                        px-3 
-                                        resize-none 
-                                        leading-6 
-                                        transition-colors 
-                                        duration-200 
-                                        ease-in-out
-                                    "
-                                    value={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    error={error && !description}
-                                ></textarea>
-                            </div>
+                            <BigInput
+                                label={"description"}
+                                onChange={(e) => setDescription(e.target.value)}
+                                error={error && !description}
+                                maxLength={250}
+                            />
                         </div>
 
                         <div class="p-2 w-full">
