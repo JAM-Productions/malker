@@ -40,7 +40,7 @@ const PlanForm = () => {
     }, [title, author, date, location, description]);
 
     const handlePostPlan = () => {
-        if (!title || !author || !description) {
+        if (!title || !author || !description || !date || !location) {
             setError("Please fill out all fields");
             toast.error("Please fill out all fields");
             return;
