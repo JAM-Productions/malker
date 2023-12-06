@@ -63,5 +63,6 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 
-### Key setup
-Download the [key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing)
+### Firebase key + other enviroment variables setup
+Download the [Firebase key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing)
+Download the [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
