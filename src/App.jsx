@@ -3,6 +3,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import PlanForm from './components/PlanForm';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0)
@@ -10,7 +11,7 @@ function App() {
   useEffect(() => {
     fetch('/api/time')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -32,7 +33,8 @@ function App() {
     '>
       <Header />
       <div className='pt-20 min-h-[88vh]'>
-        <p>The current time is {currentTime}.</p>
+        {/* <p>The current time is {currentTime}.</p> */}
+        <PlanForm />
         <ToastContainer />
       </div>
       <Footer />
