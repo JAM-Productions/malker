@@ -12,13 +12,13 @@ const PlanView = () => {
     return ( 
         <div>
             {/* Información del plan */}
-            <div class="container px-5 py-24 mx-auto">
-                <div class="flex flex-col w-full ">
-                    <h1 class="sm:text-3xl text-2xl font-medium text-gray-900">{title}</h1>
-                    <p class="mt-3 text-base">{date} - {location}</p>
-                    <div class="border-t-2 border-gray-400 ml-3 mb-5 mt-3"></div>
+            <div className="container px-5 py-24 mx-auto">
+                <div className="flex flex-col w-full">
+                    <h1 className="sm:text-3xl text-2xl font-medium text-gray-900">{title}</h1>
+                    <p className="mt-3 text-xs sm:text-base">{date} - {location}</p>
+                    <div className="border-t-2 border-gray-400 mx-3 mb-5 mt-3"></div>
                     <p>{description}</p>
-                    <p class="text-right mt-5">{author}</p>
+                    <p className="text-right mt-5">{author}</p>
                 </div>
             </div>
             {/* Unirse */}
