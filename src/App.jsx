@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PlanView from './components/PlanView';
+import PlanForm from './components/PlanForm';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0)
@@ -11,7 +12,7 @@ function App() {
   useEffect(() => {
     fetch('/api/time')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
