@@ -3,6 +3,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import PlanView from './components/PlanView';
 import PlanForm from './components/PlanForm';
 
 function App() {
@@ -33,9 +34,9 @@ function App() {
     '>
       <Header />
       <div className='pt-20 min-h-[88vh]'>
-        {/* <p>The current time is {currentTime}.</p> */}
-        <PlanForm />
-        <ToastContainer />
+        {/*<p>The current time is {currentTime}.</p>
+        <ToastContainer />*/}
+        <PlanView />
       </div>
       <Footer />
     </div>
