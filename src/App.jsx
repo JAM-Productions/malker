@@ -34,8 +34,8 @@ function App() {
     '>
       <Header />
       <div className='pt-20 min-h-[88vh]'>
-        {/*<p>The current time is {currentTime}.</p>
-        <ToastContainer />*/}
+        {/*<p>The current time is {currentTime}.</p>*/}
+        <ToastContainer />
         <PlanView />
       </div>
       <Footer />
