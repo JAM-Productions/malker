@@ -24,11 +24,13 @@ class User:
 
     def add_user(self):
         update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined})
-        self._uuid = us_ref.id
+        self.uuid = us_ref.id
 
     @classmethod
     def get_user(cls, uuid: str):
         u = db.collection(u'users').document(uuid).get().to_dict()
+        if u is None:
+            raise f'could not fetch data for user {uuid}'
         u['uuid'] = uuid
         try:
             return User.from_dict(u)
