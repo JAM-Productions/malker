@@ -49,7 +49,7 @@ const PlanView = () => {
                             value={name}
                             onChange={setName}
                             error={error}
-                            maxLength={30}
+                            maxLength={20}
                             />
                     </div>
                     <div className="p-2">
