@@ -16,9 +16,15 @@ const PlanView = () => {
     const handleJoin = () => {
         if (!name) {
             setError("Please fill out all fields")
+            toast.error("Please fill out all fields")
+            return
         }
+
+        // call post endpoint
+        // [TODO]
+
         setName("")
-        toast.info("Form cleared")
+        toast.success("Join successfull");
     }
 
     return ( 
