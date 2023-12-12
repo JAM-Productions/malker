@@ -14,5 +14,6 @@ export default defineConfig({
     host: true,
     strictPort: true,
   },
+  base: "/malker",
   plugins: [react()],
 })
