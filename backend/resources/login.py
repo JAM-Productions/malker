@@ -5,17 +5,6 @@ from flask import jsonify, make_response
 
 
 class Login(Resource):
-    @jwt_required()
-    def get(self):
-        """
-        :return: json with user data
-        """
-        uuid = get_jwt_identity()
-        try:
-            return jsonify(User.get_user(uuid).json())
-        except Exception as e:
-            return {"Error": "could not get user data"}, 403
-
     def post(self):
         """
         Function that
