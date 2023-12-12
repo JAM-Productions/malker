@@ -18,5 +18,5 @@ class PlanCreationError(Exception):
 
 class PlanDBAddingError(Exception):
     def __init__(self):
-        self.message = 'could not add the following plan into the db'
+        self.message = 'Could not add the following plan into the db'
         super().__init__(self.message)
