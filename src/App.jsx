@@ -5,12 +5,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PlanView from './components/PlanView';
 import PlanForm from './components/PlanForm';
+import { BASE_URL } from './config/constants';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0)
 
   useEffect(() => {
-    fetch('/api/time')
+    fetch(BASE_URL + '/time')
       .then((res) => {
         console.log(res);
         if (!res.ok) {

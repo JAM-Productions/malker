@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig ({
   server: {
     proxy: {
-      '/malker/api': {
+      '/api': {
         target: 'https://malker-backend.onrender.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
