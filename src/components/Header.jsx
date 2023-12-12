@@ -19,7 +19,7 @@ const Header = () => {
         border-blue-600
       ">
         <img
-          src="/malker.png" 
+          src="malker.png" 
           alt="Logo"
           className="h-8 w-8 mr-2" 
         />
