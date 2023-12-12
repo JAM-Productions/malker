@@ -3,6 +3,8 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from resources.login import Login
+from resources.plan import PlanAPI
+from resources.user import UserAPI
 from dotenv import load_dotenv
 import time
 import os
@@ -18,7 +20,8 @@ api = Api(app)
 CORS(app)
 
 api.add_resource(Login, '/api/login')
-
+api.add_resource(PlanAPI, '/api/plan','/api/plan/<string:id>')
+api.add_resource(UserAPI, '/api/user','/api/user/<string:uuid>')
 @app.route('/')
 def index():
     return jsonify({'message': 'Hello, World!'})
