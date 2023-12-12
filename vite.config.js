@@ -8,7 +8,7 @@ const currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().tri
 export default defineConfig ({
   server: {
     proxy: {
-      baseUrl: {
+      '/api': {
         target: currentBranch !== 'main' ? 'http://127.0.0.1:5000' : 'https://malker-backend.onrender.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
