@@ -1,5 +1,15 @@
 # Malker [React + Vite + Flask]
 
+Try it: https://malker.onrender.com
+
+Backend deployed in: https://malker-backend.onrender.com
+
+## What is *malker*?
+
+It is a web application to manage the social plan with your friends. It does not require login, it works using cookies and sharing the URL. 
+
+It uses React as frontend, Flask as backend and Firebase as database.
+
 ## Run the app
 
 ### Run frontend
@@ -62,7 +72,6 @@ pip install -r requirements.txt
 ```sh
 pip freeze > requirements.txt
 ```
-
-### Key setup
-
-Download the [key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing) and put it into the backend directory.
+### Firebase key + environment variables setup
+- Download the [Firebase key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing)
+- Download the [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
