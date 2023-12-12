@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     fetch('/api/time')
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }

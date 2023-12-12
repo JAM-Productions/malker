@@ -5,7 +5,7 @@ import { execSync } from 'child_process'
 const currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig ({
   server: {
     proxy: {
       '/api': {
@@ -17,7 +17,5 @@ export default defineConfig({
     host: true,
     strictPort: true,
   },
-  //base: currentBranch === 'main' ? '/malker' : '/',
-  mode: currentBranch === 'main' ? 'production' : 'development',
   plugins: [react()],
 })
