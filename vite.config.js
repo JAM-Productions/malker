@@ -17,6 +17,7 @@ export default defineConfig({
     host: true,
     strictPort: true,
   },
-  base: currentBranch === 'main' ? '/malker' : '/',
+  //base: currentBranch === 'main' ? '/malker' : '/',
+  mode: currentBranch === 'main' ? 'production' : 'development',
   plugins: [react()],
 })
