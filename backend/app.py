@@ -22,7 +22,7 @@ api.add_resource(Login, '/api/login')
 
 @app.route('/')
 def index():
-    return jsonify({'message': 'Hello, World!'})
+    return jsonify({'message': 'Hello, Malker!'})
 
 
 @app.route('/time')
