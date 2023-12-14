@@ -31,7 +31,7 @@ def get_current_time():
 
 @app.route('/git_update', methods=['POST'])
 def git_update():
-    repo = git.Repo('./orbe')
+    repo = git.Repo('./malker')
     origin = repo.remotes.origin
     repo.create_head('main',
                      origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
