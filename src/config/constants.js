@@ -1,1 +1,1 @@
-export const BASE_URL='https://malker-backend.onrender.com/'// 'http://127.0.0.1:5000' // 
+export const BASE_URL='https://jamproductions.pythonanywhere.com'// 'http://127.0.0.1:5000' 
