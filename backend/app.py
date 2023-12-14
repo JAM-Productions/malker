@@ -6,6 +6,7 @@ from resources.login import Login
 from dotenv import load_dotenv
 import time
 import os
+import git
 
 load_dotenv()
 app = Flask(__name__)
@@ -28,6 +29,14 @@ def index():
 def get_current_time():
     return jsonify({'time': time.time()})
 
+@app.route('/git_update', methods=['POST'])
+def git_update():
+    repo = git.Repo('./orbe')
+    origin = repo.remotes.origin
+    repo.create_head('main',
+                     origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
+    origin.pull()
+    return '', 200
 
 if __name__ == '__main__':
     app.run(debug=True)
