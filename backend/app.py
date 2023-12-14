@@ -8,6 +8,7 @@ from resources.user import UserAPI
 from dotenv import load_dotenv
 import time
 import os
+import git
 
 load_dotenv()
 app = Flask(__name__)
@@ -24,13 +25,21 @@ api.add_resource(PlanAPI, '/api/plan','/api/plan/<string:id>')
 api.add_resource(UserAPI, '/api/user','/api/user/<string:uuid>')
 @app.route('/')
 def index():
-    return jsonify({'message': 'Hello, World!'})
+    return jsonify({'message': 'Hello from Malker!!'})
 
 
 @app.route('/time')
 def get_current_time():
     return jsonify({'time': time.time()})
 
+@app.route('/git_update', methods=['POST'])
+def git_update():
+    repo = git.Repo('./malker')
+    origin = repo.remotes.origin
+    repo.create_head('main',
+                     origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
+    origin.pull()
+    return '', 200
 
 if __name__ == '__main__':
     app.run(debug=True)
