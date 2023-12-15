@@ -27,7 +27,9 @@ const Header = () => {
           text-white 
           text-lg 
           font-bold
-        ">
+        "
+        style={{ fontFamily: 'Montserrat' }}
+        >
           Malker
         </span>
       </div>
