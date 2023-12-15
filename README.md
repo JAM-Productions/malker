@@ -78,7 +78,7 @@ pip freeze > requirements.txt
 ```
 ### Firebase key + environment variables setup
 
-You have to do download the these files:
+You have to download these files:
 - [Firebase key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing)
 - [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
 
