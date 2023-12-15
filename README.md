@@ -1,8 +1,12 @@
 # Malker [React + Vite + Flask]
 
-Try it: https://malker.onrender.com
+Try it: https://jam-productions.github.io/malker/
 
-Backend deployed in: https://malker-backend.onrender.com
+Backend deployed in: https://jamproductions.pythonanywhere.com/time
+
+It is also deployed in OnRender (very slow):
+- Frontend: https://malker.onrender.com
+- Backend: https://malker-backend.onrender.com
 
 ## What is *malker*?
 
@@ -48,19 +52,19 @@ Navigate to Flask directory
 cd backend
 ```
 
-Create virtual environment
+Create the virtual environment
 
 ```sh
 python -m venv venv
 ```
 
-Activate environment
+Activate the environment
 
-#### En Windows
+#### On Windows
 ```sh
 venv\Scripts\activate
 ```
-#### En Unix o MacOS
+#### On Unix or MacOS
 ```sh
 source venv/bin/activate
 ```
@@ -73,5 +77,9 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 ### Firebase key + environment variables setup
-- Download the [Firebase key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing)
-- Download the [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
+
+You have to do download the these files:
+- [Firebase key](https://drive.google.com/file/d/1nPYWyNK5Ssrp9ks0aGVi7NDksAjxPrw_/view?usp=sharing)
+- [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
+
+Put them on `backend` directory.
