@@ -17,6 +17,12 @@ jobs:
     environment: testing
     steps:
     - uses: actions/checkout@v2
+    - name: create-json
+      id: create-json
+      uses: jsdaniell/create-json@1.1.2
+      with:
+        name: "backend/malker-jam-firebase-adminsdk.json"
+        json: ${{ secrets.FIREBASE_CREDENTIALS }}
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
@@ -34,11 +40,6 @@ jobs:
         cd backend
         pylint *.py
         pylint tests/
-
-    - name: Set up Firebase credentials
-      run: |
-        echo "${{ secrets.FIREBASE_CREDENTIALS }}" > backend/malker-jam-firebase-adminsdk.json
-        jq -r 'to_entries | map("\(.key)=\"\(.value|tostring)\"") | .[]' backend/malker-jam-firebase-adminsdk.json
 
     - name: Run Tests
       run: |
