@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Change to backend directory
-      run: cd backend/
+      run: cd backend/ && pwd
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
