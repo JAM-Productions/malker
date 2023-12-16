@@ -38,7 +38,6 @@ jobs:
     - name: Set up Firebase credentials
       run: |
         echo "${{ secrets.FIREBASE_CREDENTIALS }}" > backend/malker-jam-firebase-adminsdk.json
-        cat backend/malker-jam-firebase-adminsdk.json
 
     - name: Run Tests
       run: |
