@@ -36,7 +36,9 @@ jobs:
         pylint tests/
 
     - name: Set up Firebase credentials
-      run: echo "$FIREBASE_CREDENTIALS" > backend/malker-jam-firebase-adminsdk.json
+      run: |
+        echo "$FIREBASE_CREDENTIALS" > backend/malker-jam-firebase-adminsdk.json
+        cat backend/malker-jam-firebase-adminsdk.json
 
     - name: Run Tests
       run: |
