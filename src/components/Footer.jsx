@@ -32,7 +32,9 @@ const Footer = () => {
                     <span className="
                         ml-3 
                         text-xl
-                    ">
+                    "
+                    style={{ fontFamily: 'Montserrat' }}
+                    >
                         JAM Productions
                     </span>
                 </a>
