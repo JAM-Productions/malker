@@ -2,7 +2,9 @@ import datetime
 
 from db import db
 from models.user import User
-from exceptions.plan_errors import PlanCreationError, PlanNotFoundError, PlanDBAddingError
+from exceptions.plan_errors import PlanCreationError, PlanNotFoundError, PlanDBAddingError, PlanDeletingError
+
+
 #from google.cloud import firestore
 
 
@@ -81,6 +83,12 @@ class Plan:
             return Plan.from_dict(p)
         except Exception as e:
             raise PlanCreationError(p) from e
+
+    def delete_plan(self):
+        try:
+            p = db.collection(u'plans').document(self.uid).delete()
+        except Exception as e:
+            raise PlanDeletingError(self.uid)
 
     """
     def add_participant(self, uuid: str):

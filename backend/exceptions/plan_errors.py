@@ -20,3 +20,9 @@ class PlanDBAddingError(Exception):
     def __init__(self):
         self.message = 'Could not add the following plan into the db'
         super().__init__(self.message)
+
+
+class PlanDeletingError(Exception):
+    def __init__(self, id: str):
+        self.message = f'Could not delete plan with id {id}'
+        super().__init__(self.message)

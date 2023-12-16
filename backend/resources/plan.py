@@ -5,6 +5,8 @@ from flask_restful import Resource, reqparse
 from models.plan import Plan
 from models.user import User
 from exceptions.plan_errors import PlanCreationError, PlanNotFoundError, PlanDBAddingError
+from exceptions.user_errors import UserCreationError, UserNotFoundError
+from exceptions.plan_errors import PlanDeletingError
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
@@ -45,9 +47,9 @@ class PlanAPI(Resource):
         except Exception as e:
             return {'message': 'error creating the plan'}, 500
 
-
     @jwt_required()
     def put(self, id):
+        # TODO allow only sending the variable we want to change
         try:
             pl = Plan.get_plan_by_id(id)
         except PlanNotFoundError as e:
@@ -78,7 +80,7 @@ class PlanAPI(Resource):
                 User.get_user(p['admin'])
                 pl.admin = p['admin']
             except Exception as e:
-                return {'message':f'the admin value {p["admin"]} is not a valid user id'}
+                return {'message': f'the admin value {p["admin"]} is not a valid user id'}
 
         try:
             pl.update_plan()
@@ -87,4 +89,27 @@ class PlanAPI(Resource):
             return {'message': e.message}, 404
         except Exception as e:
             return {'message': 'error updating the plan'}, 500
+
+    @jwt_required()
+    def delete(self, id):
+        """
+        Endpoint that allows to delete a plan. Only admin can delete a plan
+        :return: json with confirmation message
+        """
+        try:
+            plan = Plan.get_plan_by_id(id)
+            user = User.get_user(get_jwt_identity())
+
+            if plan.admin.lower() == user.uuid.lower():
+                plan.delete_plan()
+                return jsonify({"message": f"plan with id {id} deleted"})
+
+            return {"message": f"you do not have enough privileges to delete plan {id}"}, 403
+
+        except (PlanNotFoundError, UserNotFoundError) as e:
+            return {'message': e.message}, 404
+        except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
+            return {'message': e.message}, 400
+        except Exception as e:
+            return {'message':f'error performing deletion for provided plan'}, 500
 
