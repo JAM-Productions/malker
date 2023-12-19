@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PlanView from './components/PlanView';
 import PlanForm from './components/PlanForm';
+import PlanShowParticipants from './components/PlanShowParticipants';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0)
@@ -36,7 +37,7 @@ function App() {
       <div className='pt-20 min-h-[88vh]'>
         {/*<p>The current time is {currentTime}.</p>*/}
         <ToastContainer />
-        <PlanView />
+        <PlanShowParticipants />
       </div>
       <Footer />
     </div>
