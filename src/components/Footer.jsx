@@ -25,14 +25,16 @@ const Footer = () => {
                     justify-center 
                     text-gray-900
                 ">
-                    <img src="/jam.png" 
+                    <img src="jam.png" 
                         alt="Logo"
                         className="h-8 w-8 mr-2" 
                     />
                     <span className="
                         ml-3 
                         text-xl
-                    ">
+                    "
+                    style={{ fontFamily: 'Montserrat' }}
+                    >
                         JAM Productions
                     </span>
                 </a>
