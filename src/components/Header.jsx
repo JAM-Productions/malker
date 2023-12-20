@@ -29,8 +29,10 @@ const Header = () => {
         z-10
         shadow-sm
         transition-transform
-        transform ${isScrolled ? '-translate-y-full' : 'translate-y-0'}
-        transition-all duration-500
+        transform
+        ${isScrolled ? '-translate-y-full' : 'translate-y-0'}
+        transition-all
+        duration-500
       `}
     >
       <div
