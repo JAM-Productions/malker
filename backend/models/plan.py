@@ -59,7 +59,7 @@ class Plan:
 
             return plans
 
-    def json(self) -> dict:
+    def json(self, return_full=False) -> dict:
         """
         generates dict with all the plan data.
         :return: dict with the plan data (not a json as the method name may suggest)
@@ -72,7 +72,7 @@ class Plan:
             'location': self.location,
             # '_admin': self._admin.json(),
             'admin': self._admin,
-            'participants': self._participants
+            'participants': self.get_plan_participants_id() if not return_full else [p.json() for p in self.get_plan_participants()]
             # '_participants': [p.json() for p in self._participants]
         }
 
@@ -187,9 +187,9 @@ class Plan:
     @classmethod
     def get_user_plans(cls, uuid: str) -> [Plan]:
         data = (db.collection(u'plans')
-                .where(filter=FieldFilter("_participants", "array-contains", uuid))).stream()
+                .where(filter=FieldFilter("participants", "array_contains", uuid))).stream()
 
-        if not data.exists():
+        if data is None:
             raise PlanNotFoundError(uuid)
 
         plans = []
@@ -203,3 +203,5 @@ class Plan:
 
         if len(plans) == 0:
             raise PlanCreationError({})
+
+        return plans

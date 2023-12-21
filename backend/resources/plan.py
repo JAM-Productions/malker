@@ -20,7 +20,7 @@ class PlanAPI(Resource):
         :return: if success, JSON with plan data
         """
         try:
-            return jsonify(Plan.get_plan_by_id(id).json())
+            return jsonify(Plan.get_plan_by_id(id).json(return_full=True))
         except PlanNotFoundError as e:
             return {'message': e.message}, 404
         except PlanCreationError as e:

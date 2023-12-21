@@ -17,17 +17,12 @@ class User:
     def from_dict(cls, d: dict):
         return User(username=d['username'], uuid=d['uuid'], joined=d['joined'])
 
-    def json(self, return_plans=False) -> dict:
-        d = {
+    def json(self) -> dict:
+        return {
             'username': self.username,
             'uuid': self.uuid,
             'joined': self.joined.strftime("%d/%m/%Y")
         }
-        # eliminar aixo anirà a l'endpoint
-        if return_plans:
-            d['plans'] = [p.json() for p in self.get_user_plans()]
-
-        return d
 
     def add_user(self):
         """
