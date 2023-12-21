@@ -13,6 +13,7 @@ import git
 from resources.login import Login
 from resources.plan import PlanAPI
 from resources.user import UserAPI
+from resources.participants import AddPartcipants, DeleteParticipants
 
 load_dotenv()
 app = Flask(__name__)
@@ -28,6 +29,8 @@ CORS(app)
 api.add_resource(Login, '/api/login')
 api.add_resource(PlanAPI, '/api/plan', '/api/plan/<string:id>')
 api.add_resource(UserAPI, '/api/user', '/api/user/<string:uuid>')
+api.add_resource(AddPartcipants, '/api/plan/<string:plan_id>/add/<string:user_id>')
+api.add_resource(DeleteParticipants, '/api/plan/<string:plan_id>/delete/<string:user_id>')
 
 
 @app.route('/')

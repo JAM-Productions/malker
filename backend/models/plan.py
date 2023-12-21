@@ -5,11 +5,9 @@ import datetime
 from db import db
 from models.user import User
 from exceptions.plan_errors import PlanCreationError, PlanNotFoundError, PlanDBAddingError, PlanDeletingError
-from exceptions.user_errors import UserCreationError
+from exceptions.user_errors import UserCreationError, UserNotFoundError, UserAlreadyAdded
 from google.cloud.firestore_v1.base_query import FieldFilter
-
-
-# from google.cloud import firestore
+from google.cloud import firestore
 
 
 class Plan:
@@ -166,18 +164,25 @@ class Plan:
         except Exception as e:
             raise PlanDeletingError(self.uid)
 
-    """
     def add_participant(self, uuid: str):
-        user = User.get_user(uuid)
-        self._participants.append(user)
-        ref = db.collection(u'plans').document(self.uid)
-        ref.update({u'_participants': firestore.ArrayUnion([uuid])})
+        if uuid in self._participants:
+            raise UserAlreadyAdded(uuid)
+        try:
+            user = User.get_user(uuid)
+            self._participants.append(user)
+            ref = db.collection(u'plans').document(self.uid)
+            ref.update({u'participants': firestore.ArrayUnion([uuid])})
+        except Exception as e:
+            raise PlanDBAddingError() from e
 
     def remove_participant(self, uuid: str):
-        if uuid in self._participants:
+        if uuid not in self._participants:
+            raise UserNotFoundError(uuid, msg=f'User with id {uuid} not found in plan with id {self.uid}')
+        try:
             ref = db.collection(u'plans').document(self.uid)
-            ref.update({u'_participants': firestore.ArrayUnion([uuid])})
-    """
+            ref.update({u'participants': firestore.ArrayRemove([uuid])})
+        except Exception as e:
+            raise PlanDBAddingError() from e
 
     @classmethod
     def get_user_plans(cls, uuid: str) -> [Plan]:
