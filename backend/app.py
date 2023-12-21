@@ -13,12 +13,13 @@ import git
 from resources.login import Login
 from resources.plan import PlanAPI
 from resources.user import UserAPI
+from resources.participants import AddPartcipants, DeleteParticipants
 
 load_dotenv()
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET')
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-app.config['JWT_CSRF_CHECK_FORM'] = True  # allows sending cookies through forms
+app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 app.config['JWT_SESSION_COOKIE'] = False  # makes cookies permanent
 jwt = JWTManager(app)
 api = Api(app)
@@ -27,6 +28,8 @@ CORS(app)
 api.add_resource(Login, '/api/login')
 api.add_resource(PlanAPI, '/api/plan', '/api/plan/<string:id>')
 api.add_resource(UserAPI, '/api/user', '/api/user/<string:uuid>')
+api.add_resource(AddPartcipants, '/api/plan/<string:plan_id>/add/<string:user_id>')
+api.add_resource(DeleteParticipants, '/api/plan/<string:plan_id>/delete/<string:user_id>')
 
 
 @app.route('/')
