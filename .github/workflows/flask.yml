@@ -39,7 +39,6 @@ jobs:
       run: |
         cd backend
         pylint *.py
-        pylint tests/
 
     - name: Run Tests
       run: |

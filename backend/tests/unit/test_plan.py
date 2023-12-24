@@ -1,6 +1,6 @@
 import pytest
 from models.plan import Plan
-from exceptions.plan_errors import PlanNotFoundError, PlanCreationError, PlanDBAddingError, PlanDeletingError
+from exceptions.plan_errors import PlanNotFoundError
 from models.user import User
 from datetime import datetime
 
