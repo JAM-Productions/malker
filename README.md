@@ -10,41 +10,61 @@ It is also deployed in OnRender (very slow):
 
 ## What is *malker*?
 
-It is a web application to manage the social plan with your friends. It does not require login, it works using cookies and sharing the URL. 
+It is a web application to manage the social plan with your friends. It does not require login, it works using cookies and sharing the URL.
 
 It uses React as frontend, Flask as backend and Firebase as database.
 
-## Run the app
+## Requirements
 
-### Run frontend
+Make sure you have the following software installed on your system before running the project:
+
+- **Node.js and npm**: Required for managing and installing JavaScript packages.
+
+  Install Node.js and npm by following the instructions on [the official Node.js website](https://nodejs.org/).
+
+- **Python 3**: Required for the backend.
+
+  Install Python 3 by following the instructions on [the official Python website](https://www.python.org/).
+
+- **Vite**: Required for the frontend.
+
+  Install Vite globally using npm:
 
 ```sh
-npm run dev
+npm install -g create-vite
 ```
 
-### Run backend
+## Setup
+
+You can setup both frontend and backend using Makefile:
 
 ```sh
-npm run start-api
+make deps
 ```
-
-Or:
-
-```sh
-cd backend
-python app.py
-```
-
-
-## Setup 
 
 ### Setup frontend
+
+Using Makefile:
+
+```sh
+make setup-frontend
+```
+
+Or manually:
 
 ```sh
 npm install
 ```
 
 ### Set-up backend
+
+Using Makefile:
+
+```sh
+make setup-backend
+```
+
+Or manually:
 
 Navigate to Flask directory
 
@@ -64,11 +84,11 @@ Activate the environment
 ```sh
 venv\Scripts\activate
 ```
-#### On Unix or MacOS
+#### On Unix
 ```sh
 source venv/bin/activate
 ```
-Install pip packages: 
+Install pip packages:
 ```sh
 pip install -r requirements.txt
 ```
@@ -83,3 +103,61 @@ You have to download these files:
 - [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
 
 Put them on `backend` directory.
+
+## Run the app
+
+### Run frontend
+
+Using Makefile:
+
+```sh
+make frontend
+```
+
+Or manually:
+
+```sh
+npm run dev
+```
+
+### Run backend
+
+Using Makefile:
+
+```sh
+make backend
+```
+
+Or manually:
+
+```sh
+npm run start-api
+```
+
+Or:
+
+```sh
+cd backend
+python app.py
+```
+
+## Test
+
+### Frontend
+
+[TODO]
+
+### Backend
+
+Using Makefile:
+
+```sh
+make backend-test
+```
+
+Or manually:
+
+```sh
+cd backend
+python -m pytest
+```
