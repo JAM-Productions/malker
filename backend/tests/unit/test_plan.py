@@ -76,14 +76,14 @@ def test_add_participant(sample_plan):
     updated_plan.delete_plan()
     new_participant.delete_user()
 
-# def test_remove_participant(sample_plan, sample_user):
-#     sample_user.add_user()
-#     sample_plan.add_plan()
-#     sample_plan.remove_participant(sample_user.uuid)
-#     updated_plan = Plan.get_plan_by_id(sample_plan.uid)
-#     assert sample_user.uuid not in [p.uuid for p in updated_plan.get_plan_participants()]
-#     sample_plan.delete_plan()
-#     sample_user.delete_user()
+def test_remove_participant(sample_plan, sample_user):
+    sample_user.add_user()
+    sample_plan.add_plan()
+    sample_plan.remove_participant(sample_user.uuid)
+    updated_plan = Plan.get_plan_by_id(sample_plan.uid)
+    assert sample_user.uuid not in [p.uuid for p in updated_plan.get_plan_participants()]
+    sample_plan.delete_plan()
+    sample_user.delete_user()
 
 def test_get_user_plans(sample_plan, sample_user):
     sample_user.add_user()

@@ -176,11 +176,16 @@ class Plan:
             raise PlanDBAddingError() from e
 
     def remove_participant(self, uuid: str):
-        if uuid not in self._participants:
+        if uuid not in [p.uuid if isinstance(p, User) else p for p in self._participants]:
             raise UserNotFoundError(uuid, msg=f'User with id {uuid} not found in plan with id {self.uid}')
         try:
+            if not isinstance(uuid, User):
+                user = User.get_user(uuid)
+            else:
+                user = uuid
+
             ref = db.collection(u'plans').document(self.uid)
-            ref.update({u'participants': firestore.ArrayRemove([uuid])})
+            ref.update({u'participants': firestore.ArrayRemove([user.uuid])})
         except Exception as e:
             raise PlanDBAddingError() from e
 
