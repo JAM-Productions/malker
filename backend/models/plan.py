@@ -113,7 +113,7 @@ class Plan:
                 u'admin': self._admin.uuid if isinstance(self._admin, User) else self._admin,
                 u'participants': [p.uuid for p in self._participants] if isinstance(self._participants[0],
                                                                                     User) else self._participants
-            })
+            }, timeout=90)
             self.uid = us_ref.id
         except Exception as e:
             raise PlanDBAddingError() from e
