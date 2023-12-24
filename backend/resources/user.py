@@ -13,7 +13,7 @@ class UserAPI(Resource):
         try:
             user_data = User.get_user(uuid).json()
             plans_list = [p.json() for p in Plan.get_user_plans(uuid)]
-            user_data['participants'] = plans_list
+            user_data['plans'] = plans_list
             return jsonify(user_data)
 
         except UserNotFoundError as e:
@@ -21,7 +21,6 @@ class UserAPI(Resource):
         except UserCreationError as e:
             return {'message': e.message}, 400
         except Exception as e:
-            raise e
             return {'message': f'Could not retrieve user with id {uuid}'}, 400
 
     @jwt_required()

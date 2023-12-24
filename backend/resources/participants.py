@@ -33,13 +33,13 @@ class AddPartcipants(Resource):
             # checking if user to be added already exists is performed inside the following function
             plan.add_participant(u_add.uuid)
 
-            return jsonify({"message": f"user {u_add.username} ({user_id}) added to plan {plan.name} ({plan.uid})"})
+            return jsonify({"message": f"User {u_add.username} ({user_id}) added to plan {plan.name} ({plan.uid})"})
 
         except (UserNotFoundError, UserCreationError, PlanNotFoundError, PlanCreationError, PlanDBAddingError,
                 UserAlreadyAdded) as e:
             return {"message": e.message}, e.status
         except Exception:
-            return {"message": 'could not add the requested member'}, 500
+            return {"message": 'Could not add the requested member'}, 500
 
 
 class DeleteParticipants(Resource):
@@ -73,10 +73,10 @@ class DeleteParticipants(Resource):
             plan.remove_participant(u_delete.uuid)
 
             return jsonify(
-                {"message": f"user {u_delete.username} ({user_id}) removed from plan {plan.name} ({plan.uid})"})
+                {"message": f"User {u_delete.username} ({user_id}) removed from plan {plan.name} ({plan.uid})"})
 
         except (UserNotFoundError, UserCreationError, PlanNotFoundError, PlanCreationError, PlanDBAddingError,
                 UserAlreadyAdded) as e:
             return {"message": e.message}, e.status
         except Exception:
-            return {"message": 'could not delete the requested member'}, 500
+            return {"message": 'Could not delete the requested member'}, 500
