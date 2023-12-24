@@ -19,4 +19,4 @@ def client(app):
     """
     Fixture to provide a test client for the Flask app.
     """
-    return app.test_client()
+    return app.test_client(use_cookies=True)

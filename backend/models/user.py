@@ -32,7 +32,7 @@ class User:
             update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined})
             self.uuid = us_ref.id
         except Exception as e:
-            raise UserDBAddingError(self) from e
+            raise e
 
     def update_user(self):
         try:
