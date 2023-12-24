@@ -29,7 +29,7 @@ class User:
         :return: None
         """
         try:
-            update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined})
+            update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined}, timeout=90)
             self.uuid = us_ref.id
         except Exception as e:
             raise e
