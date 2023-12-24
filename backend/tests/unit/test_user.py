@@ -1,7 +1,6 @@
 import pytest
 from models.user import User
 from exceptions.user_errors import UserNotFoundError
-from db import db
 
 # Fixture to create a sample user for testing
 @pytest.fixture
