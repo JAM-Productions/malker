@@ -28,4 +28,4 @@ class Login(Resource):
             return r
 
         except Exception:
-            return {"error": f"could not add user {data['username']} into the system"}, 400
+            return {"error": f"Could not add user {data['username']} into the system"}, 400
