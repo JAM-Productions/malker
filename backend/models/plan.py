@@ -176,7 +176,7 @@ class Plan:
             raise PlanDBAddingError() from e
 
     def remove_participant(self, uuid: str):
-        if uuid not in [p.uuid if isinstance(p, User) else p for p in self._participants]:
+        if uuid not in self.get_plan_participants_id():
             raise UserNotFoundError(uuid, msg=f'User with id {uuid} not found in plan with id {self.uid}')
         try:
             if not isinstance(uuid, User):
