@@ -2,12 +2,6 @@ import pytest
 from models.user import User
 from exceptions.user_errors import UserNotFoundError
 
-# Fixture to create a sample user for testing
-@pytest.fixture
-def sample_user(client):
-    with client.application.app_context():
-        return User(username="test_user")
-
 def test_new_user(sample_user):
     assert sample_user.username == "test_user"
     assert sample_user.joined is not None

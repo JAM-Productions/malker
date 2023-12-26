@@ -1,12 +1,5 @@
-import pytest
 import json
 from flask_jwt_extended import decode_token
-from models.user import User
-
-@pytest.fixture
-def sample_user(client):
-    with client.application.app_context():
-        return User(username="test_user")
 
 def test_login_success(client, sample_user):
     """
