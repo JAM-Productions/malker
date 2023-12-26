@@ -15,7 +15,6 @@ def test_get_user_authenticated(client, sample_user):
 
         # Check if the login was successful
         assert login_response.status_code == 200, f"Login failed with status code {login_response.status_code}"
-        # print("Login successful")
 
         response_data = json.loads(login_response.get_data(as_text=True))
 
@@ -31,12 +30,6 @@ def test_get_user_authenticated(client, sample_user):
 
         # Now try to access the user endpoint
         res = client.get('/api/user')
-        # print(f"Response status code: {res.status_code}")
-        # print(f"Response data: {res.get_data(as_text=True)}")
-
-        # user_data = User.get_user(sample_user.uuid).json()
-        # print(user_data)
-        # assert user_data['username'] == 'test_user'
 
         assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
