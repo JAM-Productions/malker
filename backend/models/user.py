@@ -2,7 +2,6 @@ from db import db
 import datetime
 from exceptions.user_errors import UserNotFoundError, UserCreationError, UserDBAddingError
 
-
 class User:
     """
     Class that defines user model in firestore db and interacts with it
@@ -26,11 +25,11 @@ class User:
 
     def add_user(self):
         """
-        add new plan into the db. It generates the plan uid.
+        add new user into the db. It generates the user uid.
         :return: None
         """
         try:
-            update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined})
+            update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined}, timeout=90)
             self.uuid = us_ref.id
         except Exception as e:
             raise UserDBAddingError(self) from e
@@ -58,3 +57,13 @@ class User:
             return User.from_dict(u)
         except Exception as e:
             raise UserCreationError(u) from e
+
+    def delete_user(self):
+        """
+        Deletes the user from the database.
+        :return: None
+        """
+        try:
+            db.collection(u'users').document(self.uuid).delete()
+        except Exception as e:
+            raise UserNotFoundError(self.uuid) from e

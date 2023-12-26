@@ -40,4 +40,3 @@ class UserAPI(Resource):
             return {'message': e.message}, 404
         except UserCreationError as e:
             return {'message': e.message}, 400
-
