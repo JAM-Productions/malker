@@ -206,7 +206,4 @@ class Plan:
             except Exception as e:
                 continue
 
-        if len(plans) == 0:
-            raise PlanCreationError({})
-
         return plans
