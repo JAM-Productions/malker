@@ -134,5 +134,5 @@ class PlanAPI(Resource):
         except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
             return {'message': e.message}, 400
         except Exception as e:
+            print(e)
             return {'message':f'Error performing deletion for provided plan'}, 500
-
