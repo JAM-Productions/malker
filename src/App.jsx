@@ -7,7 +7,7 @@ import PlanView from './components/PlanView';
 import PlanForm from './components/PlanForm';
 import PlanShowParticipants from './components/PlanShowParticipants';
 import { BASE_URL } from './config/constants';
-import {getAuthToken, getUserData} from './comutils'
+import {getAuthToken, getUserData, getPlanData} from './comutils'
 import {Form} from "react-router-dom";
 
 
@@ -34,6 +34,8 @@ function App() {
 
   useEffect(() => {
       getUserData().then(r => console.log(r.data)).catch(e => console.log(e))
+      getPlanData("FSCPdwIPZboJqFzPzaJi").then(r => console.log(r.data)).catch(e => console.log(e))
+
   },[])
 
   return (
