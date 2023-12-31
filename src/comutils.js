@@ -7,7 +7,7 @@ import {BASE_URL} from "./config/constants";
  * @return if success, JSON with user data + auth cookie
  */
 export async function getAuthToken(username){
-    return await axios.post(BASE_URL + '/api/login', {'username':username});
+    return await axios.post(BASE_URL + '/api/login', {'username':username}, { withCredentials: true });
     // save data into localstorage?
 }
 

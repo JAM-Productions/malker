@@ -7,6 +7,8 @@ import PlanView from './components/PlanView';
 import PlanForm from './components/PlanForm';
 import PlanShowParticipants from './components/PlanShowParticipants';
 import { BASE_URL } from './config/constants';
+import {getAuthToken, getUserData} from './comutils'
+import {Form} from "react-router-dom";
 
 
 function App() {
@@ -30,6 +32,10 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+      getUserData().then(r => console.log(r.data)).catch(e => console.log(e))
+  },[])
+
   return (
     <div className='
       bg-malker-100
@@ -41,6 +47,7 @@ function App() {
         <ToastContainer />
         <PlanShowParticipants />
       </div>
+      <div className="rounded-full bg-blue-500 w-fit p-5" onClick={()=>getAuthToken('test-20')}>Get auth toke</div>
       <Footer />
     </div>
   )
