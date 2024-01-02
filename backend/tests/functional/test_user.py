@@ -1,6 +1,7 @@
 import json
 from flask_jwt_extended import create_access_token, set_access_cookies, decode_token
 
+
 def test_get_user_authenticated(client, sample_user):
     """
     Test getting user information when authenticated.
@@ -16,17 +17,16 @@ def test_get_user_authenticated(client, sample_user):
         response_data = json.loads(login_response.get_data(as_text=True))
 
         # Check if the returned token is a valid JWT token
-        jwt_token = login_response.headers.get('Set-Cookie').split('; ')[0].split('=')[1]
+        jwt_token = response_data['token']
 
         decoded_token = decode_token(jwt_token)
 
         sample_user.uuid = decoded_token['sub']
 
         jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
-        set_access_cookies(response=login_response, encoded_access_token=jwt_token, max_age=None)
 
         # Now try to access the user endpoint
-        res = client.get('/api/user')
+        res = client.get('/api/user', headers={'Authorization': f'Bearer {jwt_token}'})
 
         assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
@@ -53,19 +53,19 @@ def test_put_user_authenticated(client, sample_user):
         response_data = json.loads(login_response.get_data(as_text=True))
 
         # Check if the returned token is a valid JWT token
-        jwt_token = login_response.headers.get('Set-Cookie').split('; ')[0].split('=')[1]
+        jwt_token = response_data['token']
 
         decoded_token = decode_token(jwt_token)
 
         sample_user.uuid = decoded_token['sub']
 
         jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
-        set_access_cookies(response=login_response, encoded_access_token=jwt_token, max_age=None)
 
-         # Update the username using PUT operation
+        # Update the username using PUT operation
         new_username = 'new_username'
+        headers = {'Authorization': f'Bearer {jwt_token}'}
         update_response = client.put('/api/user', data=json.dumps({'username': new_username}),
-                                     content_type='application/json')
+                                     content_type='application/json', headers= headers)
 
         assert update_response.status_code == 200, f"Expected status code 200, but got {update_response.status_code}"
 
