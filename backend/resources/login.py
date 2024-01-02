@@ -22,7 +22,9 @@ class Login(Resource):
             u.add_user()
 
             jwt_token = create_access_token(identity=u.uuid, expires_delta=False)
-            return make_response(jsonify({'token':jwt_token}), 200)
+            data = u.json()
+            data['token'] = jwt_token
+            return make_response(jsonify(data), 200)
 
         except Exception:
             return {"error": f"Could not add user {data['username']} into the system"}, 400

@@ -34,8 +34,6 @@ def test_create_plan(client, sample_user):
     # Authenticate the user by creating a token
     with client.application.app_context():
         jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
-        set_access_cookies(response=client.post('/api/login', data=json.dumps({'username': sample_user.username}),
-                                              content_type='application/json'), encoded_access_token=jwt_token, max_age=None)
 
     # Now try to create a new plan
     plan_data = {
@@ -44,7 +42,8 @@ def test_create_plan(client, sample_user):
         'date': '01/01/2023',
         'location': 'Test Location'
     }
-    res = client.post('/api/plan', data=json.dumps(plan_data), content_type='application/json')
+    headers = {'Authorization': f'Bearer {jwt_token}'}
+    res = client.post('/api/plan', data=json.dumps(plan_data), content_type='application/json', headers=headers)
     assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     response_data = json.loads(res.get_data(as_text=True))
@@ -66,8 +65,6 @@ def test_update_plan(client, sample_user, sample_plan):
     # Authenticate the user by creating a token
     with client.application.app_context():
         jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
-        set_access_cookies(response=client.post('/api/login', data=json.dumps({'username': sample_user.username}),
-                                              content_type='application/json'), encoded_access_token=jwt_token, max_age=None)
 
     # Now try to update an existing plan
     updated_name = 'Updated Test Plan'
@@ -83,7 +80,8 @@ def test_update_plan(client, sample_user, sample_plan):
     }
     sample_plan.add_plan()
     retrieved_plan = Plan.get_plan_by_id(sample_plan.uid)
-    res = client.put(f'/api/plan/{retrieved_plan.uid}', data=json.dumps(update_data), content_type='application/json')
+    headers = {'Authorization': f'Bearer {jwt_token}'}
+    res = client.put(f'/api/plan/{retrieved_plan.uid}', data=json.dumps(update_data), content_type='application/json', headers=headers)
     assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     updated_data = json.loads(res.get_data(as_text=True))

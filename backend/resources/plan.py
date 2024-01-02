@@ -14,7 +14,7 @@ class PlanAPI(Resource):
     @jwt_required(optional=True)
     def get(self, id):
         """
-        Endpoint for plan retrieval. It does not require auth cookie.
+        Endpoint for plan retrieval. It does not require auth token
         /api/plan/<id>
         :param id: plan id
         :return: if success, JSON with plan data

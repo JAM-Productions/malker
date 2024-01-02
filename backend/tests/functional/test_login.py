@@ -1,6 +1,7 @@
 import json
 from flask_jwt_extended import decode_token
 
+
 def test_login_success(client, sample_user):
     """
     Test for successful user login.
@@ -15,7 +16,7 @@ def test_login_success(client, sample_user):
     assert 'username' in response_data
 
     # Check if the returned token is a valid JWT token
-    jwt_token = res.headers.get('Set-Cookie').split('; ')[0].split('=')[1]
+    jwt_token = json.loads(res.get_data(as_text=True))['token']
 
     with client.application.app_context():
         decoded_token = decode_token(jwt_token)
