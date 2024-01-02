@@ -1,28 +1,17 @@
-from flask_jwt_extended import create_access_token, set_access_cookies, jwt_required, get_jwt_identity
+from flask_jwt_extended import create_access_token, set_access_cookies
 from flask_restful import Resource, reqparse
 from models.user import User
 from flask import jsonify, make_response
 
 
 class Login(Resource):
-    @jwt_required()
-    def get(self):
-        """
-        :return: json with user data
-        """
-        uuid = get_jwt_identity()
-        try:
-            return jsonify(User.get_user(uuid).json())
-        except Exception as e:
-            return {"Error": "could not get user data"}, 403
-
     def post(self):
         """
-        Function that
+        Endpoint that
          - creates a new user with the username provided
          - saves the data into de DB
-         - Generates token + cookie
-        :return: if success, json with user data + auth cookie
+         - Generates token
+        :return: if success, auth token
         """
         parser = reqparse.RequestParser()
         parser.add_argument('username', type=str, required=True)
@@ -33,10 +22,9 @@ class Login(Resource):
             u.add_user()
 
             jwt_token = create_access_token(identity=u.uuid, expires_delta=False)
+            data = u.json()
+            data['token'] = jwt_token
+            return make_response(jsonify(data), 200)
 
-            r = make_response(jsonify(u.json()), 200)
-            set_access_cookies(response=r, encoded_access_token=jwt_token, max_age=None)
-            return r
-
-        except Exception as e:
-            return {"error": f"could not add user {data['username']} into the system"}, 400
+        except Exception:
+            return {"error": f"Could not add user {data['username']} into the system"}, 400
