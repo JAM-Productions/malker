@@ -135,4 +135,3 @@ class PlanAPI(Resource):
             return {'message': e.message}, 400
         except Exception as e:
             return {'message':f'Error performing deletion for provided plan'}, 500
-
