@@ -46,7 +46,35 @@ export async function updateUsername(username){
  * @return {Promise<AxiosResponse<any>>} if success, returns JSON with plan info and its members.
  */
 export async function getPlanData(id){
+    if (window.localStorage.getItem('token') === undefined){
+        return await axios.get(BASE_URL + '/api/plan/' + id)
+    }
     return await axios.get(BASE_URL + '/api/plan/' + id, config)
+}
+
+export async function createPlan(name, description, date, location){
+    const data = {
+        'name':name,
+        'description':description,
+        'date':date,
+        'location':location
+    }
+    return await axios.post(BASE_URL + '/api/plan',data, config)
+}
+
+/**
+ *
+ * @param id str. unique id of the plan
+ * @param data JSON with the data to be updated. can update all the values listed in post method + admin.
+ * @return {Promise<AxiosResponse<any>>}
+ */
+export async function updatePlan(id, data){
+    /**
+     * valid dict values:
+     * 'name', 'description', 'date', 'location', 'admin'
+     * they are all strings
+     */
+    return await axios.put(BASE_URL + 'api/plan' + id, data, config)
 }
 
 /**
@@ -54,7 +82,7 @@ export async function getPlanData(id){
  * @param id string, unique. ID of the plan.
  * @return {Promise<AxiosResponse<any>>} if success, returns confirmation message
  */
-export async function deletePlanData(id){
+export async function deletePlan(id){
     return await axios.delete(BASE_URL + '/api/plan/' + id, config)
 }
 
@@ -77,9 +105,5 @@ export async function addParticipant(planid, uuid){
 export async function deleteParticipant(planid, uuid){
     return await axios.patch(BASE_URL + 'api/plan' + planid + '/delete/' + uuid, undefined, config)
 }
-
-/** still some functions to implement.
- *  the prev idea was to directly call the backend using the form but can't be done with this new auth system
- */
 
 

@@ -61,20 +61,24 @@ class PlanAPI(Resource):
     @jwt_required()
     def put(self, id):
         """
-        Endpoint for plan updating
+        Endpoint for plan updating. only admin can edit
         /api/plan/<id>
         :param id: plan id
         :return: if success, JSON with updated plan data
         """
-        # TODO allow only sending the variable we want to change not all plan data
         try:
             pl = Plan.get_plan_by_id(id)
-        except PlanNotFoundError as e:
+            user = User.get_user(get_jwt_identity())
+
+            if pl.get_plan_admin_id().lower() != user.uuid.lower():
+                return {"message": f"You do not have enough privileges to delete plan {id}"}, 403
+
+        except (PlanNotFoundError, UserNotFoundError) as e:
             return {'message': e.message}, 404
-        except PlanCreationError as e:
+        except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
             return {'message': e.message}, 400
         except Exception as e:
-            return {'message': f'Could not retrieve plan with id {id}'}, 400
+            return {'message':f'Error performing deletion for provided plan'}, 500
 
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=False)
@@ -123,7 +127,7 @@ class PlanAPI(Resource):
             plan = Plan.get_plan_by_id(id)
             user = User.get_user(get_jwt_identity())
 
-            if plan._admin.lower() == user.uuid.lower():
+            if plan.get_plan_admin_id().lower() == user.uuid.lower():
                 plan.delete_plan()
                 return jsonify({"message": f"Plan with id {id} deleted"})
 

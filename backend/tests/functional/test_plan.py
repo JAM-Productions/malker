@@ -9,10 +9,8 @@ def test_get_plan(client, sample_user, sample_plan):
      """
     # Authenticate the user by creating a token
     with client.application.app_context():
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
-
+        sample_plan.add_plan()
     # Now try to access the plan endpoint
-    sample_plan.add_plan()
     # in this case, auth is not needed to retrieve plan data.
     # auth can also be provided and more info will be returned
     res = client.get(f'/api/plan/{sample_plan.uid}')
@@ -65,6 +63,7 @@ def test_update_plan(client, sample_user, sample_plan):
     """
     # Authenticate the user by creating a token
     with client.application.app_context():
+        sample_user.add_user()
         jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
 
     # Now try to update an existing plan
@@ -95,6 +94,7 @@ def test_update_plan(client, sample_user, sample_plan):
     assert 'admin' in updated_data
     assert 'participants' in updated_data
     retrieved_plan.delete_plan()
+    sample_user.delete_user()
 
 
 def test_delete_plan(client, sample_user, sample_plan):
