@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import Input from "./form/Input";
 import Button from "./form/Button";
 import { toast } from "react-toastify";
 import BigInput from "./form/BigInput";
 
 const PlanForm = () => {
+    const navigate = useNavigate()
+
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [date, setDate] = useState("");
@@ -50,6 +53,8 @@ const PlanForm = () => {
 
         resetForm();
         toast.success("Plan created successfully");
+
+        navigate('/malker/plan-view')
     };
 
     const resetForm = () => {
