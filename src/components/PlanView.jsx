@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import Input from './form/Input';
 import Button from './form/Button';
 import { toast } from "react-toastify";
 import DropdownPlan from "./dropdown/DropdownPlan";
 
 const PlanView = () => {
+    const navigate = useNavigate()
+    
     const title = "Excursion Montserrat"
     const author = "Jordi Bonet"
     const date = "Dia"
@@ -31,6 +34,8 @@ const PlanView = () => {
 
         setName("")
         toast.success("Join successfull");
+
+        navigate('/malker/show-participants')
     }
 
     return ( 
