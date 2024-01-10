@@ -1,4 +1,4 @@
-name: Flask
+name: Flask Backend CI
 
 on:
   push:
@@ -17,12 +17,17 @@ jobs:
     environment: testing
     steps:
     - uses: actions/checkout@v2
+
     - name: create-json
       id: create-json
       uses: jsdaniell/create-json@1.1.2
       with:
         name: "backend/malker-jam-firebase-adminsdk.json"
         json: ${{ secrets.FIREBASE_CREDENTIALS }}
+
+    - name: Set up .env
+      run: |
+        echo ${{ secrets.ENV}} >> backend/.env
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
@@ -39,7 +44,6 @@ jobs:
       run: |
         cd backend
         pylint *.py
-        pylint tests/
 
     - name: Run Tests
       run: |

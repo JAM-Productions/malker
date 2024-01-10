@@ -11,22 +11,22 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 class PlanAPI(Resource):
-    @jwt_required()
+    @jwt_required(optional=True)
     def get(self, id):
         """
-        Endpoint for plan retrieval. Requires auth cookie.
+        Endpoint for plan retrieval. It does not require auth token
         /api/plan/<id>
         :param id: plan id
         :return: if success, JSON with plan data
         """
         try:
-            return jsonify(Plan.get_plan_by_id(id).json(return_full=True))
+            return jsonify(Plan.get_plan_by_id(id).json(return_full=False if get_jwt_identity() is None else True))
         except PlanNotFoundError as e:
             return {'message': e.message}, 404
         except PlanCreationError as e:
             return {'message': e.message}, 400
         except Exception as e:
-            return {'message': f'could not retrieve plan with id {id}'}, 400
+            return {'message': f'Could not retrieve plan with id {id}'}, 400
 
     @jwt_required()
     def post(self):
@@ -56,25 +56,29 @@ class PlanAPI(Resource):
         except PlanDBAddingError as e:
             return {'message': e.message}, 404
         except Exception as e:
-            return {'message': 'error creating the plan'}, 500
+            return {'message': 'Error creating the plan'}, 500
 
     @jwt_required()
     def put(self, id):
         """
-        Endpoint for plan updating
+        Endpoint for plan updating. only admin can edit
         /api/plan/<id>
         :param id: plan id
         :return: if success, JSON with updated plan data
         """
-        # TODO allow only sending the variable we want to change not all plan data
         try:
             pl = Plan.get_plan_by_id(id)
-        except PlanNotFoundError as e:
+            user = User.get_user(get_jwt_identity())
+
+            if pl.get_plan_admin_id().lower() != user.uuid.lower():
+                return {"message": f"You do not have enough privileges to delete plan {id}"}, 403
+
+        except (PlanNotFoundError, UserNotFoundError) as e:
             return {'message': e.message}, 404
-        except PlanCreationError as e:
+        except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
             return {'message': e.message}, 400
         except Exception as e:
-            return {'message': f'could not retrieve plan with id {id}'}, 400
+            return {'message':f'Error performing deletion for provided plan'}, 500
 
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=False)
@@ -101,7 +105,7 @@ class PlanAPI(Resource):
                 User.get_user(p['admin'])
                 pl._admin = p['admin']
             except Exception as e:
-                return {'message': f'the admin value {p["admin"]} is not a valid user id'}, 400
+                return {'message': f'The admin value {p["admin"]} is not a valid user id'}, 400
 
         try:
             pl.update_plan()
@@ -109,7 +113,7 @@ class PlanAPI(Resource):
         except PlanDBAddingError as e:
             return {'message': e.message}, 404
         except Exception as e:
-            return {'message': 'error updating the plan'}, 500
+            return {'message': 'Error updating the plan'}, 500
 
     @jwt_required()
     def delete(self, id):
@@ -123,16 +127,15 @@ class PlanAPI(Resource):
             plan = Plan.get_plan_by_id(id)
             user = User.get_user(get_jwt_identity())
 
-            if plan._admin.lower() == user.uuid.lower():
+            if plan.get_plan_admin_id().lower() == user.uuid.lower():
                 plan.delete_plan()
-                return jsonify({"message": f"plan with id {id} deleted"})
+                return jsonify({"message": f"Plan with id {id} deleted"})
 
-            return {"message": f"you do not have enough privileges to delete plan {id}"}, 403
+            return {"message": f"You do not have enough privileges to delete plan {id}"}, 403
 
         except (PlanNotFoundError, UserNotFoundError) as e:
             return {'message': e.message}, 404
         except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
             return {'message': e.message}, 400
         except Exception as e:
-            return {'message':f'error performing deletion for provided plan'}, 500
-
+            return {'message':f'Error performing deletion for provided plan'}, 500

@@ -10,8 +10,8 @@ class Login(Resource):
         Endpoint that
          - creates a new user with the username provided
          - saves the data into de DB
-         - Generates token + cookie
-        :return: if success, json with user data + auth cookies
+         - Generates token
+        :return: if success, auth token
         """
         parser = reqparse.RequestParser()
         parser.add_argument('username', type=str, required=True)
@@ -22,10 +22,9 @@ class Login(Resource):
             u.add_user()
 
             jwt_token = create_access_token(identity=u.uuid, expires_delta=False)
-
-            r = make_response(jsonify(u.json()), 200)
-            set_access_cookies(response=r, encoded_access_token=jwt_token, max_age=None)
-            return r
+            data = u.json()
+            data['token'] = jwt_token
+            return make_response(jsonify(data), 200)
 
         except Exception:
-            return {"error": f"could not add user {data['username']} into the system"}, 400
+            return {"error": f"Could not add user {data['username']} into the system"}, 400

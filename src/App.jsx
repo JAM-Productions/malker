@@ -9,8 +9,15 @@ import PlanView from './components/PlanView';
 import PlanForm from './components/PlanForm';
 import PlanShowParticipants from './components/PlanShowParticipants';
 
+import {getAuthToken, getUserData, getPlanData} from './comutils'
 
 function App() {
+
+  useEffect(() => {
+      getUserData().then(r => console.log(r.data)).catch(e => console.log(e))
+      getPlanData("FSCPdwIPZboJqFzPzaJi").then(r => console.log(r.data)).catch(e => console.log(e))
+
+  },[])
 
   return (
     <div className='bg-malker-100 min-h-screen'>
@@ -32,6 +39,8 @@ function App() {
         </Router>
 
       </div>
+
+      <div className="rounded-full bg-blue-500 w-fit p-5" onClick={()=>getAuthToken('test-20')}>Get auth toke</div>
 
       <Footer />
 
