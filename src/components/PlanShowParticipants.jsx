@@ -11,14 +11,14 @@ const PlanShowParticipants = () => {
 
     const users = ["Mark", "Albertfdgdgdsfg", "Albertfdgdgdsfg", "Albertfdgdgdsfg", "Albertfdgdgdsfg", "Albertfdgdgdsfg", "Albertfdgdgdsfg"]
     const currentUser = "Mark"
-    return ( 
+    return (
         <section>
 
             <DropdownPlan title={title} date={date} location={location} description={description} author={author}/>
             <div className="container mx-auto mb-10">
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-10 w-10/12 mx-auto">
                 {users.map((user) => (
-                    <UserCard user={user} currentUser={currentUser} />
+                    <UserCard user={user} currentUser={currentUser} key={user}/>
                 ))}
             </div>
             </div>
