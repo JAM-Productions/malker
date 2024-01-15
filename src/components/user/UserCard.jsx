@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../form/Button.jsx"
+import Button from "../Button.jsx"
 
 const UserCard = ({user, currentUser}) => {
 
