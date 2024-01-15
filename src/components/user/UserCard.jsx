@@ -37,17 +37,29 @@ const UserCard = ({user, currentUser}) => {
                 {user}
             </p>
             {user === currentUser &&
-                /* add checkif already joined or no */
-                <div className="absolute pt-24">
-                    <Button text={"Leave"}
-                        additionalStyles="py-0 bg-red-500 hover:bg-red-600 "/>
-                </div>
-            }
-            {user === currentUser &&
+                user === "Mark" &&
                 /* add checkif already joined or no */
                 <div className="absolute pt-24">
                     <Button text={"Rejoin"}
-                        additionalStyles="py-0 bg-red-500 hover:bg-red-600 "/>
+                        additionalStyles="
+                            bg-red-500
+                            hover:bg-red-600
+                        "
+                        small
+                    />
+                </div>
+            }
+            {user === currentUser &&
+                user !== "Mark" &&
+                /* add checkif already joined or no */
+                <div className="absolute pt-24">
+                    <Button text={"Rejoin"}
+                        additionalStyles="
+                            bg-red-500
+                            hover:bg-red-600
+                        "
+                        small
+                    />
                 </div>
             }
         </div>
