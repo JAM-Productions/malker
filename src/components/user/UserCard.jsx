@@ -40,7 +40,7 @@ const UserCard = ({user, currentUser}) => {
                 user === "Mark" &&
                 /* add checkif already joined or no */
                 <div className="absolute pt-24">
-                    <Button text={"Rejoin"}
+                    <Button text={"Leave"}
                         additionalStyles="
                             bg-red-500
                             hover:bg-red-600
