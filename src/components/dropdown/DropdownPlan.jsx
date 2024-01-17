@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
 
 const DropdownPlan = ({
   title,
@@ -45,7 +45,16 @@ const DropdownPlan = ({
               </button>
             </div>
           </div>
-          <p className="mt-3 text-base">{date} - {location}</p>
+          <div className="flex flex-row items-center mt-3 text-base gap-2">
+            <div className="flex items-center text-base">
+                <FaCalendar className="mr-2 text-gray-500" />
+                <span>{date}</span>
+            </div>
+            <div className="flex items-center text-base">
+                <FaMapMarkerAlt className="mr-2 text-gray-500" />
+                <span>{location}</span>
+            </div>
+          </div>
         </div>
       </div>
       <div
