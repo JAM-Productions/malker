@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../form/Button.jsx"
+import Button from "../Button.jsx"
 
 const UserCard = ({user, currentUser}) => {
 
@@ -29,7 +29,7 @@ const UserCard = ({user, currentUser}) => {
                 }
             `}/>
                 <img
-                    src="/malker.png"
+                    src="malker.png"
                     alt="Logo"
                     className="h-12 w-12 mr-2"
                 />
@@ -37,17 +37,29 @@ const UserCard = ({user, currentUser}) => {
                 {user}
             </p>
             {user === currentUser &&
+                user === "Mark" &&
                 /* add checkif already joined or no */
                 <div className="absolute pt-24">
                     <Button text={"Leave"}
-                        additionalStyles="py-0 bg-red-500 hover:bg-red-600 "/>
+                        additionalStyles="
+                            bg-red-500
+                            hover:bg-red-600
+                        "
+                        small
+                    />
                 </div>
             }
             {user === currentUser &&
+                user !== "Mark" &&
                 /* add checkif already joined or no */
                 <div className="absolute pt-24">
                     <Button text={"Rejoin"}
-                        additionalStyles="py-0 bg-red-500 hover:bg-red-600 "/>
+                        additionalStyles="
+                            bg-red-500
+                            hover:bg-red-600
+                        "
+                        small
+                    />
                 </div>
             }
         </div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +46,9 @@ const Header = () => {
           py-2
           border-b-[1px]
           border-blue-600
+          cursor-pointer
         "
+        onClick={() => navigate("/malker")}
       >
         <img
           src="malker.png"
