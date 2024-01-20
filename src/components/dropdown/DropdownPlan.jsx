@@ -1,39 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
 
+const DropdownPlan = ({
+  title,
+  date,
+  location,
+  description,
+  author
+}) => {
+  const [open, setOpen] = useState(true);
+  const [descriptionHeight, setDescriptionHeight] = useState("auto");
+  const descriptionRef = useRef(null);
 
-const DropdownPlan = ({title, date, location, description, author}) => {
+  useEffect(() => {
+    if (descriptionRef.current) {
+      setDescriptionHeight(`${descriptionRef.current.scrollHeight + 10}px`);
+    }
+  }, [description]);
 
-    const [open, setOpen] = useState(true);
+  const toggleDropdown = () => {
+    setOpen(!open);
+  };
 
-    return ( 
-        <div className="container px-5 pt-20 pb-10 mx-auto">
-            <div className="flex flex-row justify-between w-10/12 mx-auto">
-                <div className="flex flex-col  ">
-                    <div className="flex flex-row">
-                            <h1 className="sm:text-3xl text-2xl font-medium text-gray-900">{title}</h1>
-                            <div className="flex ml-3">
-                                {open && <button className="align-self-end" onClick={ () => setOpen(!open) }>
-                                <svg class="-mr-1 h-7 w-7 text-blue-500 hover:text-blue-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z" clip-rule="evenodd" />
-                                    </svg>
-                                </button> }
-                                {!open && <button className="align-self-end" onClick={ () => setOpen(!open) }>
-                                    <svg class="-mr-1 h-7 w-7 text-blue-500 hover:text-blue-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>}
-                            </div>
-                    </div>
-                    <p className="mt-3 text-base ">{date} - {location}</p>
-                </div>
+  return (
+    <div className="container px-5 pt-20 pb-10 mx-auto">
+      <div className="flex flex-row justify-between w-10/12 mx-auto">
+        <div className="flex flex-col">
+          <div className="flex flex-row items-center">
+            <h1 className="text-2xl font-medium text-gray-900">{title}</h1>
+            <div className="flex ml-3">
+              <button className="align-self-end" onClick={toggleDropdown}>
+                <FaChevronDown
+                  className={`
+                    h-5
+                    w-5
+                    text-blue-500
+                    hover:text-blue-600
+                    ${open ? 'rotate-180' : 'rotate-0'}
+                    transition-transform
+                    duration-400
+                    transform
+                `}
+                />
+              </button>
             </div>
-            { open && (<div className="flex flex-col w-10/12 mx-auto">
-                <hr className="mt-3 mb-5 border-0 h-px bg-slate-400"></hr>
-                <p>{description}</p>
-                <p className="text-right mt-5">{author}</p>
-            </div>)}
-        </div>        
-    )
-}
+          </div>
+          <div className="flex flex-row items-center mt-3 text-base gap-2">
+            <div className="flex items-center text-base">
+                <FaCalendar className="mr-2 text-gray-500" />
+                <span>{date}</span>
+            </div>
+            <div className="flex items-center text-base">
+                <FaMapMarkerAlt className="mr-2 text-gray-500" />
+                <span>{location}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="w-10/12 mx-auto"
+        style={{
+          maxHeight: open ? descriptionHeight : "0",
+          overflow: "hidden",
+          transition: "max-height 0.4s ease-in-out",
+        }}
+      >
+        <div ref={descriptionRef}>
+          <hr className="mt-3 mb-5 border-0 h-px bg-slate-400"></hr>
+          <p>{description}</p>
+          <p className="text-right mt-5">{author}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default DropdownPlan;
