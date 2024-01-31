@@ -2,7 +2,7 @@ import axios from "axios"
 import {BASE_URL} from "./config/constants";
 
 const config = {
-    headers: {Authorization: "Bearer " + window.localStorage.getItem('token')}
+    headers: {Authorization: "Bearer " + window.localStorage.getItem('token'),}
 };
 
 /**
@@ -10,13 +10,20 @@ const config = {
  * @param username string, does not have to be unique
  * @return if success, saves token im local storage
  */
-export async function getAuthToken(username){
-    const r =  await axios.post(BASE_URL + '/api/login', {'username':username});
-    try{
-        window.localStorage.setItem('token',r.data.token)
-    } catch (e) {
-        throw new Error(e)
+export async function getAuthToken() {
+    let token = window.localStorage.getItem('token');
+
+    if (!token) {
+        try {
+            const response = await axios.post(BASE_URL + '/api/login');
+            token = response.data.token;
+            window.localStorage.setItem('token', token);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
+
+    return token;
 }
 
 /**
