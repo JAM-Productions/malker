@@ -23,7 +23,7 @@ function App() {
     <Router>
       <div className='bg-malker-100 min-h-screen'>
         <Header/>
-        <div className='pt-5 lg:pt-20 min-h-[88vh]'>
+        <div className='pt-5 min-h-[88vh]'>
           <ToastContainer />
             <Routes>
               <Route exact path="/malker" element={<PlanForm />} />
