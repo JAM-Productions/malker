@@ -7,7 +7,7 @@ class User:
     Class that defines user model in firestore db and interacts with it
     """
 
-    def __init__(self, username: str, uuid: str = None, joined: datetime = None):
+    def __init__(self, username: str = None, uuid: str = None, joined: datetime = None):
         self.username: str = username
         self.uuid: str = uuid
         self.joined: datetime = joined if joined is not None else datetime.datetime.now(tz=datetime.timezone.utc)

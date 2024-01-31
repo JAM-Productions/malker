@@ -14,7 +14,7 @@ class Login(Resource):
         :return: if success, auth token
         """
         parser = reqparse.RequestParser()
-        parser.add_argument('username', type=str, required=True)
+        parser.add_argument('username', type=str, required=False)
         data = parser.parse_args()
 
         try:
