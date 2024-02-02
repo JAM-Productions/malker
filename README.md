@@ -123,7 +123,7 @@ You have to download these files:
 - [.env file](https://drive.google.com/file/d/1E8fmx5yGL719LYT_6fa87_bCAJsCDi4F/view?usp=drive_link)
 
 > [!NOTE]
-> Only JAM-Productions members should have access to these sensitive files.
+> Only JAM-Productions members have access to these sensitive files.
 
 Put them on `backend` directory.
 
