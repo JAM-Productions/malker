@@ -53,7 +53,7 @@ export async function updateUsername(username){
  * @return {Promise<AxiosResponse<any>>} if success, returns JSON with plan info and its members.
  */
 export async function getPlanData(id){
-    if (window.localStorage.getItem('token') === undefined){
+    if (!window.localStorage.getItem('token')){
         return await axios.get(BASE_URL + '/api/plan/' + id)
     }
     return await axios.get(BASE_URL + '/api/plan/' + id, config)
