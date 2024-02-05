@@ -32,7 +32,7 @@ export async function getAuthToken() {
  * @return if success, JSON with user data
  */
 export async function getUserData(uuid){
-    if (uuid === undefined) {
+    if (!uuid) {
         return await axios.get(BASE_URL + '/api/user', config)
     }
     return await axios.get(BASE_URL + '/api/user/' + uuid, config)

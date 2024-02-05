@@ -5,7 +5,7 @@ import Button from '../Button';
 import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
-import {getPlanData} from "../../comutils";
+import {getPlanData, getUserData} from "../../comutils";
 
 const PlanView = () => {
     const navigate = useNavigate()
@@ -15,20 +15,24 @@ const PlanView = () => {
     const [date, setDate] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
-
-
     const [name, setName] = useState("")
     const [error, setError] = useState("")
     const { id } = useParams();
 
     useEffect(() => {
         getPlanData(id).then((r) => {
-            console.log(r)
             setTitle(r.data.name)
             setAuthor(r.data.author)
             setDate(r.data.date)
             setLocation(r.data.location)
             setDescription(r.data.description)
+        })
+        
+        // recover the username if the user already has one
+        getUserData().then((r) => {
+            if (r.data.username !== null) {
+                setName(r.data.username)
+            }
         })
     }, []);
 
