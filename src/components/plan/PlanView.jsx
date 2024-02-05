@@ -27,6 +27,9 @@ const PlanView = () => {
             setDate(r.data.date)
             setLocation(r.data.location)
             setDescription(r.data.description)
+        }).catch((e) => {
+            toast.error('Plan not found')
+            navigate('/malker/')
         })
 
         // recover the username if the user already has one
@@ -35,6 +38,8 @@ const PlanView = () => {
             if (r.data.username !== null) {
                 setName(r.data.username)
             }
+        }).catch((e) => {
+            toast.error('You are not logged')
         })
     }, []);
 
@@ -49,6 +54,9 @@ const PlanView = () => {
         addParticipant(id, uuid).then((r) => {
             toast.success("Join successfull");
             navigate('/malker/show-participants')
+        }).catch((e) => {
+            toast.error("Can't join into the plan")
+            console.log(e.toString())
         })
     }
 
@@ -57,27 +65,28 @@ const PlanView = () => {
             <BackButton />
             <DropdownPlan title={title} date={date} location={location} description={description} author={author}/>
 
-            <div className="container mx-auto">
-                <div className="flex flex-col items-center justify-center">
-                    <div className="p-2">
-                        <Input
-                            label={"Name"}
-                            type={"text"}
-                            value={name}
-                            onChange={setName}
-                            error={error}
-                            maxLength={20}
+            {uuid !== '' && (
+                <div className="container mx-auto">
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="p-2">
+                            <Input
+                                label={"Name"}
+                                type={"text"}
+                                value={name}
+                                onChange={setName}
+                                error={error}
+                                maxLength={20}
                             />
-                    </div>
-                    <div className="p-2">
-                        <Button
-                            text={"Join"}
-                            onClick={handleJoin}
-                        />
+                        </div>
+                        <div className="p-2">
+                            <Button
+                                text={"Join"}
+                                onClick={handleJoin}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            )}
         </section>
     )
 }
