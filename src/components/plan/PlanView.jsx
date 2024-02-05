@@ -4,6 +4,7 @@ import Input from '../form/Input';
 import Button from '../Button';
 import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
+import BackButton from "../navigation/BackButton";
 
 const PlanView = () => {
     const navigate = useNavigate()
@@ -40,7 +41,7 @@ const PlanView = () => {
 
     return (
         <section>
-
+            <BackButton />
             <DropdownPlan title={title} date={date} location={location} description={description} author={author}/>
 
             <div className="container mx-auto">
