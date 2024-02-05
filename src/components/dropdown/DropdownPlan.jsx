@@ -23,7 +23,7 @@ const DropdownPlan = ({
   };
 
   return (
-    <div className="container px-5 pt-20 pb-10 mx-auto">
+    <div className="container px-5 pt-24 pb-10 mx-auto">
       <div className="flex flex-row justify-between w-10/12 mx-auto">
         <div className="flex flex-col">
           <div className="flex flex-row items-center">
