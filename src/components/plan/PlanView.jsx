@@ -5,7 +5,7 @@ import Button from '../Button';
 import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
-import {getPlanData, getUserData} from "../../comutils";
+import {addParticipant, getPlanData, getUserData} from "../../comutils";
 
 const PlanView = () => {
     const navigate = useNavigate()
@@ -17,6 +17,7 @@ const PlanView = () => {
     const [description, setDescription] = useState("");
     const [name, setName] = useState("")
     const [error, setError] = useState("")
+    const [uuid, setUuid] = useState("")
     const { id } = useParams();
 
     useEffect(() => {
@@ -27,9 +28,10 @@ const PlanView = () => {
             setLocation(r.data.location)
             setDescription(r.data.description)
         })
-        
+
         // recover the username if the user already has one
         getUserData().then((r) => {
+            setUuid(r.data.uuid)
             if (r.data.username !== null) {
                 setName(r.data.username)
             }
@@ -44,12 +46,10 @@ const PlanView = () => {
         }
 
         // call post endpoint
-        // [TODO]
-
-        setName("")
-        toast.success("Join successfull");
-
-        navigate('/malker/show-participants')
+        addParticipant(id, uuid).then((r) => {
+            toast.success("Join successfull");
+            navigate('/malker/show-participants')
+        })
     }
 
     return (

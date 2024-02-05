@@ -81,7 +81,7 @@ export async function updatePlan(id, data){
      * 'name', 'description', 'date', 'location', 'admin'
      * they are all strings
      */
-    return await axios.put(BASE_URL + 'api/plan' + id, data, config)
+    return await axios.put(BASE_URL + '/api/plan' + id, data, config)
 }
 
 /**
@@ -100,7 +100,7 @@ export async function deletePlan(id){
  * @return {Promise<AxiosResponse<any>>}
  */
 export async function addParticipant(planid, uuid){
-    return await axios.patch(BASE_URL + 'api/plan' + planid + '/add/' + uuid, undefined, config)
+    return await axios.patch(BASE_URL + '/api/plan/' + planid + '/add/' + uuid, undefined, config)
 }
 
 /**
@@ -110,7 +110,7 @@ export async function addParticipant(planid, uuid){
  * @return {Promise<AxiosResponse<any>>}
  */
 export async function deleteParticipant(planid, uuid){
-    return await axios.patch(BASE_URL + 'api/plan' + planid + '/delete/' + uuid, undefined, config)
+    return await axios.patch(BASE_URL + '/api/plan/' + planid + '/delete/' + uuid, undefined, config)
 }
 
 

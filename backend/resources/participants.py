@@ -22,10 +22,6 @@ class AddPartcipants(Resource):
             u_admin = User.get_user(get_jwt_identity())
             plan = Plan.get_plan_by_id(plan_id)
 
-            # check if user is plan admin
-            if plan.get_plan_admin_id() != u_admin.uuid:
-                return {"message": "You are not the admin of this group"}, 403
-
             # check if user to be added exists
             u_add = User.get_user(user_id)
 
