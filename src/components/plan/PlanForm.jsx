@@ -56,7 +56,7 @@ const PlanForm = () => {
         createPlan(title, description, formattedDate, location).then((r) => {
             resetForm();
             toast.success("Plan created successfully");
-            navigate('/malker/plan-view');
+            navigate(`/malker/plan-view/${r.data.id}`);
         });
     };
 
