@@ -69,7 +69,7 @@ const Input = ({
                 </div>
             )}
             {isDateInput && (
-                <style jsx>{`
+                <style jsx="true">{`
                     .date-input-style {
                         display: block;
                         -webkit-appearance: none;
