@@ -66,6 +66,8 @@ export async function createPlan(name, description, date, location){
         'date':date,
         'location':location
     }
+    console.log(data)
+    console.log(config)
     return await axios.post(BASE_URL + '/api/plan',data, config)
 }
 
@@ -112,5 +114,3 @@ export async function addParticipant(planid, uuid){
 export async function deleteParticipant(planid, uuid){
     return await axios.patch(BASE_URL + '/api/plan/' + planid + '/delete/' + uuid, undefined, config)
 }
-
-
