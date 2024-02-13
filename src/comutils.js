@@ -1,10 +1,6 @@
 import axios from "axios"
 import {BASE_URL} from "./config/constants";
 
-const config = {
-    headers: {Authorization: "Bearer " + window.localStorage.getItem('token'),}
-};
-
 /**
  * Adds new user into the system.
  * @param username string, does not have to be unique
@@ -32,6 +28,11 @@ export async function getAuthToken() {
  * @return if success, JSON with user data
  */
 export async function getUserData(uuid){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
+
     if (!uuid) {
         return await axios.get(BASE_URL + '/api/user', config)
     }
@@ -44,6 +45,11 @@ export async function getUserData(uuid){
  * @return if success, returns JSON with new user updated data.
  */
 export async function updateUsername(username){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
+
     return await axios.put(BASE_URL + '/api/user', {'username':username}, config)
 }
 
@@ -53,6 +59,11 @@ export async function updateUsername(username){
  * @return {Promise<AxiosResponse<any>>} if success, returns JSON with plan info and its members.
  */
 export async function getPlanData(id){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
+
     if (!window.localStorage.getItem('token')){
         return await axios.get(BASE_URL + '/api/plan/' + id)
     }
@@ -60,12 +71,18 @@ export async function getPlanData(id){
 }
 
 export async function createPlan(name, description, date, location){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
     const data = {
         'name':name,
         'description':description,
         'date':date,
         'location':location
     }
+    console.log(data)
+    console.log(config)
     return await axios.post(BASE_URL + '/api/plan',data, config)
 }
 
@@ -81,6 +98,10 @@ export async function updatePlan(id, data){
      * 'name', 'description', 'date', 'location', 'admin'
      * they are all strings
      */
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
     return await axios.put(BASE_URL + '/api/plan' + id, data, config)
 }
 
@@ -90,6 +111,10 @@ export async function updatePlan(id, data){
  * @return {Promise<AxiosResponse<any>>} if success, returns confirmation message
  */
 export async function deletePlan(id){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
     return await axios.delete(BASE_URL + '/api/plan/' + id, config)
 }
 
@@ -100,6 +125,10 @@ export async function deletePlan(id){
  * @return {Promise<AxiosResponse<any>>}
  */
 export async function addParticipant(planid, uuid){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
     return await axios.patch(BASE_URL + '/api/plan/' + planid + '/add/' + uuid, undefined, config)
 }
 
@@ -110,7 +139,9 @@ export async function addParticipant(planid, uuid){
  * @return {Promise<AxiosResponse<any>>}
  */
 export async function deleteParticipant(planid, uuid){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
     return await axios.patch(BASE_URL + '/api/plan/' + planid + '/delete/' + uuid, undefined, config)
 }
-
-

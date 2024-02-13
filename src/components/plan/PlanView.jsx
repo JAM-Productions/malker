@@ -24,6 +24,20 @@ const PlanView = () => {
     const { id } = useParams();
 
     useEffect(() => {
+        // Recover the username if the user already has one
+        getUserData().then((r) => {
+            setUuid(r.data.uuid)
+            if (r.data.username !== null) {
+                setName(r.data.username)
+            }
+        }).catch((e) => {
+            toast.error('You are not logged')
+            console.log(e.toString())
+        })
+    }, []);
+
+    useEffect(() => {
+        // Fetch plan data when the 'id' parameter changes
         getPlanData(id).then((r) => {
             setTitle(r.data.name)
             setAuthor(r.data.author)
@@ -32,31 +46,21 @@ const PlanView = () => {
             setDescription(r.data.description)
             setParticipants(r.data.participants)
             console.log(r.data.participants)
-            console.log(participants)
-
         }).catch((e) => {
             toast.error('Plan not found')
+            console.log(e.toString())
             navigate('/malker/')
         })
+    }, [id]);
 
-        // recover the username if the user already has one
-        getUserData().then((r) => {
-            setUuid(r.data.uuid)
-
-            // Check if the current user is in the list of participants
+    useEffect(() => {
+        // Check if the current user is in the list of participants
+        if (participants && uuid) {
             const currentUserExists = participants.some(participant => participant.uuid === uuid);
             setJoined(currentUserExists);
-            console.log(participants)
-            console.log(currentUserExists)
-
-            if (r.data.username !== null) {
-                setName(r.data.username)
-            }
-        }).catch((e) => {
-            toast.error('You are not logged')
-        })
-
-    }, []);
+            // console.log(joined, uuid, participants, (!joined))
+        }
+    }, [participants, uuid]);
 
     const handleJoin = () => {
         if (!name) {
@@ -65,7 +69,7 @@ const PlanView = () => {
             return
         }
 
-        // call post endpoint
+        // Call post endpoint
         addParticipant(id, uuid).then((r) => {
             toast.success("Join successfull");
             setJoined(true)
@@ -90,7 +94,7 @@ const PlanView = () => {
                     </div>
                 </div>
             )}
-            {(uuid !== '' || !joined) && (
+            {!joined && (
                 <div className="container mx-auto">
                     <div className="flex flex-col items-center justify-center">
                         <div className="p-2">
