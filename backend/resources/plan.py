@@ -141,7 +141,7 @@ class PlanAPI(Resource):
             return {'message':f'Error performing deletion for provided plan'}, 500
 
 
-class DeleteAllTests(Resource):
+class DeleteAllPlanTests(Resource):
     def delete(self):
         """
         Endpoint to delete all plans with name "Cypress Test".

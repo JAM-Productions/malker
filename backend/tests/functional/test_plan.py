@@ -142,7 +142,7 @@ def test_delete_all_tests(client, sample_user):
         assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     # Now try to delete all plans with name "Cypress Test"
-    res = client.delete('/api/deleteAllTests')
+    res = client.delete('/api/deleteAllPlanTests')
     assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     response_data = json.loads(res.get_data(as_text=True))
