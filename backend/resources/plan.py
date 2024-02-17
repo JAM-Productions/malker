@@ -147,7 +147,7 @@ class DeleteAllPlanTests(Resource):
         Endpoint to delete all plans with name "Cypress Test".
         Only for testing purposes.
         It does not require auth token.
-        /api/plan/deleteAllTests
+        /api/deleteAllPlanTests
         :return: if success, JSON with confirmation message
         """
         try:

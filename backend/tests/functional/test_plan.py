@@ -118,7 +118,7 @@ def test_delete_plan(client, sample_user, sample_plan):
     sample_plan.delete_plan()
     sample_user.delete_user()
 
-def test_delete_all_tests(client, sample_user):
+def test_delete_all_plan_tests(client, sample_user):
     """
     Test deleting all plans with name "Cypress Test".
     """
