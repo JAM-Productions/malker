@@ -14,7 +14,7 @@ const DropdownPlan = ({
 
   useEffect(() => {
     if (descriptionRef.current) {
-      setDescriptionHeight(`${descriptionRef.current.scrollHeight + 10}px`);
+      setDescriptionHeight(`${descriptionRef.current.scrollHeight + 20}px`);
     }
   }, [description]);
 
