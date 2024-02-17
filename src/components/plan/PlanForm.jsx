@@ -4,6 +4,7 @@ import Input from "../form/Input";
 import Button from "../Button";
 import { toast } from "react-toastify";
 import BigInput from "../form/BigInput";
+import {createPlan} from "../../comutils";
 
 const PlanForm = () => {
     const navigate = useNavigate()
@@ -48,13 +49,28 @@ const PlanForm = () => {
             return;
         }
 
-        // call post endpoint
-        // [TODO]
+        // Format the date
+        const formattedDate = formatDate(date);
 
-        resetForm();
-        toast.success("Plan created successfully");
+        // Call the post endpoint
+        createPlan(title, description, formattedDate, location).then((r) => {
+            resetForm();
+            toast.success("Plan created successfully");
+            navigate(`/malker/plan-view/${r.data.id}`);
+        }).catch((error) => {
+            console.error("Error creating plan:", error);
+            toast.error("Error creating plan. Please try again.");
+        });
+    };
 
-        navigate('/malker/plan-view')
+    // Function to format the date
+    const formatDate = (inputDate) => {
+        const dateObject = new Date(inputDate);
+        const day = String(dateObject.getDate()).padStart(2, '0');
+        const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const year = dateObject.getFullYear();
+
+        return `${day}/${month}/${year}`;
     };
 
     const resetForm = () => {

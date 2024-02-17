@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {toast, ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import Header from './components/Header';
@@ -10,7 +10,7 @@ import PlanView from './components/plan/PlanView';
 import PlanForm from './components/plan/PlanForm';
 import PlanShowParticipants from './components/plan/PlanShowParticipants';
 
-import {getAuthToken, getUserData, getPlanData} from './comutils'
+import { getAuthToken } from './comutils'
 
 function App() {
 
@@ -29,11 +29,10 @@ function App() {
           <ToastContainer />
             <Routes>
               <Route exact path="/malker" element={<PlanForm />} />
-              <Route path="/malker/plan-view" element={<PlanView />} />
+              <Route path="/malker/plan-view/:id" element={<PlanView />} />
               <Route path="/malker/show-participants" element={<PlanShowParticipants />} />
             </Routes>
         </div>
-        {/*<div className="rounded-full bg-blue-500 w-fit p-5" onClick={()=>getAuthToken('test-20')}>Get auth toke</div>*/}
         <Footer />
       </div>
     </Router>
