@@ -23,8 +23,8 @@ const DropdownPlan = ({
   };
 
   return (
-    <div className="container px-5 pt-24 pb-10 mx-auto">
-      <div className="flex flex-row justify-between w-10/12 mx-auto">
+    <div className="container sm:px-5 px-0 pt-24 pb-10 mx-auto">
+      <div className="flex flex-row justify-between sm:w-10/12 w-11/12 mx-auto">
         <div className="flex flex-col">
           <div className="flex flex-row items-center">
             <h1 className="text-2xl font-medium text-gray-900">{title}</h1>
@@ -58,7 +58,7 @@ const DropdownPlan = ({
         </div>
       </div>
       <div
-        className="w-10/12 mx-auto"
+        className="sm:w-10/12 w-11/12 mx-auto"
         style={{
           maxHeight: open ? descriptionHeight : "0",
           overflow: "hidden",
