@@ -117,3 +117,40 @@ def test_delete_plan(client, sample_user, sample_plan):
     assert response_data['message'] == f"Plan with id {sample_plan.uid} deleted"
     sample_plan.delete_plan()
     sample_user.delete_user()
+
+def test_delete_all_tests(client, sample_user):
+    """
+    Test deleting all plans with name "Cypress Test".
+    """
+    # Authenticate the user by creating a token
+    with client.application.app_context():
+        sample_user.add_user()
+        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+
+    # Now try to create a few plans with the name "Cypress Test"
+    plan_data = {
+        'name': 'Cypress Test',
+        'description': 'This is a Cypress Test plan',
+        'date': '01/01/2023',
+        'location': 'Cypress Test Location'
+    }
+
+    headers = {'Authorization': f'Bearer {jwt_token}'}
+
+    for _ in range(3):
+        res = client.post('/api/plan', data=json.dumps(plan_data), content_type='application/json', headers=headers)
+        assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
+
+    # Now try to delete all plans with name "Cypress Test"
+    res = client.delete('/api/deleteAllTests')
+    assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
+
+    response_data = json.loads(res.get_data(as_text=True))
+    assert 'message' in response_data
+    assert response_data['message'] == "All plans with name 'Cypress Test' deleted"
+
+    # Check that the plans were actually deleted
+    plans = Plan.get_plans_by_name("Cypress Test")
+    assert len(plans) == 0
+
+    sample_user.delete_user()
