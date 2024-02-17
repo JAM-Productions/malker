@@ -27,7 +27,6 @@ const DropdownPlan = ({
     const urls = description.match(urlRegex);
 
     if (urls && urls.length > 0) {
-      // Si hay URL(s), divide la descripción en partes antes y después de la URL
       const parts = description.split(urlRegex);
       return (
         <>
@@ -49,8 +48,7 @@ const DropdownPlan = ({
         </>
       );
     } else {
-      // Si no hay URL, renderiza el texto normal
-      return <>{description}</>;
+      return <p>{description}</p>;
     }
   };
 
