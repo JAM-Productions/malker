@@ -22,6 +22,39 @@ const DropdownPlan = ({
     setOpen(!open);
   };
 
+  const renderDescription = () => {
+    const urlRegex = /(http[s]?:\/\/[^\s]+)/gi;
+    const urls = description.match(urlRegex);
+
+    if (urls && urls.length > 0) {
+      // Si hay URL(s), divide la descripción en partes antes y después de la URL
+      const parts = description.split(urlRegex);
+      return (
+        <>
+          {parts.map((part, index) => (
+            <React.Fragment key={index}>
+              {index > 0 && (
+                <a
+                  href={urls[index - 1]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  {urls[index - 1]}
+                </a>
+              )}
+              {(urls[index - 1] !== part)&&(part)}
+            </React.Fragment>
+          ))}
+        </>
+      );
+    } else {
+      // Si no hay URL, renderiza el texto normal
+      return <>{description}</>;
+    }
+  };
+
+
   return (
     <div className="container sm:px-5 px-0 pt-24 pb-10 mx-auto">
       <div className="flex flex-row justify-between sm:w-10/12 w-11/12 mx-auto">
@@ -67,7 +100,7 @@ const DropdownPlan = ({
       >
         <div ref={descriptionRef}>
           <hr className="mt-3 mb-5 border-0 h-px bg-slate-400"></hr>
-          <p>{description}</p>
+          <p>{renderDescription()}</p>
           <p className="text-right mt-5">{author}</p>
         </div>
       </div>
