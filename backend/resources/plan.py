@@ -139,3 +139,23 @@ class PlanAPI(Resource):
             return {'message': e.message}, 400
         except Exception as e:
             return {'message':f'Error performing deletion for provided plan'}, 500
+
+
+class DeleteAllPlanTests(Resource):
+    def delete(self):
+        """
+        Endpoint to delete all plans with name "Cypress Test".
+        Only for testing purposes.
+        It does not require auth token.
+        /api/deleteAllPlanTests
+        :return: if success, JSON with confirmation message
+        """
+        try:
+            plans_to_delete = Plan.get_plans_by_name("Cypress Test")
+            for plan in plans_to_delete:
+                plan.delete_plan()
+            return jsonify({"message": "All plans with name 'Cypress Test' deleted"})
+        except PlanNotFoundError as e:
+            return {'message': e.message}, 404
+        except Exception as e:
+            return {'message': 'Error performing deletion for plans with name "Cypress Test"'}, 500

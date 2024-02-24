@@ -207,3 +207,27 @@ class Plan:
                 continue
 
         return plans
+
+    @classmethod
+    def get_plans_by_name(cls, name: str) -> [Plan]:
+        """
+        (classmethod) Returns a list of plans from db based on name.
+        :param name: the specific name for the Plan
+        :return: List of Plan objects
+        """
+        data = (db.collection(u'plans')
+                .where(u'name', '==', name)).stream()
+
+        if data is None:
+            raise PlanNotFoundError(name)
+
+        plans = []
+        for q in data:
+            try:
+                aux = q.to_dict()
+                aux['uid'] = q.id
+                plans.append(Plan.from_dict(aux))
+            except Exception as e:
+                continue
+
+        return plans

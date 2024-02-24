@@ -14,11 +14,17 @@ class Login(Resource):
         :return: if success, auth token
         """
         parser = reqparse.RequestParser()
-        parser.add_argument('username', type=str, required=True)
-        data = parser.parse_args()
+        parser.add_argument('username', type=str, required=False)
+        try:
+            data = parser.parse_args()
+        except:
+            data = {}
 
         try:
-            u = User(data['username'])
+            if 'username' in data.keys():
+                u = User(data['username'])
+            else:
+               u = User()
             u.add_user()
 
             jwt_token = create_access_token(identity=u.uuid, expires_delta=False)
@@ -27,4 +33,4 @@ class Login(Resource):
             return make_response(jsonify(data), 200)
 
         except Exception:
-            return {"error": f"Could not add user {data['username']} into the system"}, 400
+            return {"error": f"Could not add user into the system"}, 400

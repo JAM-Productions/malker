@@ -40,3 +40,23 @@ class UserAPI(Resource):
             return {'message': e.message}, 404
         except UserCreationError as e:
             return {'message': e.message}, 400
+
+
+class DeleteAllUserTests(Resource):
+    def delete(self):
+        """
+        Endpoint to delete all users with name "Cypress Test".
+        Only for testing purposes.
+        It does not require auth token.
+        /api/deleteAllUserTests
+        :return: if success, JSON with confirmation message
+        """
+        try:
+            users_to_delete = User.get_users_by_name("Cypress Test")
+            for user in users_to_delete:
+                user.delete_user()
+            return jsonify({"message": "All users with name 'Cypress Test' deleted"})
+        except UserNotFoundError as e:
+            return {'message': e.message}, 404
+        except Exception as e:
+            return {'message': 'Error performing deletion for users with name "Cypress Test"'}, 500

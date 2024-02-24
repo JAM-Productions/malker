@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button.jsx"
 
-const UserCard = ({user, currentUser}) => {
+const UserCard = ({user, userUuid, currentUserUuid}) => {
 
     return (
         <div className="
@@ -23,22 +23,20 @@ const UserCard = ({user, currentUser}) => {
                 h-2
                 w-2
                 rounded-full
-                ${ user === currentUser
+                ${ userUuid === currentUserUuid
                     ? "bg-green-500"
                     : "bg-red-500" //change to get state the actual user
                 }
             `}/>
                 <img
-                    src="malker.png"
+                    src="/malker/malker.png"
                     alt="Logo"
                     className="h-12 w-12 mr-2"
                 />
             <p className="absolute pt-14 font-bold">
                 {user}
             </p>
-            {user === currentUser &&
-                user === "Mark" &&
-                /* add checkif already joined or no */
+            {userUuid === currentUserUuid &&
                 <div className="absolute pt-24">
                     <Button text={"Leave"}
                         additionalStyles="
@@ -49,9 +47,9 @@ const UserCard = ({user, currentUser}) => {
                     />
                 </div>
             }
+            {/*
             {user === currentUser &&
                 user !== "Mark" &&
-                /* add checkif already joined or no */
                 <div className="absolute pt-24">
                     <Button text={"Rejoin"}
                         additionalStyles="
@@ -61,7 +59,7 @@ const UserCard = ({user, currentUser}) => {
                         small
                     />
                 </div>
-            }
+            }*/}
         </div>
     )
 }
