@@ -67,3 +67,18 @@ class User:
             db.collection(u'users').document(self.uuid).delete()
         except Exception as e:
             raise UserNotFoundError(self.uuid) from e
+
+    @classmethod
+    def get_users_by_name(cls, name: str):
+        """
+        (classmethod) Returns a list of Users from db based on username.
+        :param name: the specific name for the User
+        :return: list of User obj
+        """
+        users = db.collection(u'users').where(u'username', u'==', name).stream()
+        users_list = []
+        for u in users:
+            u_dict = u.to_dict()
+            u_dict['uuid'] = u.id
+            users_list.append(User.from_dict(u_dict))
+        return users_list
