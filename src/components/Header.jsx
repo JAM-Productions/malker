@@ -5,7 +5,8 @@ import { MdGeneratingTokens } from "react-icons/md";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isTokenDialogOpen, setIsTokenDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,9 +91,13 @@ const Header = () => {
         '
           onClick={() => {
             //TODO: show dialog to enter token
+            setIsTokenDialogOpen(true);
           }}
         />
       </div>
+      {isTokenDialogOpen && (
+        <TokenDialog onClose={() => setIsTokenDialogOpen(false)} />
+      )}
     </div>
   );
 };
