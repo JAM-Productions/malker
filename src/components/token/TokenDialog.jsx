@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { MdClose, MdContentCopy } from 'react-icons/md';
-import { getAuthToken } from '../../comutils';
+import { getAuthToken, setAuthToken } from '../../comutils';
 import { toast } from 'react-toastify';
 
 const TokenDialog = ({ onClose }) => {
     const [token, setToken] = useState('');
+    const [newToken, setNewToken] = useState('');
 
     useEffect(() => {
         getAuthToken().then((token) => {
@@ -16,6 +17,11 @@ const TokenDialog = ({ onClose }) => {
         navigator.clipboard.writeText(token);
         toast.success('Token copied to clipboard');
     };
+
+    const handleImportToken = () => {
+        setAuthToken(newToken);
+        window.location.reload();
+    }
 
     return (
         <div className="
@@ -31,10 +37,14 @@ const TokenDialog = ({ onClose }) => {
             bg-opacity-50
             z-50
         ">
-            <div className="bg-white p-4 rounded-lg w-full max-w-md">
+            <div className="bg-malker-100 p-4 rounded-lg w-full max-w-md">
                 <div className="flex justify-end">
                 <MdClose
-                    className="text-gray-500 cursor-pointer"
+                    className="
+                        text-gray-500
+                        cursor-pointer
+                        hover:text-gray-700
+                    "
                     size={24}
                     onClick={onClose}
                 />
@@ -44,12 +54,18 @@ const TokenDialog = ({ onClose }) => {
                     <span className="
                         overflow-hidden
                         max-w-[90%]
-                        truncate"
-                    >
+                        truncate
+                        font-extrabold
+                    ">
                         {token}
                     </span>
                     <MdContentCopy
-                        className="ml-2 text-gray-500 cursor-pointer"
+                        className="
+                            ml-2
+                            text-gray-500
+                            cursor-pointer
+                            hover:text-gray-700
+                        "
                         size={20}
                         onClick={handleCopyToken}
                     />
@@ -62,11 +78,29 @@ const TokenDialog = ({ onClose }) => {
                     type="text"
                     placeholder="Enter token"
                     onChange={(e) => {
-                        // TODO: handle token change
+                        setNewToken(e.target.value);
                     }}
-                    className="w-full mt-2 p-2 border border-gray-300 rounded"
+                    className="
+                        w-full
+                        mt-2
+                        p-2
+                        border
+                        border-gray-300
+                        rounded
+                        bg-malker-50
+                        focus:outline-none
+                    "
                 />
-                <button className="w-full bg-blue-500 text-white p-2 mt-4 rounded">
+                <button className="
+                    w-full
+                    bg-blue-500
+                    text-white
+                    p-2
+                    mt-4
+                    rounded
+                    "
+                    onClick={handleImportToken}
+                >
                     Import
                 </button>
             </div>
