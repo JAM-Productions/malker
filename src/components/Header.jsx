@@ -90,7 +90,6 @@ const Header = () => {
             cursor-pointer
           '
             onClick={() => {
-              //TODO: show dialog to enter token
               setIsTokenDialogOpen(true);
             }}
           />
