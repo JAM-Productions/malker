@@ -56,7 +56,7 @@ const PlanForm = () => {
         createPlan(title, description, formattedDate, location).then((r) => {
             resetForm();
             toast.success("Plan created successfully");
-            navigate(`/malker/plan-view/${r.data.id}`);
+            navigate(`/plan-view/${r.data.id}`);
         }).catch((error) => {
             console.error("Error creating plan:", error);
             toast.error("Error creating plan. Please try again.");
