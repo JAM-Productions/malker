@@ -29,7 +29,7 @@ const Footer = () => {
                 "
                 href="https://github.com/JAM-Productions"
                 >
-                    <img src="/malker/jam.png"
+                    <img src="/malker/jam.webp"
                         alt="Logo"
                         className="h-8 w-8 mr-2"
                     />
