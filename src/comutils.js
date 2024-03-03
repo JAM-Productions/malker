@@ -2,23 +2,30 @@ import axios from "axios"
 import {BASE_URL} from "./config/constants";
 
 /**
+ * Saves token in local storage
+ * @param token string, token to be saved
+ * @return void
+ */
+export function setAuthToken(token) {
+    window.localStorage.setItem('token', token);
+}
+
+/**
  * Adds new user into the system.
  * @param username string, does not have to be unique
  * @return if success, saves token im local storage
  */
 export async function getAuthToken() {
     let token = window.localStorage.getItem('token');
-
     if (!token) {
         try {
             const response = await axios.post(BASE_URL + '/api/login');
             token = response.data.token;
-            window.localStorage.setItem('token', token);
+            setAuthToken(token);
         } catch (error) {
             throw new Error(error);
         }
     }
-
     return token;
 }
 

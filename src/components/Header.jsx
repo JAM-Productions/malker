@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MdGeneratingTokens } from "react-icons/md";
+import TokenDialog from './token/TokenDialog';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isTokenDialogOpen, setIsTokenDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,8 +26,8 @@ const Header = () => {
   }, [prevScrollPos]);
 
   return (
-    <div
-      className={`
+    <div>
+      <div className={`
         fixed
         w-full
         bg-blue-500
@@ -35,38 +38,68 @@ const Header = () => {
         ${isScrolled ? '-translate-y-full' : 'translate-y-0'}
         transition-all
         duration-500
-      `}
-    >
-      <div
-        className="
-          flex
-          flex-row
-          items-center
-          justify-center
-          py-2
-          border-b-[1px]
-          border-blue-600
-          cursor-pointer
-        "
-        onClick={() => navigate("/malker")}
-      >
-        <img
-          src="/malker/malker.png"
-          alt="Logo"
-          className="h-8 w-8 mr-2"
-        />
-        <span
+      `}>
+        <div
           className="
+            flex
+            flex-row
+            items-center
+            justify-center
+          ">
+          <div
+            className="
+              flex
+              flex-row
+              py-2
+              border-b-[1px]
+              border-blue-600
+              cursor-pointer
+            "
+            onClick={() => navigate("/malker")}
+          >
+            <img
+              src="/malker/malker.webp"
+              alt="Logo"
+              className="h-8 w-8 mr-2"
+            />
+            <span
+              className="
+                text-white
+                text-lg
+                font-bold
+                hover:text-blue-300
+                transition-colors
+                duration-300
+                ease-in-out
+              "
+              style={{ fontFamily: 'Montserrat' }}
+            >
+              Malker
+            </span>
+          </div>
+          <MdGeneratingTokens className='
             text-white
-            text-lg
-            font-bold
-          "
-          style={{ fontFamily: 'Montserrat' }}
-        >
-          Malker
-        </span>
+            text-2xl
+            ml-2
+            hover:text-blue-300
+            transition-colors
+            duration-300
+            ease-in-out
+            absolute
+            right-5
+            cursor-pointer
+          '
+            onClick={() => {
+              setIsTokenDialogOpen(true);
+            }}
+          />
+        </div>
       </div>
+      {isTokenDialogOpen && (
+        <TokenDialog onClose={() => setIsTokenDialogOpen(false)} />
+      )}
     </div>
+
   );
 };
 

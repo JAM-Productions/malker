@@ -29,7 +29,7 @@ const UserCard = ({user, userUuid, currentUserUuid}) => {
                 }
             `}/>
                 <img
-                    src="/malker/malker.png"
+                    src="/malker/malker.webp"
                     alt="Logo"
                     className="h-12 w-12 mr-2"
                 />

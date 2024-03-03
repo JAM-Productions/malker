@@ -60,11 +60,10 @@ const PlanForm = () => {
                 resetForm();
                 setLoading(false);
                 toast.success("Plan created successfully");
-                navigate(`/malker/plan-view/${r.data.id}`);
+                navigate(`/plan-view/${r.data.id}`);
             })
             .catch((error) => {
                 console.error("Error creating plan:", error);
-                setLoading(false);
                 toast.error("Error creating plan. Please try again.");
             });
     };
