@@ -24,15 +24,10 @@ function App() {
             <div className="bg-malker-100 min-h-screen">
                 <Header />
                 <div className="pt-5 min-h-[88vh]">
-                    <ToastContainer
-                        toastStyle={{ backgroundColor: "#edf8fd" }}
-                    />
+                    <ToastContainer toastStyle={{ backgroundColor: "#edf8fd" }} />
                     <Routes>
                         <Route exact path="/malker" element={<PlanForm />} />
-                        <Route
-                            path="/malker/plan-view/:id"
-                            element={<PlanView />}
-                        />
+                        <Route path="/malker/plan-view/:id" element={<PlanView />} />
                     </Routes>
                 </div>
                 <Footer />

@@ -67,9 +67,7 @@ const PlanView = () => {
     useEffect(() => {
         // Check if the current user is in the list of participants
         if (participants && uuid) {
-            const currentUserExists = participants.some(
-                (participant) => participant.uuid === uuid
-            );
+            const currentUserExists = participants.some((participant) => participant.uuid === uuid);
             setJoined(currentUserExists);
             // console.log(joined, uuid, participants, (!joined))
         }

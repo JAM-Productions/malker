@@ -8,9 +8,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
 
     useEffect(() => {
         if (descriptionRef.current) {
-            setDescriptionHeight(
-                `${descriptionRef.current.scrollHeight + 20}px`
-            );
+            setDescriptionHeight(`${descriptionRef.current.scrollHeight + 20}px`);
         }
     }, [description]);
 
@@ -53,14 +51,9 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
             <div className="flex flex-row justify-between sm:w-10/12 w-11/12 mx-auto">
                 <div className="flex flex-col">
                     <div className="flex flex-row items-center">
-                        <h1 className="text-2xl font-medium text-gray-900">
-                            {title}
-                        </h1>
+                        <h1 className="text-2xl font-medium text-gray-900">{title}</h1>
                         <div className="flex ml-3">
-                            <button
-                                className="align-self-end"
-                                onClick={toggleDropdown}
-                            >
+                            <button className="align-self-end" onClick={toggleDropdown}>
                                 <FaChevronDown
                                     className={`h-5 w-5 text-blue-500 hover:text-blue-600 
                                     ${open ? "rotate-180" : "rotate-0"} 

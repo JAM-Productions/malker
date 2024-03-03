@@ -173,10 +173,7 @@ const PlanForm = () => {
 
                             <div className="p-2 w-full flex flex-row items-center">
                                 <Button text={"Clear"} onClick={handleClear} />
-                                <Button
-                                    text={"Create"}
-                                    onClick={handlePostPlan}
-                                />
+                                <Button text={"Create"} onClick={handlePostPlan} />
                             </div>
                         </div>
                     </div>
