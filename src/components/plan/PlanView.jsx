@@ -25,7 +25,7 @@ const PlanView = () => {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
     const [uuid, setUuid] = useState("");
-    const [joined, setJoined] = useState(false);
+    const [joined, setJoined] = useState(true);
 
     useEffect(() => {
         // Recover the username if the user already has one
@@ -55,9 +55,9 @@ const PlanView = () => {
         // Call post endpoint
         addParticipant(id, uuid)
             .then(() => {
-                setLoading(false);
                 toast.success("Join successfull");
                 setJoined(true);
+                setLoading(false);
             })
             .catch((e) => {
                 setLoading(false);
@@ -99,7 +99,7 @@ const PlanView = () => {
     return (
         <div>
             {loading && (
-                <Loader height={"47"} width={"47"} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
+                <Loader height={47} width={47} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
             )}
             {!loading && (
                 <section>

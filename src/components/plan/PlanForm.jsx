@@ -58,11 +58,12 @@ const PlanForm = () => {
         createPlan(title, description, formattedDate, location)
             .then((r) => {
                 resetForm();
-                setLoading(false);
+                //setLoading(false);
                 toast.success("Plan created successfully");
                 navigate(`/plan-view/${r.data.id}`);
             })
             .catch((error) => {
+                setLoading(false);
                 console.error("Error creating plan:", error);
                 toast.error("Error creating plan. Please try again.");
             });
