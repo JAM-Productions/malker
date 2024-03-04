@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
 import { getPlanData, getUserData, addParticipant } from "../../comutils";
-import { ProgressBar } from "react-loader-spinner";
+import Loader from "../loader/loader";
 import Input from "../form/Input";
 import Button from "../Button";
 import UserCard from "../user/UserCard";
@@ -97,69 +97,60 @@ const PlanView = () => {
     }, [id]);
 
     return (
-        <section>
-            <BackButton />
+        <div>
             {loading && (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <ProgressBar
-                        visible={true}
-                        height="47"
-                        width="47"
-                        barColor="#0789c2"
-                        borderColor="#3dc2f3"
-                        ariaLabel="progress-bar-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                    />
-                </div>
+                <Loader height={"47"} width={"47"} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
             )}
             {!loading && (
-                <div>
-                    <DropdownPlan
-                        title={title}
-                        date={date}
-                        location={location}
-                        description={description}
-                        author={author}
-                    />
+                <section>
+                    <BackButton />
                     <div>
-                        {joined && (
-                            <div className="container mx-auto mb-10">
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-10 w-10/12 mx-auto">
-                                    {participants.map((user) => (
-                                        <UserCard
-                                            user={user.username}
-                                            userUuid={user.uuid}
-                                            currentUserUuid={uuid}
-                                            key={user}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                        {!joined && (
-                            <div className="container mx-auto">
-                                <div className="flex flex-col items-center justify-center">
-                                    <div className="p-2">
-                                        <Input
-                                            label={"Name"}
-                                            type={"text"}
-                                            value={name}
-                                            onChange={setName}
-                                            error={error}
-                                            maxLength={20}
-                                        />
-                                    </div>
-                                    <div className="p-2">
-                                        <Button text={"Join"} onClick={handleJoin} />
+                        <DropdownPlan
+                            title={title}
+                            date={date}
+                            location={location}
+                            description={description}
+                            author={author}
+                        />
+                        <div>
+                            {joined && (
+                                <div className="container mx-auto mb-10">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-10 w-10/12 mx-auto">
+                                        {participants.map((user) => (
+                                            <UserCard
+                                                user={user.username}
+                                                userUuid={user.uuid}
+                                                currentUserUuid={uuid}
+                                                key={user}
+                                            />
+                                        ))}
                                     </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
+                            {!joined && (
+                                <div className="container mx-auto">
+                                    <div className="flex flex-col items-center justify-center">
+                                        <div className="p-2">
+                                            <Input
+                                                label={"Name"}
+                                                type={"text"}
+                                                value={name}
+                                                onChange={setName}
+                                                error={error}
+                                                maxLength={20}
+                                            />
+                                        </div>
+                                        <div className="p-2">
+                                            <Button text={"Join"} onClick={handleJoin} />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
+                </section>
             )}
-        </section>
+        </div>
     );
 };
 
