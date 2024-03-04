@@ -25,7 +25,7 @@ const PlanView = () => {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
     const [uuid, setUuid] = useState("");
-    const [joined, setJoined] = useState(true);
+    const [joined, setJoined] = useState(false);
 
     useEffect(() => {
         // Recover the username if the user already has one
