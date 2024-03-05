@@ -190,5 +190,13 @@ python -m pytest
 Run the following command:
 
 ```sh
-npx oxlint@latest
+npm run lint
+```
+
+## Format
+
+Run the following command:
+
+```sh
+npm run format
 ```
