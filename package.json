@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "npx oxlint && npx eslint",
     "preview": "vite preview",
-    "start-api": "cd backend && venv/bin/flask run --no-debugger"
+    "start-api": "cd backend && venv/bin/flask run --no-debugger",
+    "format": "prettier --write 'src/**/*.{js,jsx}'"
   },
   "dependencies": {
     "axios": "^1.6.3",
@@ -25,11 +26,13 @@
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.45.0",
+    "eslint-plugin-oxlint": "^0.2.3",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "oxlint": "^0.1.2",
     "postcss": "^8.4.31",
+    "prettier": "^3.2.5",
     "tailwindcss": "^3.3.5",
     "vite": "^4.5.2"
   }
