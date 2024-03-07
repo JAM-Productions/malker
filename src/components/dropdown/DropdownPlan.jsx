@@ -100,9 +100,9 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                         </div>
                     </div>
                 </div>
-                <div className="flex sm:flex-col flex-row sm:gap-2 gap-4 sm:pt-2 pt-4 sm:justify-end">
+                <div className="flex sm:flex-col flex-row gap-2 sm:pt-2 pt-4 sm:justify-end">
                     <button className="flex items-center hover:text-blue-500" onClick={onShare}>
-                        <IoMdShare className="text-blue-500 text-xl sm:mr-2 mr-1" />
+                        <IoMdShare className="text-blue-500 text-xl mr-1" />
                         <span>Share</span>
                     </button>
                 </div>
