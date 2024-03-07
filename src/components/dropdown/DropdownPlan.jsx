@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
+import { IoMdShare } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const DropdownPlan = ({ title, date, location, description, author }) => {
     const [open, setOpen] = useState(true);
@@ -46,12 +48,37 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
         }
     };
 
+    const onShare = () => {
+        const actualURL = window.location.href;
+
+        if (navigator.share) {
+            navigator
+                .share({
+                    title: title,
+                    url: actualURL,
+                })
+                .then(() => {
+                    console.log("Successfully shared");
+                })
+                .catch((error) => {
+                    console.error("Error sharing:", error);
+                });
+        } else {
+            copyToClipboard(actualURL);
+        }
+    };
+
+    const copyToClipboard = (actualURL) => {
+        navigator.clipboard.writeText(actualURL);
+        toast.success("URL copied to clipboard!");
+    };
+
     return (
         <div className="container sm:px-5 px-0 pt-24 pb-10 mx-auto">
-            <div className="flex flex-row justify-between sm:w-10/12 w-11/12 mx-auto">
+            <div className="flex sm:flex-row flex-col justify-between sm:w-10/12 w-11/12 mx-auto">
                 <div className="flex flex-col">
                     <div className="flex flex-row items-center">
-                        <h1 className="text-2xl font-medium text-gray-900">{title}</h1>
+                        <h1 className="text-2xl font-medium text-gray-900 sm:truncate">{title}</h1>
                         <div className="flex ml-3">
                             <button className="align-self-end" onClick={toggleDropdown}>
                                 <FaChevronDown
@@ -62,7 +89,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex flex-row items-center mt-3 text-base gap-2">
+                    <div className="flex sm:flex-row flex-col sm:items-center mt-3 text-base gap-4">
                         <div className="flex items-center text-base">
                             <FaCalendar className="mr-2 text-gray-500" />
                             <span>{date}</span>
@@ -72,6 +99,12 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                             <span>{location}</span>
                         </div>
                     </div>
+                </div>
+                <div className="flex sm:flex-col flex-row sm:gap-2 gap-4 sm:pt-2 pt-4 sm:justify-end">
+                    <button className="flex items-center hover:text-blue-500" onClick={onShare}>
+                        <IoMdShare className="text-blue-500 text-xl sm:mr-2 mr-1" />
+                        <span>Share</span>
+                    </button>
                 </div>
             </div>
             <div
