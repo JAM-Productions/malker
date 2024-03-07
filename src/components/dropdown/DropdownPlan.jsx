@@ -89,7 +89,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex sm:flex-row flex-col sm:items-center mt-3 text-base gap-4">
+                    <div className="flex sm:flex-row flex-col sm:items-center mt-3 text-base gap-2">
                         <div className="flex items-center text-base">
                             <FaCalendar className="mr-2 text-gray-500" />
                             <span>{date}</span>
@@ -100,7 +100,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                         </div>
                     </div>
                 </div>
-                <div className="flex sm:flex-col flex-row gap-2 sm:pt-2 pt-4 sm:justify-end">
+                <div className="flex sm:flex-col flex-row gap-2 sm:pt-2 pt-2 sm:justify-end">
                     <button className="flex items-center hover:text-blue-500" onClick={onShare}>
                         <IoMdShare className="text-blue-500 text-xl mr-1" />
                         <span>Share</span>
