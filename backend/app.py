@@ -11,7 +11,7 @@ from flask_restful import Api
 from dotenv import load_dotenv
 import git
 from resources.login import Login
-from resources.plan import PlanAPI, DeleteAllPlanTests
+from resources.plan import PlanAPI, DeleteAllPlanTests, GetAllPlans
 from resources.user import UserAPI, DeleteAllUserTests
 from resources.participants import AddPartcipants, DeleteParticipants
 
@@ -29,6 +29,7 @@ api.add_resource(AddPartcipants, '/api/plan/<string:plan_id>/add/<string:user_id
 api.add_resource(DeleteParticipants, '/api/plan/<string:plan_id>/delete/<string:user_id>')
 api.add_resource(DeleteAllPlanTests, '/api/deleteAllPlanTests')
 api.add_resource(DeleteAllUserTests, '/api/deleteAllUserTests')
+api.add_resource(GetAllPlans, '/api/<string:id>/plans')
 
 @app.route('/')
 def index():
