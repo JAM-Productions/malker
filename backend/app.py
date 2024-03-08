@@ -11,7 +11,7 @@ from flask_restful import Api
 from dotenv import load_dotenv
 import git
 from resources.login import Login
-from resources.plan import PlanAPI, DeleteAllPlanTests
+from resources.plan import PlanAPI, DeleteAllPlanTests, GetAllPlans
 from resources.user import UserAPI, DeleteAllUserTests
 from resources.participants import AddPartcipants, DeleteParticipants
 
@@ -20,7 +20,7 @@ app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET')
 jwt = JWTManager(app)
 api = Api(app)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"*": {"origins": "*"}})
 
 api.add_resource(Login, '/api/login')
 api.add_resource(PlanAPI, '/api/plan', '/api/plan/<string:id>')
@@ -29,6 +29,7 @@ api.add_resource(AddPartcipants, '/api/plan/<string:plan_id>/add/<string:user_id
 api.add_resource(DeleteParticipants, '/api/plan/<string:plan_id>/delete/<string:user_id>')
 api.add_resource(DeleteAllPlanTests, '/api/deleteAllPlanTests')
 api.add_resource(DeleteAllUserTests, '/api/deleteAllUserTests')
+api.add_resource(GetAllPlans, '/api/<string:id>/plans')
 
 @app.route('/')
 def index():
