@@ -1,4 +1,3 @@
-import React from "react";
 import { ProgressBar } from "react-loader-spinner";
 
 const Loader = ({ height = "47", width = "47", barColor = "#0789c2", borderColor = "#3dc2f3" }) => {
