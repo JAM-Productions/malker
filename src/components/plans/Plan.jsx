@@ -1,9 +1,9 @@
 
 const Plan = ({ plan }) => {
     return (
-        <div className="p-4 lg:w-1/2 md:w-full">
-            <div className="flex border-2 rounded-lg bg-gray-100 border-opacity-50 p-8 sm:flex-row flex-col">
-                <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+        <div className="p-2 sm:p-4 lg:w-1/2 w-full">
+            <div className="flex border-2 rounded-lg bg-gray-100 border-opacity-50 p-8 flex-row ">
+                <div className="w-16 h-16 mr-8 mb-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                     <img
                         src="/malker/malker.webp"
                         alt="Logo"
