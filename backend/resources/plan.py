@@ -140,6 +140,22 @@ class PlanAPI(Resource):
         except Exception as e:
             return {'message':f'Error performing deletion for provided plan'}, 500
 
+class GetAllPlans(Resource):
+    @jwt_required()
+    def get(self, id):
+        """
+        Endpoint for retrieving all plans for a specific user
+        /api/plans/<id>
+        :param id: user id
+        :return: if success, JSON with all plans data
+        """
+        try:
+            user_plans = Plan.get_user_plans(id)
+            return jsonify([p.json() for p in user_plans])
+        except PlanNotFoundError as e:
+            return {'message': e.message}, 404
+        except Exception as e:
+            return {'message': f'Could not retrieve plans for user with id {id}'}, 400
 
 class DeleteAllPlanTests(Resource):
     def delete(self):
