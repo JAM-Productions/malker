@@ -5,7 +5,7 @@ import Button from "../Button";
 import { toast } from "react-toastify";
 import BigInput from "../form/BigInput";
 import { createPlan } from "../../comutils";
-import Loader from "../loader/loader";
+import Loader from "../loader/Loader";
 
 const PlanForm = () => {
     const navigate = useNavigate();
