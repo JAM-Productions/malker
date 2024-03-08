@@ -1,8 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Input = ({ label, type, value, onChange, error, maxLength }) => {
+const Input = ({
+    label,
+    type,
+    value,
+    onChange,
+    error,
+    maxLength
+}) => {
     const [currentCharacters, setCurrentCharacters] = useState(value.length);
-    const isDateInput = type === "date";
+    const isDateInput = type === 'date';
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -12,17 +19,16 @@ const Input = ({ label, type, value, onChange, error, maxLength }) => {
 
     useEffect(() => {
         setCurrentCharacters(value.length);
-    }, [value]);
+    } , [value]);
 
     return (
-        <div className='relative'>
-            <label
-                htmlFor={label}
-                className='
+        <div className="relative">
+            <label htmlFor={label}
+                className="
                     leading-7
                     text-sm
                     text-gray-600
-                '>
+                ">
                 {label.charAt(0).toUpperCase() + label.slice(1)}
             </label>
             <input
@@ -50,7 +56,7 @@ const Input = ({ label, type, value, onChange, error, maxLength }) => {
                     transition-colors
                     duration-200
                     ease-in-out
-                    ${isDateInput ? "date-input-style" : ""}
+                    ${isDateInput ? 'date-input-style' : ''}
                 `}
                 onChange={handleInputChange}
                 error={error}
@@ -58,12 +64,12 @@ const Input = ({ label, type, value, onChange, error, maxLength }) => {
                 maxLength={maxLength}
             />
             {currentCharacters > 0 && maxLength && (
-                <div className='absolute right-2 bottom-1 text-xs text-gray-500'>
+                <div className="absolute right-2 bottom-1 text-xs text-gray-500">
                     {currentCharacters} / {maxLength}
                 </div>
             )}
             {isDateInput && (
-                <style jsx='true'>{`
+                <style jsx="true">{`
                     .date-input-style {
                         display: block;
                         -webkit-appearance: none;

@@ -114,8 +114,8 @@ const PlanView = () => {
                         />
                         <div>
                             {joined && (
-                                <div className='container mx-auto mb-10'>
-                                    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-10 w-10/12 mx-auto'>
+                                <div className="container mx-auto mb-10">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-10 w-10/12 mx-auto">
                                         {participants.map((user) => (
                                             <UserCard
                                                 user={user.username}
@@ -128,9 +128,9 @@ const PlanView = () => {
                                 </div>
                             )}
                             {!joined && (
-                                <div className='container mx-auto'>
-                                    <div className='flex flex-col items-center justify-center'>
-                                        <div className='p-2'>
+                                <div className="container mx-auto">
+                                    <div className="flex flex-col items-center justify-center">
+                                        <div className="p-2">
                                             <Input
                                                 label={"Name"}
                                                 type={"text"}
@@ -140,7 +140,7 @@ const PlanView = () => {
                                                 maxLength={20}
                                             />
                                         </div>
-                                        <div className='p-2'>
+                                        <div className="p-2">
                                             <Button text={"Join"} onClick={handleJoin} />
                                         </div>
                                     </div>

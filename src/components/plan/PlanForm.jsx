@@ -99,19 +99,19 @@ const PlanForm = () => {
                 <Loader height={"47"} width={"47"} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
             )}
             {!loading && (
-                <section className='text-gray-600 body-font relative'>
-                    <div className='container px-5 py-24 mx-auto'>
-                        <div className='flex flex-col text-center w-full mb-12'>
-                            <h1 className='sm:text-3xl  text-2xl font-medium title-font mb-4 text-gray-900 '>
+                <section className="text-gray-600 body-font relative">
+                    <div className="container px-5 py-24 mx-auto">
+                        <div className="flex flex-col text-center w-full mb-12">
+                            <h1 className="sm:text-3xl  text-2xl font-medium title-font mb-4 text-gray-900 ">
                                 Create a new plan
                             </h1>
-                            <p className='lg:w-2/3mx-autoleading-relaxedtext-base'>
+                            <p className="lg:w-2/3mx-autoleading-relaxedtext-base">
                                 Fill out the form below to create a new plan.
                             </p>
                         </div>
-                        <div className='lg:w-1/2 md:w-2/3 mx-auto '>
-                            <div className='flex flex-wrap -m-2 '>
-                                <div className='p-2 w-1/2'>
+                        <div className="lg:w-1/2 md:w-2/3 mx-auto ">
+                            <div className="flex flex-wrap -m-2 ">
+                                <div className="p-2 w-1/2">
                                     <Input
                                         label={"title"}
                                         type={"text"}
@@ -121,7 +121,7 @@ const PlanForm = () => {
                                         maxLength={30}
                                     />
                                 </div>
-                                <div className='p-2 w-1/2'>
+                                <div className="p-2 w-1/2">
                                     <Input
                                         label={"author"}
                                         type={"text"}
@@ -131,7 +131,7 @@ const PlanForm = () => {
                                         maxLength={20}
                                     />
                                 </div>
-                                <div className='p-2 w-1/2'>
+                                <div className="p-2 w-1/2">
                                     <Input
                                         label={"date"}
                                         type={"date"}
@@ -140,7 +140,7 @@ const PlanForm = () => {
                                         error={error}
                                     />
                                 </div>
-                                <div className='p-2 w-1/2'>
+                                <div className="p-2 w-1/2">
                                     <Input
                                         label={"location"}
                                         type={"text"}
@@ -151,7 +151,7 @@ const PlanForm = () => {
                                     />
                                 </div>
 
-                                <div className='p-2 w-full'>
+                                <div className="p-2 w-full">
                                     <BigInput
                                         label={"description"}
                                         onChange={setDescription}
@@ -161,7 +161,7 @@ const PlanForm = () => {
                                     />
                                 </div>
 
-                                <div className='p-2 w-full flex flex-row items-center'>
+                                <div className="p-2 w-full flex flex-row items-center">
                                     <Button text={"Clear"} onClick={handleClear} />
                                     <Button text={"Create"} onClick={handlePostPlan} />
                                 </div>
