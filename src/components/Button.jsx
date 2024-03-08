@@ -1,5 +1,3 @@
-import React from "react";
-
 const Button = ({ text, onClick, additionalStyles, small }) => {
     const buttonStyles = `
         flex
@@ -12,7 +10,6 @@ const Button = ({ text, onClick, additionalStyles, small }) => {
         focus:outline-none
         hover:bg-blue-600
         rounded
-
         ${small ? "text-sm" : "text-lg"}
         ${additionalStyles}
     `;

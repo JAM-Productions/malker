@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,13 +22,13 @@ function App() {
 
     return (
         <HashRouter>
-            <div className="bg-malker-100 min-h-screen">
+            <div className='bg-malker-100 min-h-screen'>
                 <Header />
-                <div className="pt-5 min-h-[88vh]">
+                <div className='pt-5 min-h-[88vh]'>
                     <ToastContainer toastStyle={{ backgroundColor: "#edf8fd" }} />
                     <Routes>
-                        <Route exact path="/" element={<PlanForm />} />
-                        <Route path="/plan-view/:id" element={<PlanView />} />
+                        <Route exact path='/' element={<PlanForm />} />
+                        <Route path='/plan-view/:id' element={<PlanView />} />
                     </Routes>
                 </div>
                 <Footer />
