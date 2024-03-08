@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getUserData, getUserPlans } from "../../comutils";
-import Loader from "../loader/loader";
+import Loader from "../loader/Loader";
 import BackButton from "../navigation/BackButton";
 import Plan from "../plans/Plan";
 

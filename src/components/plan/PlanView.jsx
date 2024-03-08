@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
 import { getPlanData, getUserData, addParticipant } from "../../comutils";
-import Loader from "../loader/loader";
+import Loader from "../loader/Loader";
 import Input from "../form/Input";
 import Button from "../Button";
 import UserCard from "../user/UserCard";
