@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getUserData, getUserPlans } from "../../comutils";
@@ -8,7 +7,6 @@ import Plan from "../plans/Plan";
 
 const MyPlans = () => {
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
     const [plans, setPlans] = useState([]);
     const [uuid, setUuid] = useState("");
 
