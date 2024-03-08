@@ -11,6 +11,7 @@ import PlanView from "./components/plan/PlanView";
 import PlanForm from "./components/plan/PlanForm";
 
 import { getAuthToken } from "./comutils";
+import MyPlans from "./components/plan/MyPlans";
 
 function App() {
     useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
                     <Routes>
                         <Route exact path="/" element={<PlanForm />} />
                         <Route path="/plan-view/:id" element={<PlanView />} />
+                        <Route path="/myplans" element={<MyPlans />} />
                     </Routes>
                 </div>
                 <Footer />

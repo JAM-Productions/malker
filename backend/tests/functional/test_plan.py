@@ -154,3 +154,29 @@ def test_delete_all_plan_tests(client, sample_user):
     assert len(plans) == 0
 
     sample_user.delete_user()
+
+def test_get_all_plans(client, sample_user, sample_plan):
+    """
+    Test getting all plans for a user.
+    """
+    # Authenticate the user by creating a token
+    with client.application.app_context():
+        sample_user.add_user()
+        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+
+    # Now try to get all plans for the user
+    sample_plan.add_plan()
+    headers = {'Authorization': f'Bearer {jwt_token}'}
+    res = client.get(f'/api/{sample_user.uuid}/plans', headers=headers)
+    assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
+
+    response_data = json.loads(res.get_data(as_text=True))
+    assert len(response_data) == 1
+    assert response_data[0]['id'] == sample_plan.uid
+    assert response_data[0]['name'] == sample_plan.name
+    assert response_data[0]['description'] == sample_plan.description
+    assert response_data[0]['date'] == sample_plan.date.strftime('%d/%m/%Y')
+    assert response_data[0]['location'] == sample_plan.location
+    assert response_data[0]['admin'] == sample_user.uuid
+    sample_plan.delete_plan()
+    sample_user.delete_user()

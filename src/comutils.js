@@ -152,3 +152,15 @@ export async function deleteParticipant(planid, uuid){
     };
     return await axios.patch(BASE_URL + '/api/plan/' + planid + '/delete/' + uuid, undefined, config)
 }
+
+/**
+ * Retrieves all plans where the user is a participant
+ * @return {Promise<AxiosResponse<any>>}
+ */
+export async function getUserPlans(uuid){
+    const token = await getAuthToken();
+    const config = {
+        headers: { Authorization: "Bearer " + token },
+    };
+    return await axios.get(BASE_URL + `/api/${uuid}/plans`, config);
+}
