@@ -113,7 +113,7 @@ const PlanView = () => {
                         <div>
                             {joined && (
                                 <div className="container mx-auto mb-10">
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-10 w-10/12 mx-auto">
+                                    <div className="">
                                         {participants.map((user) => (
                                             <UserCard
                                                 user={user.username}
