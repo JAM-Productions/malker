@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { getUserData, getUserPlans } from "../../comutils";
 import Loader from "../loader/loader";
 import BackButton from "../navigation/BackButton";
-
+import Plan from "../plans/Plan";
 
 const MyPlans = () => {
     const [loading, setLoading] = useState(true);
@@ -45,15 +45,22 @@ const MyPlans = () => {
         <div>
             <BackButton />
             <div className="p-20">
-                <h1>My Plans</h1>
+                <div className="flex flex-col text-center w-full mb-10">
+                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">My Plans</h1>
+            </div>
                 {loading && (
                     <Loader height={47} width={47} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
                 )}
-                {!loading && (<ul>
-                    {plans.map((plan) => (
-                    <li key={plan.id}>{plan.name}</li>
-                    ))}
-                </ul>
+                {!loading && (
+                    <section className="text-gray-600 body-font">
+                        <div className="container px-5  mx-auto flex flex-wrap">
+                            <div className="flex flex-wrap -m-4">
+                                {plans.map((plan) => (
+                                    <Plan key={plan.id} plan={plan} />
+                                ))}
+                            </div>
+                        </div>
+                    </section>
                 )}
             </div>
         </div>
