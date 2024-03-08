@@ -1,14 +1,6 @@
 import { ProgressBar } from "react-loader-spinner";
-import PropTypes from "prop-types";
 
-const Loader = ({ height, width, barColor, borderColor }) => {
-    Loader.propTypes = {
-        height: PropTypes.number.isRequired,
-        width: PropTypes.number.isRequired,
-        barColor: PropTypes.string.isRequired,
-        borderColor: PropTypes.string.isRequired,
-    };
-
+const Loader = ({ height = "47", width = "47", barColor = "#0789c2", borderColor = "#3dc2f3" }) => {
     return (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <ProgressBar

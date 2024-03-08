@@ -95,9 +95,7 @@ const PlanForm = () => {
 
     return (
         <div>
-            {loading && (
-                <Loader height={"47"} width={"47"} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
-            )}
+            {loading && <Loader />}
             {!loading && (
                 <section className="text-gray-600 body-font relative">
                     <div className="container px-5 py-24 mx-auto">

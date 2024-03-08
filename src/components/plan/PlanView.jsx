@@ -98,9 +98,7 @@ const PlanView = () => {
 
     return (
         <div>
-            {loading && (
-                <Loader height={47} width={47} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
-            )}
+            {loading && <Loader />}
             {!loading && (
                 <section>
                     <BackButton />
