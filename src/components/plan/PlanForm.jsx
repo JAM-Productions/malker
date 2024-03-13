@@ -60,7 +60,7 @@ const PlanForm = () => {
                 resetForm();
                 //setLoading(false);
                 toast.success("Plan created successfully");
-                navigate(`/plan-view/${r.data.id}`);
+                navigate(`/plan/${r.data.id}`);
             })
             .catch((error) => {
                 setLoading(false);
