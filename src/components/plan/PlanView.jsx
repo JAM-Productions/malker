@@ -4,10 +4,10 @@ import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
 import { getPlanData, getUserData, addParticipant } from "../../comutils";
-import Loader from "../loader/Loader";
 import Input from "../form/Input";
 import Button from "../Button";
 import UserCard from "../user/UserCard";
+import LoadingView from "../loader/LoadingView";
 
 const PlanView = () => {
     const navigate = useNavigate();
@@ -97,58 +97,55 @@ const PlanView = () => {
     }, [id]);
 
     return (
-        <div>
-            {loading && <Loader />}
-            {!loading && (
-                <section>
-                    <BackButton />
+        <LoadingView loading={loading}>
+            <section>
+                <BackButton />
+                <div>
+                    <DropdownPlan
+                        title={title}
+                        date={date}
+                        location={location}
+                        description={description}
+                        author={author}
+                    />
                     <div>
-                        <DropdownPlan
-                            title={title}
-                            date={date}
-                            location={location}
-                            description={description}
-                            author={author}
-                        />
-                        <div>
-                            {joined && (
-                                <div className="container mx-auto mb-10">
-                                    <div className="flex flex-wrap justify-center items-center gap-4 w-10/12 mx-auto">
-                                        {participants.map((user) => (
-                                            <UserCard
-                                                user={user.username}
-                                                userUuid={user.uuid}
-                                                currentUserUuid={uuid}
-                                                key={user}
-                                            />
-                                        ))}
+                        {joined && (
+                            <div className="container mx-auto mb-10">
+                                <div className="flex flex-wrap justify-center items-center gap-4 w-10/12 mx-auto">
+                                    {participants.map((user) => (
+                                        <UserCard
+                                            user={user.username}
+                                            userUuid={user.uuid}
+                                            currentUserUuid={uuid}
+                                            key={user}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        {!joined && (
+                            <div className="container mx-auto">
+                                <div className="flex flex-col items-center justify-center">
+                                    <div className="p-2">
+                                        <Input
+                                            label={"Name"}
+                                            type={"text"}
+                                            value={name}
+                                            onChange={setName}
+                                            error={error}
+                                            maxLength={20}
+                                        />
+                                    </div>
+                                    <div className="p-2">
+                                        <Button text={"Join"} onClick={handleJoin} />
                                     </div>
                                 </div>
-                            )}
-                            {!joined && (
-                                <div className="container mx-auto">
-                                    <div className="flex flex-col items-center justify-center">
-                                        <div className="p-2">
-                                            <Input
-                                                label={"Name"}
-                                                type={"text"}
-                                                value={name}
-                                                onChange={setName}
-                                                error={error}
-                                                maxLength={20}
-                                            />
-                                        </div>
-                                        <div className="p-2">
-                                            <Button text={"Join"} onClick={handleJoin} />
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
-                </section>
-            )}
-        </div>
+                </div>
+            </section>
+        </LoadingView>
     );
 };
 
