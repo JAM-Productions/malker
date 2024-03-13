@@ -29,7 +29,7 @@ function App() {
                     <ToastContainer toastStyle={{ backgroundColor: "#edf8fd" }} />
                     <Routes>
                         <Route exact path="/" element={<PlanForm />} />
-                        <Route path="/plan-view/:id" element={<PlanView />} />
+                        <Route path="/plan/:id" element={<PlanView />} />
                         <Route path="/myplans" element={<MyPlans />} />
                     </Routes>
                 </div>

@@ -1,6 +1,10 @@
 import axios from "axios"
 import {BASE_URL} from "./config/constants";
 
+/**
+ * Retrieves token from local storage and returns it in a JSON format
+ * @return JSON with token
+*/
 export async function getAuthConfig() {
     const token = await getAuthToken();
     const config = {
