@@ -44,7 +44,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 </>
             );
         } else {
-            return <p>{description}</p>;
+            return description;
         }
     };
 
