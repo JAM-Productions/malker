@@ -80,7 +80,7 @@ const PlanView = () => {
         getPlanData(id)
             .then((r) => {
                 setTitle(r.data.name);
-                setAuthor(r.data.author);
+                setAuthor(r.data.admin);
                 setDate(r.data.date);
                 setLocation(r.data.location);
                 setDescription(r.data.description);
@@ -117,6 +117,8 @@ const PlanView = () => {
                                             user={user.username}
                                             userUuid={user.uuid}
                                             currentUserUuid={uuid}
+                                            planId={id}
+                                            adminId={author}
                                             key={user}
                                         />
                                     ))}
