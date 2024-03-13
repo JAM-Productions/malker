@@ -10,7 +10,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
 
     useEffect(() => {
         if (descriptionRef.current) {
-            setDescriptionHeight(`${descriptionRef.current.scrollHeight + 21}px`);
+            setDescriptionHeight(`${descriptionRef.current.scrollHeight + description.length}px`);
         }
     }, [description]);
 
