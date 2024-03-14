@@ -29,35 +29,35 @@ const Header = () => {
         <div>
             <div
                 className={`
-        fixed
-        z-10
-        w-full
-        transform
-        bg-blue-500
-        shadow-sm
-        transition-transform
-        ${isScrolled ? "-translate-y-full" : "translate-y-0"}
-        transition-all
-        duration-500
-      `}
+                    fixed
+                    z-10
+                    w-full
+                    transform
+                    bg-blue-500
+                    shadow-sm
+                    transition-transform
+                    ${isScrolled ? "-translate-y-full" : "translate-y-0"}
+                    transition-all
+                    duration-500
+                `}
             >
                 <div
                     className="
-            flex
-            flex-row
-            items-center
-            justify-center
-          "
+                        flex
+                        flex-row
+                        items-center
+                        justify-center
+                    "
                 >
                     <div
                         className="
-              flex
-              cursor-pointer
-              flex-row
-              border-b-[1px]
-              border-blue-600
-              py-2
-            "
+                        flex
+                        cursor-pointer
+                        flex-row
+                        border-b-[1px]
+                        border-blue-600
+                        py-2
+                        "
                         onClick={() => navigate("/")}
                     >
                         <img
@@ -67,14 +67,14 @@ const Header = () => {
                         />
                         <span
                             className="
-                text-lg
-                font-bold
-                text-white
-                transition-colors
-                duration-300
-                ease-in-out
-                hover:text-blue-300
-              "
+                            text-lg
+                            font-bold
+                            text-white
+                            transition-colors
+                            duration-300
+                            ease-in-out
+                            hover:text-blue-300
+                        "
                             style={{ fontFamily: "Montserrat" }}
                         >
                             Malker
@@ -82,17 +82,17 @@ const Header = () => {
                     </div>
                     <MdGeneratingTokens
                         className="
-            absolute
-            right-5
-            ml-2
-            cursor-pointer
-            text-2xl
-            text-white
-            transition-colors
-            duration-300
-            ease-in-out
-            hover:text-blue-300
-          "
+                            absolute
+                            right-5
+                            ml-2
+                            cursor-pointer
+                            text-2xl
+                            text-white
+                            transition-colors
+                            duration-300
+                            ease-in-out
+                            hover:text-blue-300
+                        "
                         onClick={() => {
                             setIsTokenDialogOpen(true);
                         }}

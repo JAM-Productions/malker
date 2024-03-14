@@ -12,16 +12,16 @@ const BackButton = () => {
     return (
         <div
             className="
-        lg:ml-18
-        absolute
-        top-0
-        ml-4
-        mt-20
-        sm:ml-8
-        md:ml-12
-        xl:ml-24
-        2xl:ml-32
-    "
+                lg:ml-18
+                absolute
+                top-0
+                ml-4
+                mt-20
+                sm:ml-8
+                md:ml-12
+                xl:ml-24
+                2xl:ml-32
+            "
         >
             <IoIosArrowBack
                 onClick={goBack}
