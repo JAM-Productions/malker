@@ -98,3 +98,25 @@ def test_delete_all_user_tests(client, sample_user):
     assert 'message' in response_data
     assert response_data['message'] == "All users with name 'Cypress Test' deleted"
     sample_user.delete_user()
+
+def test_get_user_from_token(client, sample_user):
+    """
+    Test getting the user from a token.
+    """
+    # Now try to create a user
+    sample_user.add_user()
+    sample_user.username = 'test_user'
+    # Authenticate the user by creating a token
+    with client.application.app_context():
+        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+
+    # Now try to get the user from the token
+    headers = {'Authorization': f'Bearer {jwt_token}'}
+    res = client.get(f'/api/getUserFromToken/{jwt_token}' , headers=headers)
+    assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
+
+    response_data = json.loads(res.get_data(as_text=True))
+    assert 'uuid' in response_data
+    assert response_data['uuid'] == sample_user.uuid
+    assert response_data['username'] == sample_user.username
+    sample_user.delete_user()

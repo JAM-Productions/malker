@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 import git
 from resources.login import Login
 from resources.plan import PlanAPI, DeleteAllPlanTests, GetAllPlans
-from resources.user import UserAPI, DeleteAllUserTests
+from resources.user import UserAPI, DeleteAllUserTests, GetUserFromToken
 from resources.participants import AddPartcipants, DeleteParticipants
 
 load_dotenv()
@@ -30,6 +30,7 @@ api.add_resource(DeleteParticipants, '/api/plan/<string:plan_id>/delete/<string:
 api.add_resource(DeleteAllPlanTests, '/api/deleteAllPlanTests')
 api.add_resource(DeleteAllUserTests, '/api/deleteAllUserTests')
 api.add_resource(GetAllPlans, '/api/<string:id>/plans')
+api.add_resource(GetUserFromToken, '/api/getUserFromToken/<string:token>')
 
 @app.route('/')
 def index():

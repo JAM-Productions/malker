@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdClose, MdContentCopy } from "react-icons/md";
-import { getAuthToken, setAuthToken } from "../../comutils";
+import { getAuthToken, getUserByToken, setAuthToken } from "../../comutils";
 import { toast } from "react-toastify";
 
 const TokenDialog = ({ onClose }) => {
@@ -19,8 +19,17 @@ const TokenDialog = ({ onClose }) => {
     };
 
     const handleImportToken = () => {
-        setAuthToken(newToken);
-        window.location.reload();
+        getUserByToken(newToken)
+            .then((r) => {
+                if (r.data.uuid) {
+                    setAuthToken(newToken);
+                    window.location.reload();
+                }
+            })
+            .catch((e) => {
+                toast.error("Invalid token");
+                console.log(e.toString());
+            });
     };
 
     return (
