@@ -17,7 +17,10 @@ const Button = ({ text, onClick, additionalStyles, small }) => {
         ${additionalStyles}
     `;
     return (
-        <button className={buttonStyles} onClick={onClick}>
+        <button
+            className={buttonStyles}
+            onClick={onClick}
+        >
             {text}
         </button>
     );

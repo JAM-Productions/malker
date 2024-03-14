@@ -43,18 +43,28 @@ const MyPlans = () => {
         <div>
             <BackButton />
             <div className="p-20">
-                <div className="flex flex-col text-center w-full mb-10">
-                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">My Plans</h1>
-            </div>
+                <div className="mb-10 flex w-full flex-col text-center">
+                    <h1 className="title-font text-2xl font-medium text-gray-900 sm:text-3xl">
+                        My Plans
+                    </h1>
+                </div>
                 {loading && (
-                    <Loader height={47} width={47} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
+                    <Loader
+                        height={47}
+                        width={47}
+                        barColor={"#0789c2"}
+                        borderColor={"#3dc2f3"}
+                    />
                 )}
                 {!loading && (
-                    <section className="text-gray-600 body-font">
-                        <div className="container sm:px-5  mx-auto flex flex-wrap">
-                            <div className="flex flex-wrap -m-4 -mx-10">
+                    <section className="body-font text-gray-600">
+                        <div className="container mx-auto  flex flex-wrap sm:px-5">
+                            <div className="-m-4 -mx-10 flex flex-wrap">
                                 {plans.map((plan) => (
-                                    <Plan key={plan.id} plan={plan} />
+                                    <Plan
+                                        key={plan.id}
+                                        plan={plan}
+                                    />
                                 ))}
                             </div>
                         </div>
