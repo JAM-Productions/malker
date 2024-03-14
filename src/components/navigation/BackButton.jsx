@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const BackButton = () => {
     const navigate = useNavigate();
@@ -23,9 +23,13 @@ const BackButton = () => {
                 2xl:ml-32
             "
         >
-            <IoIosArrowBack
+            <IoMdArrowRoundBack
                 onClick={goBack}
-                className="cursor-pointer text-2xl"
+                className="
+                    cursor-pointer 
+                    text-2xl
+                    text-blue-500
+                "
             />
         </div>
     );
