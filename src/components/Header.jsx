@@ -58,7 +58,7 @@ const Header = () => {
               border-blue-600
               py-2
             "
-                        onClick={() => navigate("/malker")}
+                        onClick={() => navigate("/")}
                     >
                         <img
                             src="/malker/malker.webp"
