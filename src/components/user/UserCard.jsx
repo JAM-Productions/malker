@@ -40,7 +40,7 @@ const UserCard = ({ user, userUuid, currentUserUuid, planId, adminId}) => {
             {(userUuid === currentUserUuid || currentUserUuid === adminId) && (
                 <div className="mr-3">
                     <Button
-                        text={"Leave"}
+                        text={userUuid === currentUserUuid ? "Leave" : "Remove"}
                         additionalStyles="
                             bg-red-500
                             hover:bg-red-600
