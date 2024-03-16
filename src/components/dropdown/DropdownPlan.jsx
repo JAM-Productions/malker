@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
+import {
+    FaChevronDown,
+    FaCalendar,
+    FaMapMarkerAlt,
+    FaCalendarPlus,
+    FaApple,
+    FaGoogle,
+} from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { toast } from "react-toastify";
 
@@ -68,14 +75,72 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
         }
     };
 
+    const onAddToGoogleCalendar = () => {
+        const [day, month, year] = date.split("/");
+        const dateObject = new Date(`${year}-${month}-${day}`);
+
+        const encodedUrl = encodeURI(
+            [
+                "https://www.google.com/calendar/render",
+                "?action=TEMPLATE",
+                `&text=${title || ""}`,
+                `&dates=${dateObject || ""}`,
+                // TODO: Calculate (duration + dateObject) to get the endDate
+                //  `/${  endDate || ''}`,
+                `&details=${description || ""}`,
+                `&location=${location || ""}`,
+                "&sprop=&sprop=name:",
+            ].join(""),
+        );
+        return encodedUrl;
+    };
+
+    const onAddToAppleCalendar = () => {
+        const [day, month, year] = date.split("/");
+        const dateObject = new Date(`${year}-${month}-${day}`);
+
+        const encodedUrl = encodeURI(
+            `data:text/calendar;charset=utf8,${[
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "BEGIN:VEVENT",
+                `DTSTART:${dateObject || ""}`,
+                // TODO: Calculate (duration + dateObject) to get the endDate
+                //`DTEND:${  endDate || ''}`,
+                `SUMMARY:${title || ""}`,
+                `DESCRIPTION:${description || ""}`,
+                `LOCATION:${location || ""}`,
+                "END:VEVENT",
+                "END:VCALENDAR",
+            ].join("\n")}`,
+        );
+
+        return encodedUrl;
+    };
+
     const copyToClipboard = (actualURL) => {
         navigator.clipboard.writeText(actualURL);
         toast.success("URL copied to clipboard!");
     };
 
+    const selectedOption = "";
+
+    const handleChange = (event) => {
+        let url;
+        if (event.target.value === "apple") {
+            url = onAddToAppleCalendar();
+        } else if (event.target.value === "google") {
+            url = onAddToGoogleCalendar();
+        }
+
+        if (url) {
+            window.open(url, "_blank");
+        }
+    };
+
     return (
         <div className="container mx-auto px-0 pb-10 pt-24 sm:px-5">
-            <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 sm:flex-row">
+            <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 md:flex-row">
                 <div className="flex flex-col">
                     <div className="flex flex-row items-center">
                         <h1 className="text-2xl font-medium text-gray-900 sm:truncate">{title}</h1>
@@ -99,18 +164,49 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                         </div>
                         <div className="flex items-center text-base">
                             <FaMapMarkerAlt className="mr-2 text-gray-500" />
-                            <span>{location}</span>
+                            <span className="sm:truncate">{location}</span>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
-                    <button
-                        className="flex items-center hover:text-blue-500"
-                        onClick={onShare}
-                    >
-                        <IoMdShare className="mr-1 text-xl text-blue-500" />
-                        <span>Share</span>
-                    </button>
+                    <div className="flex gap-2 sm:flex-row">
+                        {/*<button
+                            className="flex items-center hover:text-blue-500"
+                            onClick={handleAddToCalendar}
+                        >
+                            <FaCalendarPlus className="mr-2 h-4 w-4 text-xl text-blue-500" />
+                            <span className="sm:truncate">Add to calendar</span>
+                        </button> */}
+                        <select
+                            className="bg-malker-100"
+                            value={selectedOption}
+                            onChange={handleChange}
+                        >
+                            <option
+                                value=""
+                                disabled
+                                hidden
+                            >
+                                <FaCalendarPlus /> {/*TODO: Add add to calendar icon*/}
+                                Add to calendar
+                            </option>
+                            <option value="apple">
+                                <FaApple /> {/*TODO: Add apple icon*/}
+                                Apple Calendar
+                            </option>
+                            <option value="google">
+                                <FaGoogle /> {/*TODO: Add google icon*/}
+                                Google Calendar
+                            </option>
+                        </select>
+                        <button
+                            className="flex items-center hover:text-blue-500"
+                            onClick={onShare}
+                        >
+                            <IoMdShare className="mr-1 text-xl text-blue-500" />
+                            <span>Share</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div
