@@ -138,6 +138,10 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
         }
     };
 
+    const handleAddToCalendar = () => {
+        // TODO: Check if the user is on a mobile device or browser
+    };
+
     return (
         <div className="container mx-auto px-0 pb-10 pt-24 sm:px-5">
             <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 md:flex-row">
@@ -170,14 +174,14 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 </div>
                 <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
                     <div className="flex gap-2 sm:flex-row">
-                        {/*<button
+                        <button
                             className="flex items-center hover:text-blue-500"
                             onClick={handleAddToCalendar}
                         >
                             <FaCalendarPlus className="mr-2 h-4 w-4 text-xl text-blue-500" />
                             <span className="sm:truncate">Add to calendar</span>
-                        </button> */}
-                        <select
+                        </button>
+                        {/*<select
                             className="bg-malker-100"
                             value={selectedOption}
                             onChange={handleChange}
@@ -187,18 +191,18 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                                 disabled
                                 hidden
                             >
-                                <FaCalendarPlus /> {/*TODO: Add add to calendar icon*/}
+                                <FaCalendarPlus /> 
                                 Add to calendar
                             </option>
                             <option value="apple">
-                                <FaApple /> {/*TODO: Add apple icon*/}
+                                <FaApple /> 
                                 Apple Calendar
                             </option>
                             <option value="google">
-                                <FaGoogle /> {/*TODO: Add google icon*/}
+                                <FaGoogle /> 
                                 Google Calendar
                             </option>
-                        </select>
+                        </select> */}
                         <button
                             className="flex items-center hover:text-blue-500"
                             onClick={onShare}
