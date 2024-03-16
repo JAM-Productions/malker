@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
-import { getPlanData, getUserData, addParticipant } from "../../comutils";
+import {getPlanData, getUserData, addParticipant, updateUsername} from "../../comutils";
 import Input from "../form/Input";
 import Button from "../Button";
 import UserCard from "../user/UserCard";
@@ -52,18 +52,21 @@ const PlanView = () => {
         }
         setLoading(true);
 
-        // Call post endpoint
-        addParticipant(id, uuid)
-            .then(() => {
-                toast.success("Join successfull");
-                setJoined(true);
-                setLoading(false);
-            })
-            .catch((e) => {
-                setLoading(false);
-                toast.error("Can't join into the plan");
-                console.log(e.toString());
-            });
+        //call update username endpoint
+        updateUsername(name).then(r => {
+            // Call post endpoint
+            addParticipant(id, uuid)
+                .then(() => {
+                    toast.success("Join successfull");
+                    setJoined(true);
+                    setLoading(false);
+                })
+                .catch((e) => {
+                    setLoading(false);
+                    toast.error("Can't join into the plan");
+                    console.log(e.toString());
+                });
+        })
     };
 
     useEffect(() => {
