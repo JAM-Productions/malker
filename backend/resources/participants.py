@@ -49,24 +49,28 @@ class DeleteParticipants(Resource):
         :return: if success, success message.
         """
         try:
-            u_admin = User.get_user(get_jwt_identity())
+            u = User.get_user(get_jwt_identity())
             plan = Plan.get_plan_by_id(plan_id)
+            admin = plan.get_plan_admin_id()
 
             # check if user is plan admin
-            if plan.get_plan_admin_id() != u_admin.uuid:
-                return {"message": "You are not the admin of this group"}, 403
+            if admin != u.uuid and user_id != u.uuid:
+                return {"message": "You can't remove other members unless you are the admin"}, 403
 
             # check if user to be deleted exists
             u_delete = User.get_user(user_id)
 
-            # check if user to be deleted is the admin
-            if u_delete.uuid == u_admin.uuid:
-                # TODO maybe change this behabviour? allow the admin to quit from his own grup?
-                return {"message": "You can not remove yourself from the group"}, 403
-
             # remove user from plan
             # checking if user to be removed exists is performed inside the following function
             plan.remove_participant(u_delete.uuid)
+
+            # if we are removing the admin: set new admin. if there is no participants  : delete plan
+            if admin == user_id:
+                participants = plan.get_plan_participants_id()
+                participants.remove(user_id)
+                if len(participants) > 0:
+                    plan._admin = participants[0]
+                    plan.update_plan()
 
             return jsonify(
                 {"message": f"User {u_delete.username} ({user_id}) removed from plan {plan.name} ({plan.uid})"})
