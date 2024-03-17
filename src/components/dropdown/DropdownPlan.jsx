@@ -163,15 +163,14 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                                 onClick={() => setDisplaySelect(!displaySelect)}
                             >
                                 <FaCalendarPlus className="mr-2 mt-1  text-blue-500" />
-                                <span>Add to calendar</span>
+                                <span className="truncate">Add to calendar</span>
                             </div>
                             <div
-                                className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} w-fit rounded-md border border-gray-300`}
-                                style={{ backgroundColor: "#edf8fd" }}
+                                className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} bg-malker-150 w-fit rounded-md border border-gray-300`}
                             >
                                 <div className="">
                                     <a
-                                        className="flex cursor-pointer items-center px-2.5 py-1 hover:bg-gray-100 "
+                                        className="hover:bg-malker-175 flex cursor-pointer items-center px-2.5 py-1 "
                                         href={onAddToAppleCalendar()}
                                         target="_blank"
                                         rel="noreferrer"
@@ -180,7 +179,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                                         <span className="truncate">Apple Calendar</span>
                                     </a>
                                     <a
-                                        className="flex cursor-pointer items-center px-3 py-1 hover:bg-gray-100"
+                                        className="hover:bg-malker-175 flex cursor-pointer items-center px-3 py-1"
                                         href={onAddToGoogleCalendar()}
                                         target="_blank"
                                         rel="noreferrer"
