@@ -1,44 +1,29 @@
 import React from "react";
-import Button from "../Button.jsx"
+import Button from "../Button.jsx";
 
-const UserCard = ({user, userUuid, currentUserUuid}) => {
-
+const UserCard = ({ user, userUuid, currentUserUuid }) => {
     return (
-        <div className="
-                flex
-                flex-col
-                mx-auto
-                items-center
-                relative
-                mt-8
-                my-12
-                text
-            "
+        <div
+            className="flex w-80 flex-row items-center rounded-md bg-malker-200 px-2 py-4 shadow-sm"
             key={user}
         >
-            <div className={`
-                absolute
-                top-0
-                right-0
-                h-2
-                w-2
-                rounded-full
-                ${ userUuid === currentUserUuid
-                    ? "bg-green-500"
-                    : "bg-red-500" //change to get state the actual user
-                }
-            `}/>
-                <img
-                    src="/malker/malker.webp"
-                    alt="Logo"
-                    className="h-12 w-12 mr-2"
-                />
-            <p className="absolute pt-14 font-bold">
-                {user}
-            </p>
-            {userUuid === currentUserUuid &&
-                <div className="absolute pt-24">
-                    <Button text={"Leave"}
+            <img
+                src="/malker/malker.webp"
+                alt="Logo"
+                className="ml-1 mr-2 h-9 w-9"
+            />
+            <div className="mx-2 flex flex-col justify-center">
+                <p className="text-sm font-bold">{user}</p>
+                {userUuid === currentUserUuid && <p className="text-sm">Host</p>}
+                {userUuid != currentUserUuid && <p className="text-sm">User</p>}
+            </div>
+
+            <div className="flex-grow" />
+
+            {userUuid === currentUserUuid && (
+                <div className="mr-3">
+                    <Button
+                        text={"Leave"}
                         additionalStyles="
                             bg-red-500
                             hover:bg-red-600
@@ -46,22 +31,9 @@ const UserCard = ({user, userUuid, currentUserUuid}) => {
                         small
                     />
                 </div>
-            }
-            {/*
-            {user === currentUser &&
-                user !== "Mark" &&
-                <div className="absolute pt-24">
-                    <Button text={"Rejoin"}
-                        additionalStyles="
-                            bg-red-500
-                            hover:bg-red-600
-                        "
-                        small
-                    />
-                </div>
-            }*/}
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default UserCard;

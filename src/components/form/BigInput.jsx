@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
-const BigInput = ({ 
-    label, 
-    onChange, 
-    value, 
-    error,
-    maxLength 
-}) => {
+const BigInput = ({ label, onChange, value, error, maxLength }) => {
     const [currentCharacters, setCurrentCharacters] = useState(0);
 
     const handleInputChange = (e) => {
@@ -20,8 +14,8 @@ const BigInput = ({
             <label
                 htmlFor={label}
                 className="
-                    leading-7 
                     text-sm 
+                    leading-7 
                     text-gray-600
                 "
             >
@@ -31,26 +25,26 @@ const BigInput = ({
                 id={label}
                 title={label}
                 className="
+                    h-32 
                     w-full 
-                    bg-gray-100 
-                    bg-opacity-50 
+                    resize-none 
                     rounded border 
                     border-gray-300 
+                    bg-gray-100 
+                    bg-opacity-50 
+                    px-3 
+                    py-1 
+                    text-base 
+                    leading-6 
+                    text-gray-700 
+                    outline-none 
+                    transition-colors 
+                    duration-200 
+                    ease-in-out 
                     focus:border-blue-500 
                     focus:bg-white 
                     focus:ring-2 
-                    focus:ring-blue-200 
-                    h-32 
-                    text-base 
-                    outline-none 
-                    text-gray-700 
-                    py-1 
-                    px-3 
-                    resize-none 
-                    leading-6 
-                    transition-colors 
-                    duration-200 
-                    ease-in-out
+                    focus:ring-blue-200
                 "
                 value={value}
                 onChange={handleInputChange}
@@ -58,12 +52,12 @@ const BigInput = ({
                 maxLength={maxLength}
             ></textarea>
             {currentCharacters > 0 && maxLength && (
-                <div className="absolute right-2 bottom-3 text-xs text-gray-500">
+                <div className="absolute bottom-3 right-2 text-xs text-gray-500">
                     {currentCharacters} / {maxLength}
                 </div>
             )}
         </div>
     );
-}
+};
 
 export default BigInput;

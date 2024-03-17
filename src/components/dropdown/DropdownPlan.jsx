@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { toast } from "react-toastify";
+import AddToCalendar from "../add-to-calendar/AddToCalendar";
 
 const DropdownPlan = ({ title, date, location, description, author }) => {
     const [open, setOpen] = useState(true);
@@ -10,7 +11,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
 
     useEffect(() => {
         if (descriptionRef.current) {
-            setDescriptionHeight(`${descriptionRef.current.scrollHeight + 21}px`);
+            setDescriptionHeight(`${descriptionRef.current.scrollHeight + description.length}px`);
         }
     }, [description]);
 
@@ -44,7 +45,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 </>
             );
         } else {
-            return <p>{description}</p>;
+            return description;
         }
     };
 
@@ -74,41 +75,55 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
     };
 
     return (
-        <div className="container sm:px-5 px-0 pt-24 pb-10 mx-auto">
-            <div className="flex sm:flex-row flex-col justify-between sm:w-10/12 w-11/12 mx-auto">
+        <div className="container mx-auto px-0 pb-10 pt-24 sm:px-5">
+            <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 md:flex-row">
                 <div className="flex flex-col">
                     <div className="flex flex-row items-center">
                         <h1 className="text-2xl font-medium text-gray-900 sm:truncate">{title}</h1>
-                        <div className="flex ml-3">
-                            <button className="align-self-end" onClick={toggleDropdown}>
+                        <div className="ml-3 flex">
+                            <button
+                                className="align-self-end"
+                                onClick={toggleDropdown}
+                            >
                                 <FaChevronDown
                                     className={`h-5 w-5 text-blue-500 hover:text-blue-600 
                                     ${open ? "rotate-180" : "rotate-0"} 
-                                    transition-transform duration-400 transform`}
+                                    duration-400 transform transition-transform`}
                                 />
                             </button>
                         </div>
                     </div>
-                    <div className="flex sm:flex-row flex-col sm:items-center mt-3 text-base gap-2">
+                    <div className="mt-3 flex flex-col gap-2 text-base sm:flex-row sm:items-center">
                         <div className="flex items-center text-base">
                             <FaCalendar className="mr-2 text-gray-500" />
                             <span>{date}</span>
                         </div>
                         <div className="flex items-center text-base">
                             <FaMapMarkerAlt className="mr-2 text-gray-500" />
-                            <span>{location}</span>
+                            <span className="sm:truncate">{location}</span>
                         </div>
                     </div>
                 </div>
-                <div className="flex sm:flex-col flex-row gap-2 sm:pt-2 pt-2 sm:justify-end">
-                    <button className="flex items-center hover:text-blue-500" onClick={onShare}>
-                        <IoMdShare className="text-blue-500 text-xl mr-1" />
-                        <span>Share</span>
-                    </button>
+                <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
+                    <div className="flex gap-2 sm:flex-row">
+                        <AddToCalendar
+                            date={date}
+                            title={title}
+                            description={description}
+                            location={location}
+                        />
+                        <button
+                            className="flex items-center hover:text-blue-500"
+                            onClick={onShare}
+                        >
+                            <IoMdShare className="mr-1 text-xl text-blue-500" />
+                            <span>Share</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div
-                className="sm:w-10/12 w-11/12 mx-auto"
+                className="mx-auto w-11/12 sm:w-10/12"
                 style={{
                     maxHeight: open ? descriptionHeight : "0",
                     overflow: "hidden",
@@ -116,9 +131,9 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 }}
             >
                 <div ref={descriptionRef}>
-                    <hr className="mt-3 mb-5 border-0 h-px bg-slate-400"></hr>
+                    <hr className="mb-5 mt-3 h-px border-0 bg-slate-400"></hr>
                     <p>{renderDescription()}</p>
-                    <p className="text-right mt-5">{author}</p>
+                    <p className="mt-5 text-right">{author}</p>
                 </div>
             </div>
         </div>

@@ -23,14 +23,24 @@ function App() {
 
     return (
         <HashRouter>
-            <div className="bg-malker-100 min-h-screen">
+            <div className="min-h-screen bg-malker-100">
                 <Header />
-                <div className="pt-5 min-h-[88vh]">
+                <div className="min-h-[88vh] pt-5">
                     <ToastContainer toastStyle={{ backgroundColor: "#edf8fd" }} />
                     <Routes>
-                        <Route exact path="/" element={<PlanForm />} />
-                        <Route path="/plan-view/:id" element={<PlanView />} />
-                        <Route path="/myplans" element={<MyPlans />} />
+                        <Route
+                            exact
+                            path="/"
+                            element={<PlanForm />}
+                        />
+                        <Route
+                            path="/plan/:id"
+                            element={<PlanView />}
+                        />
+                        <Route
+                            path="/myplans"
+                            element={<MyPlans />}
+                        />
                     </Routes>
                 </div>
                 <Footer />
