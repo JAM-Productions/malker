@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { toast } from "react-toastify";
+import AddToCalendar from "../add-to-calendar/AddToCalendar";
 
 const DropdownPlan = ({ title, date, location, description, author }) => {
     const [open, setOpen] = useState(true);
@@ -75,7 +76,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
 
     return (
         <div className="container mx-auto px-0 pb-10 pt-24 sm:px-5">
-            <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 sm:flex-row">
+            <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 md:flex-row">
                 <div className="flex flex-col">
                     <div className="flex flex-row items-center">
                         <h1 className="text-2xl font-medium text-gray-900 sm:truncate">{title}</h1>
@@ -99,18 +100,26 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                         </div>
                         <div className="flex items-center text-base">
                             <FaMapMarkerAlt className="mr-2 text-gray-500" />
-                            <span>{location}</span>
+                            <span className="sm:truncate">{location}</span>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
-                    <button
-                        className="flex items-center hover:text-blue-500"
-                        onClick={onShare}
-                    >
-                        <IoMdShare className="mr-1 text-xl text-blue-500" />
-                        <span>Share</span>
-                    </button>
+                    <div className="flex gap-2 sm:flex-row">
+                        <AddToCalendar
+                            date={date}
+                            title={title}
+                            description={description}
+                            location={location}
+                        />
+                        <button
+                            className="flex items-center hover:text-blue-500"
+                            onClick={onShare}
+                        >
+                            <IoMdShare className="mr-1 text-xl text-blue-500" />
+                            <span>Share</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div
