@@ -15,6 +15,8 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
     const [descriptionHeight, setDescriptionHeight] = useState("auto");
     const descriptionRef = useRef(null);
 
+    const [displaySelect, setDisplaySelect] = useState(false);
+
     useEffect(() => {
         if (descriptionRef.current) {
             setDescriptionHeight(`${descriptionRef.current.scrollHeight + description.length}px`);
@@ -123,21 +125,6 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
         toast.success("URL copied to clipboard!");
     };
 
-    const [displaySelect, setDisplaySelect] = useState(false);
-
-    const handleChange = (event) => {
-        let url;
-        if (event.target.value === "apple") {
-            url = onAddToAppleCalendar();
-            window.open(url, "_blank");
-            return;
-        } else if (event.target.value === "google") {
-            url = onAddToGoogleCalendar();
-            window.open(url, "_blank");
-            return;
-        }
-    };
-
     return (
         <div className="container mx-auto px-0 pb-10 pt-24 sm:px-5">
             <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 md:flex-row">
@@ -179,17 +166,28 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                                 <span>Add to calendar</span>
                             </div>
                             <div
-                                className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} w-full rounded-md border border-gray-300 bg-white`}
+                                className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} w-fit rounded-md border border-gray-300`}
+                                style={{ backgroundColor: "#edf8fd" }}
                             >
-                                <div className="py-1">
-                                    <div className="flex cursor-pointer items-center px-4 py-2 hover:bg-gray-100 ">
-                                        <FaApple className="mr-2" />
+                                <div className="">
+                                    <a
+                                        className="flex cursor-pointer items-center px-2.5 py-1 hover:bg-gray-100 "
+                                        href={onAddToAppleCalendar()}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <FaApple className="mr-1.5 h-5 w-5" />
                                         <span className="truncate">Apple Calendar</span>
-                                    </div>
-                                    <div className="flex cursor-pointer items-center px-4 py-2 hover:bg-gray-100">
+                                    </a>
+                                    <a
+                                        className="flex cursor-pointer items-center px-3 py-1 hover:bg-gray-100"
+                                        href={onAddToGoogleCalendar()}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         <FaGoogle className="mr-2" />
                                         <span className="truncate">Google Calendar</span>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
