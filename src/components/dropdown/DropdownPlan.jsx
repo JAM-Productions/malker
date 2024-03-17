@@ -123,23 +123,19 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
         toast.success("URL copied to clipboard!");
     };
 
-    const selectedOption = "";
+    const [displaySelect, setDisplaySelect] = useState(false);
 
     const handleChange = (event) => {
         let url;
         if (event.target.value === "apple") {
             url = onAddToAppleCalendar();
+            window.open(url, "_blank");
+            return;
         } else if (event.target.value === "google") {
             url = onAddToGoogleCalendar();
-        }
-
-        if (url) {
             window.open(url, "_blank");
+            return;
         }
-    };
-
-    const handleAddToCalendar = () => {
-        // TODO: Check if the user is on a mobile device or browser
     };
 
     return (
@@ -174,35 +170,29 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 </div>
                 <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
                     <div className="flex gap-2 sm:flex-row">
-                        <button
-                            className="flex items-center hover:text-blue-500"
-                            onClick={handleAddToCalendar}
-                        >
-                            <FaCalendarPlus className="mr-2 h-4 w-4 text-xl text-blue-500" />
-                            <span className="sm:truncate">Add to calendar</span>
-                        </button>
-                        {/*<select
-                            className="bg-malker-100"
-                            value={selectedOption}
-                            onChange={handleChange}
-                        >
-                            <option
-                                value=""
-                                disabled
-                                hidden
+                        <div className="relative inline-block">
+                            <div
+                                className="flex cursor-pointer flex-row bg-malker-100 hover:text-blue-500"
+                                onClick={() => setDisplaySelect(!displaySelect)}
                             >
-                                <FaCalendarPlus /> 
-                                Add to calendar
-                            </option>
-                            <option value="apple">
-                                <FaApple /> 
-                                Apple Calendar
-                            </option>
-                            <option value="google">
-                                <FaGoogle /> 
-                                Google Calendar
-                            </option>
-                        </select> */}
+                                <FaCalendarPlus className="mr-2 mt-1  text-blue-500" />
+                                <span>Add to calendar</span>
+                            </div>
+                            <div
+                                className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} w-full rounded-md border border-gray-300 bg-white`}
+                            >
+                                <div className="py-1">
+                                    <div className="flex cursor-pointer items-center px-4 py-2 hover:bg-gray-100 ">
+                                        <FaApple className="mr-2" />
+                                        <span className="truncate">Apple Calendar</span>
+                                    </div>
+                                    <div className="flex cursor-pointer items-center px-4 py-2 hover:bg-gray-100">
+                                        <FaGoogle className="mr-2" />
+                                        <span className="truncate">Google Calendar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <button
                             className="flex items-center hover:text-blue-500"
                             onClick={onShare}
