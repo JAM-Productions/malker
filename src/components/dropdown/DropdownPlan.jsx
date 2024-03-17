@@ -178,6 +178,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                                         <FaApple className="mr-1.5 h-5 w-5" />
                                         <span className="truncate">Apple Calendar</span>
                                     </a>
+                                    <div className="mx-2 border-t border-gray-300"></div>
                                     <a
                                         className="hover:bg-malker-175 flex cursor-pointer items-center px-3 py-1"
                                         href={onAddToGoogleCalendar()}
