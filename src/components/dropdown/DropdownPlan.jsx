@@ -168,7 +168,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                             <div
                                 className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} bg-malker-150 w-fit rounded-md border border-gray-300`}
                             >
-                                <div className="">
+                                <div className="py-1">
                                     <a
                                         className="hover:bg-malker-175 flex cursor-pointer items-center px-2.5 py-1 "
                                         href={onAddToAppleCalendar()}
@@ -178,7 +178,7 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                                         <FaApple className="mr-1.5 h-5 w-5" />
                                         <span className="truncate">Apple Calendar</span>
                                     </a>
-                                    <div className="mx-2 border-t border-gray-300"></div>
+                                    <div className="mx-2 my-0.5 border-t border-gray-300"></div>
                                     <a
                                         className="hover:bg-malker-175 flex cursor-pointer items-center px-3 py-1"
                                         href={onAddToGoogleCalendar()}
