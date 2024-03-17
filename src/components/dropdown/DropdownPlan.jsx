@@ -1,21 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-    FaChevronDown,
-    FaCalendar,
-    FaMapMarkerAlt,
-    FaCalendarPlus,
-    FaApple,
-    FaGoogle,
-} from "react-icons/fa";
+import { FaChevronDown, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdShare } from "react-icons/io";
 import { toast } from "react-toastify";
+import AddToCalendar from "../add-to-calendar/AddToCalendar";
 
 const DropdownPlan = ({ title, date, location, description, author }) => {
     const [open, setOpen] = useState(true);
     const [descriptionHeight, setDescriptionHeight] = useState("auto");
     const descriptionRef = useRef(null);
-
-    const [displaySelect, setDisplaySelect] = useState(false);
 
     useEffect(() => {
         if (descriptionRef.current) {
@@ -77,49 +69,6 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
         }
     };
 
-    const onAddToGoogleCalendar = () => {
-        const [day, month, year] = date.split("/");
-        const dateObject = new Date(`${year}-${month}-${day}`);
-
-        const encodedUrl = encodeURI(
-            [
-                "https://www.google.com/calendar/render",
-                "?action=TEMPLATE",
-                `&text=${title || ""}`,
-                `&dates=${dateObject || ""}`,
-                // TODO: Calculate (duration + dateObject) to get the endDate
-                //  `/${  endDate || ''}`,
-                `&details=${description || ""}`,
-                `&location=${location || ""}`,
-                "&sprop=&sprop=name:",
-            ].join(""),
-        );
-        return encodedUrl;
-    };
-
-    const onAddToAppleCalendar = () => {
-        const [day, month, year] = date.split("/");
-        const dateObject = new Date(`${year}-${month}-${day}`);
-
-        const encodedUrl = encodeURI(
-            `data:text/calendar;charset=utf8,${[
-                "BEGIN:VCALENDAR",
-                "VERSION:2.0",
-                "BEGIN:VEVENT",
-                `DTSTART:${dateObject || ""}`,
-                // TODO: Calculate (duration + dateObject) to get the endDate
-                //`DTEND:${  endDate || ''}`,
-                `SUMMARY:${title || ""}`,
-                `DESCRIPTION:${description || ""}`,
-                `LOCATION:${location || ""}`,
-                "END:VEVENT",
-                "END:VCALENDAR",
-            ].join("\n")}`,
-        );
-
-        return encodedUrl;
-    };
-
     const copyToClipboard = (actualURL) => {
         navigator.clipboard.writeText(actualURL);
         toast.success("URL copied to clipboard!");
@@ -157,40 +106,12 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 </div>
                 <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
                     <div className="flex gap-2 sm:flex-row">
-                        <div className="relative inline-block">
-                            <div
-                                className="flex cursor-pointer flex-row bg-malker-100 hover:text-blue-500"
-                                onClick={() => setDisplaySelect(!displaySelect)}
-                            >
-                                <FaCalendarPlus className="mr-2 mt-1  text-blue-500" />
-                                <span className="truncate">Add to calendar</span>
-                            </div>
-                            <div
-                                className={`absolute z-10 mt-1 ${displaySelect ? "block" : "hidden"} bg-malker-150 w-fit rounded-md border border-gray-300`}
-                            >
-                                <div className="py-1">
-                                    <a
-                                        className="hover:bg-malker-175 flex cursor-pointer items-center px-2.5 py-1 "
-                                        href={onAddToAppleCalendar()}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <FaApple className="mr-1.5 h-5 w-5" />
-                                        <span className="truncate">Apple Calendar</span>
-                                    </a>
-                                    <div className="mx-2 my-0.5 border-t border-gray-300"></div>
-                                    <a
-                                        className="hover:bg-malker-175 flex cursor-pointer items-center px-3 py-1"
-                                        href={onAddToGoogleCalendar()}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <FaGoogle className="mr-2" />
-                                        <span className="truncate">Google Calendar</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <AddToCalendar
+                            date={date}
+                            title={title}
+                            description={description}
+                            location={location}
+                        />
                         <button
                             className="flex items-center hover:text-blue-500"
                             onClick={onShare}
