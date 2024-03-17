@@ -9,7 +9,7 @@ function AddToCalendar({ date, title, description, location }) {
         const dateObject = new Date(`${year}-${month}-${day}`);
 
         if (OS === "apple") {
-            return encodeURI(
+            /*return encodeURI(
                 `data:text/calendar;charset=utf8,${[
                     "BEGIN:VCALENDAR",
                     "VERSION:2.0",
@@ -23,7 +23,9 @@ function AddToCalendar({ date, title, description, location }) {
                     "END:VEVENT",
                     "END:VCALENDAR",
                 ].join("\n")}`,
-            );
+            );*/
+            const appleCalendarLink = `webcal://icalendar.org/AddToCalendar?start=${dateObject}&end=${dateObject}&title=${encodeURIComponent(title)}&location=${encodeURIComponent(location)}&description=${encodeURIComponent(description)}`;
+            return appleCalendarLink;
         } else if (OS === "google") {
             return encodeURI(
                 [
