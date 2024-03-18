@@ -6,14 +6,14 @@ const NavBar = ({ onClose }) => {
     const navigate = useNavigate();
 
     const handleNavigation = (path) => {
-        onClose(); 
+        onClose();
         navigate(path);
     };
 
     return (
         <div className="fixed inset-y-0 left-0 z-20 w-64 bg-blue-500 shadow-lg">
             <IoIosClose
-                className="absolute top-2 left-4 text-4xl text-white cursor-pointer"
+                className="absolute left-4 top-2 cursor-pointer text-4xl text-white"
                 onClick={onClose}
             />
             <div className="flex h-full flex-col pt-12">
