@@ -1,21 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IoIosClose } from "react-icons/io";
 
-const NavBar = () => {
+const NavBar = ({ onClose }) => {
     const navigate = useNavigate();
+
+    const handleNavigation = (path) => {
+        onClose(); 
+        navigate(path);
+    };
 
     return (
         <div className="fixed inset-y-0 left-0 z-20 w-64 bg-blue-500 shadow-lg">
+            <IoIosClose
+                className="absolute top-2 left-4 text-4xl text-white cursor-pointer"
+                onClick={onClose}
+            />
             <div className="flex h-full flex-col pt-12">
                 <button
                     className="px-6 py-4 font-semibold text-white transition duration-300 hover:bg-blue-600"
-                    onClick={() => navigate("/")}
+                    onClick={() => handleNavigation("/")}
                 >
                     Form
                 </button>
                 <button
                     className="px-6 py-4 font-semibold text-white transition duration-300 hover:bg-blue-600"
-                    onClick={() => navigate("/myplans")}
+                    onClick={() => handleNavigation("/myplans")}
                 >
                     My Plans
                 </button>

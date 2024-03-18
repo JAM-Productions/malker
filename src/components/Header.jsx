@@ -30,7 +30,7 @@ const Header = () => {
 
     return (
         <div>
-            {isNavBarOpen && <Navbar />}
+            {isNavBarOpen && <Navbar onClose={() => {setIsNavBarOpen(false)}}/>}
             <div
                 className={`
                     fixed
