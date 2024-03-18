@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdGeneratingTokens } from "react-icons/md";
 import TokenDialog from "./token/TokenDialog";
+import { RxHamburgerMenu } from "react-icons/rx";
+import Navbar from "./navigation/NavBar";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const navigate = useNavigate();
     const [isTokenDialogOpen, setIsTokenDialogOpen] = useState(false);
+    const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,6 +30,7 @@ const Header = () => {
 
     return (
         <div>
+            {isNavBarOpen && <Navbar />}
             <div
                 className={`
                     fixed
@@ -60,6 +64,23 @@ const Header = () => {
                         "
                         onClick={() => navigate("/")}
                     >
+                        <RxHamburgerMenu
+                            className="
+                            absolute
+                            left-5
+                            mt-1
+                            cursor-pointer
+                            text-2xl
+                            text-white
+                            transition-colors
+                            duration-300
+                            ease-in-out
+                            hover:text-blue-300
+                        "
+                            onClick={() => {
+                                setIsNavBarOpen(!isNavBarOpen);
+                            }}
+                        />
                         <img
                             src="/malker/malker.webp"
                             alt="Logo"
@@ -67,6 +88,7 @@ const Header = () => {
                         />
                         <span
                             className="
+                            mt-1
                             text-lg
                             font-bold
                             text-white
