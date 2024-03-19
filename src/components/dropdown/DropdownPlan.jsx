@@ -133,7 +133,6 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 <div ref={descriptionRef}>
                     <hr className="mb-5 mt-3 h-px border-0 bg-slate-400"></hr>
                     <p>{renderDescription()}</p>
-                    <p className="mt-5 text-right">{author}</p>
                 </div>
             </div>
         </div>
