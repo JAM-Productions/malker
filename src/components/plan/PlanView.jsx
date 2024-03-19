@@ -97,7 +97,7 @@ const PlanView = () => {
                 setLoading(false);
                 toast.error("Plan not found");
                 console.log(e.toString());
-                navigate("/malker/");
+                navigate("/");
             });
     }, [id, update]);
 
@@ -116,7 +116,7 @@ const PlanView = () => {
                     <div>
                         {joined && (
                             <div className="container mx-auto mb-10">
-                                <div className="flex flex-wrap justify-center items-center gap-4 w-10/12 mx-auto">
+                                <div className="mx-auto flex w-10/12 flex-wrap items-center justify-center gap-4">
                                     {participants.map((user) => (
                                         <UserCard
                                             user={user.username}
@@ -146,7 +146,10 @@ const PlanView = () => {
                                         />
                                     </div>
                                     <div className="p-2">
-                                        <Button text={"Join"} onClick={handleJoin} />
+                                        <Button
+                                            text={"Join"}
+                                            onClick={handleJoin}
+                                        />
                                     </div>
                                 </div>
                             </div>

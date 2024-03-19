@@ -3,7 +3,7 @@ from flask_restful import Resource, reqparse
 from exceptions.user_errors import UserCreationError, UserNotFoundError
 from models.user import User
 from models.plan import Plan
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, decode_token
 
 
 class UserAPI(Resource):
@@ -60,3 +60,15 @@ class DeleteAllUserTests(Resource):
             return {'message': e.message}, 404
         except Exception as e:
             return {'message': 'Error performing deletion for users with name "Cypress Test"'}, 500
+
+class GetUserFromToken(Resource):
+    @jwt_required()
+    def get(self, token):
+        uuid = decode_token(token)['sub']
+        try:
+            u = User.get_user(uuid)
+            return jsonify({"uuid": uuid, "username": u.username})
+        except UserNotFoundError as e:
+            return {'message': e.message}, 404
+        except Exception as e:
+            return {'message': f'Could not retrieve user with id {uuid}.'}, 400

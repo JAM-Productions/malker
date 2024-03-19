@@ -55,6 +55,16 @@ export async function getUserData(uuid) {
 }
 
 /**
+ * Retrieves user data from token
+ * @param token string, token to be used to retrieve user data
+ * @return if success, JSON with user data
+ */
+export async function getUserByToken(token) {
+    const config = await getAuthConfig();
+    return await axios.get(BASE_URL + "/api/getUserFromToken/" + token, config);
+}
+
+/**
  * It allows to update your username.
  * @param username string, new username.
  * @return if success, returns JSON with new user updated data.

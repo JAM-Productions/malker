@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdGeneratingTokens } from "react-icons/md";
 import TokenDialog from "./token/TokenDialog";
+import { RxHamburgerMenu } from "react-icons/rx";
+import Navbar from "./navigation/NavBar";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const navigate = useNavigate();
     const [isTokenDialogOpen, setIsTokenDialogOpen] = useState(false);
+    const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,50 +30,79 @@ const Header = () => {
 
     return (
         <div>
+            {isNavBarOpen && (
+                <Navbar
+                    onClose={() => {
+                        setIsNavBarOpen(false);
+                    }}
+                />
+            )}
             <div
                 className={`
-        fixed
-        w-full
-        bg-blue-500
-        z-10
-        shadow-sm
-        transition-transform
-        transform
-        ${isScrolled ? "-translate-y-full" : "translate-y-0"}
-        transition-all
-        duration-500
-      `}
+                    fixed
+                    z-10
+                    w-full
+                    transform
+                    bg-blue-500
+                    shadow-sm
+                    transition-transform
+                    ${isScrolled ? "-translate-y-full" : "translate-y-0"}
+                    transition-all
+                    duration-500
+                `}
             >
                 <div
                     className="
-            flex
-            flex-row
-            items-center
-            justify-center
-          "
+                        flex
+                        flex-row
+                        items-center
+                        justify-center
+                    "
                 >
                     <div
                         className="
-              flex
-              flex-row
-              py-2
-              border-b-[1px]
-              border-blue-600
-              cursor-pointer
-            "
-                        onClick={() => navigate("/malker")}
+                        flex
+                        cursor-pointer
+                        flex-row
+                        border-b-[1px]
+                        border-blue-600
+                        py-2
+                        "
+                        onClick={() => navigate("/")}
                     >
-                        <img src="/malker/malker.webp" alt="Logo" className="h-8 w-8 mr-2" />
+                        <RxHamburgerMenu
+                            className="
+                            absolute
+                            left-5
+                            mt-1
+                            cursor-pointer
+                            text-2xl
+                            text-white
+                            transition-colors
+                            duration-300
+                            ease-in-out
+                            hover:text-blue-300
+                        "
+                            onClick={() => {
+                                setIsNavBarOpen(!isNavBarOpen);
+                            }}
+                        />
+                        <img
+                            src="/malker/malker.webp"
+                            alt="Logo"
+                            className="mr-2 h-8 w-8"
+                        />
                         <span
                             className="
-                text-white
-                text-lg
-                font-bold
-                hover:text-blue-300
-                transition-colors
-                duration-300
-                ease-in-out
-              "
+                            mt-1
+                            text-lg
+                            font-bold
+                            text-white
+                            transition-colors
+                            duration-300
+                            ease-in-out
+                            hover:text-blue-300
+                        "
                             style={{ fontFamily: "Montserrat" }}
                         >
                             Malker
@@ -78,17 +110,17 @@ const Header = () => {
                     </div>
                     <MdGeneratingTokens
                         className="
-            text-white
-            text-2xl
-            ml-2
-            hover:text-blue-300
-            transition-colors
-            duration-300
-            ease-in-out
-            absolute
-            right-5
-            cursor-pointer
-          "
+                            absolute
+                            right-5
+                            ml-2
+                            cursor-pointer
+                            text-2xl
+                            text-white
+                            transition-colors
+                            duration-300
+                            ease-in-out
+                            hover:text-blue-300
+                        "
                         onClick={() => {
                             setIsTokenDialogOpen(true);
                         }}

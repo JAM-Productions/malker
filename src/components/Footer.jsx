@@ -5,36 +5,40 @@ const Footer = () => {
     return (
         <footer
             className="
-            text-gray-600
             body-font
+            text-gray-600
         "
         >
             <div
                 className="
                 container
-                px-5
-                py-8
                 mx-auto
                 flex
-                items-center
-                sm:flex-row
                 flex-col
+                items-center
+                px-5
+                py-8
+                sm:flex-row
             "
             >
                 <a
                     className="
-                    flex
                     title-font
-                    font-medium
-                    items-center
-                    md:justify-start
-                    justify-center
-                    text-gray-900
+                    flex
                     cursor-pointer
+                    items-center
+                    justify-center
+                    font-medium
+                    text-gray-900
+                    md:justify-start
                 "
                     href="https://github.com/JAM-Productions"
                 >
-                    <img src="/malker/jam.webp" alt="Logo" className="h-8 w-8 mr-2" />
+                    <img
+                        src="/malker/jam.webp"
+                        alt="Logo"
+                        className="mr-2 h-8 w-8"
+                    />
                     <span
                         className="
                         ml-3
@@ -47,31 +51,34 @@ const Footer = () => {
                 </a>
                 <p
                     className="
+                    mt-4
                     text-sm
                     text-gray-500
                     sm:ml-4
-                    sm:pl-4
+                    sm:mt-0
                     sm:border-l-2
                     sm:border-gray-400
                     sm:py-2
-                    sm:mt-0
-                    mt-4
+                    sm:pl-4
                 "
                 >
                     © 2023 JAM-Productions
                 </p>
                 <span
                     className="
+                    mt-4
                     inline-flex
+                    cursor-pointer
+                    justify-center
                     sm:ml-auto
                     sm:mt-0
-                    mt-4
-                    justify-center
                     sm:justify-start
-                    cursor-pointer
                 "
                 >
-                    <a className="text-gray-500" href="https://github.com/JAM-Productions/malker">
+                    <a
+                        className="text-gray-500"
+                        href="https://github.com/JAM-Productions/malker"
+                    >
                         <svg
                             aria-hidden="true"
                             height="24"
@@ -87,10 +94,10 @@ const Footer = () => {
                     </a>
                     <p
                         className="
-                        text-sm
-                        text-gray-500
                         px-2
                         py-1
+                        text-sm
+                        text-gray-500
                     "
                     >
                         v{version}

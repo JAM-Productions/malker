@@ -30,12 +30,16 @@ const UserCard = ({
     };
     return (
         <div
-            className="flex flex-row items-center px-2 py-4 rounded-md bg-malker-200 w-80 shadow-sm"
+            className="flex w-80 flex-row items-center rounded-md bg-malker-200 px-2 py-4 shadow-sm"
             key={user}
         >
-            <img src="/malker/malker.webp" alt="Logo" className="h-9 w-9 ml-1 mr-2" />
-            <div className="flex flex-col justify-center mx-2">
-                <p className="font-bold text-sm">{user === null ? "unknown name" : user}</p>
+            <img
+                src="/malker/malker.webp"
+                alt="Logo"
+                className="ml-1 mr-2 h-9 w-9"
+            />
+            <div className="mx-2 flex flex-col justify-center">
+                <p className="text-sm font-bold">{user === null ? "unknown name" : user}</p>
                 {userUuid === currentUserUuid && <p className="text-sm">You {showAdminTag()}</p>}
                 {userUuid !== currentUserUuid && <p className="text-sm">Member {showAdminTag()}</p>}
             </div>

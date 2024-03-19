@@ -19,8 +19,8 @@ const Input = ({ label, type, value, onChange, error, maxLength }) => {
             <label
                 htmlFor={label}
                 className="
-                    leading-7
                     text-sm
+                    leading-7
                     text-gray-600
                 "
             >
@@ -32,25 +32,25 @@ const Input = ({ label, type, value, onChange, error, maxLength }) => {
                 title={label}
                 className={`
                     w-full
-                    bg-gray-100
-                    bg-opacity-50
                     rounded
                     border
                     border-gray-300
+                    bg-gray-100
+                    bg-opacity-50
+                    px-3
+                    py-1
+                    pb-3
+                    text-base
+                    leading-8
+                    text-gray-700
+                    outline-none
+                    transition-colors
+                    duration-200
+                    ease-in-out
                     focus:border-blue-500
                     focus:bg-white
                     focus:ring-2
                     focus:ring-blue-200
-                    text-base
-                    outline-none
-                    text-gray-700
-                    py-1
-                    pb-3
-                    px-3
-                    leading-8
-                    transition-colors
-                    duration-200
-                    ease-in-out
                     ${isDateInput ? "date-input-style" : ""}
                 `}
                 onChange={handleInputChange}
@@ -59,7 +59,7 @@ const Input = ({ label, type, value, onChange, error, maxLength }) => {
                 maxLength={maxLength}
             />
             {currentCharacters > 0 && maxLength && (
-                <div className="absolute right-2 bottom-1 text-xs text-gray-500">
+                <div className="absolute bottom-1 right-2 text-xs text-gray-500">
                     {currentCharacters} / {maxLength}
                 </div>
             )}
