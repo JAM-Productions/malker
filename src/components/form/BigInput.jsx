@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
-const BigInput = ({ 
-    label, 
-    onChange, 
-    value, 
-    error,
-    maxLength 
-}) => {
+const BigInput = ({ label, onChange, value, error, maxLength }) => {
     const [currentCharacters, setCurrentCharacters] = useState(0);
 
     const handleInputChange = (e) => {
@@ -64,6 +58,6 @@ const BigInput = ({
             )}
         </div>
     );
-}
+};
 
 export default BigInput;

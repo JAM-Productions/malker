@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const Input = ({
-    label,
-    type,
-    value,
-    onChange,
-    error,
-    maxLength
-}) => {
+const Input = ({ label, type, value, onChange, error, maxLength }) => {
     const [currentCharacters, setCurrentCharacters] = useState(value.length);
-    const isDateInput = type === 'date';
+    const isDateInput = type === "date";
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -19,16 +12,18 @@ const Input = ({
 
     useEffect(() => {
         setCurrentCharacters(value.length);
-    } , [value]);
+    }, [value]);
 
     return (
         <div className="relative">
-            <label htmlFor={label}
+            <label
+                htmlFor={label}
                 className="
                     leading-7
                     text-sm
                     text-gray-600
-                ">
+                "
+            >
                 {label.charAt(0).toUpperCase() + label.slice(1)}
             </label>
             <input
@@ -56,7 +51,7 @@ const Input = ({
                     transition-colors
                     duration-200
                     ease-in-out
-                    ${isDateInput ? 'date-input-style' : ''}
+                    ${isDateInput ? "date-input-style" : ""}
                 `}
                 onChange={handleInputChange}
                 error={error}

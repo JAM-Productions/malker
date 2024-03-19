@@ -44,8 +44,10 @@ const MyPlans = () => {
             <BackButton />
             <div className="p-20">
                 <div className="flex flex-col text-center w-full mb-10">
-                <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">My Plans</h1>
-            </div>
+                    <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+                        My Plans
+                    </h1>
+                </div>
                 {loading && (
                     <Loader height={47} width={47} barColor={"#0789c2"} borderColor={"#3dc2f3"} />
                 )}

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
-import {getPlanData, getUserData, addParticipant, updateUsername} from "../../comutils";
+import { getPlanData, getUserData, addParticipant, updateUsername } from "../../comutils";
 import Input from "../form/Input";
 import Button from "../Button";
 import UserCard from "../user/UserCard";
@@ -26,7 +26,7 @@ const PlanView = () => {
     const [error, setError] = useState("");
     const [uuid, setUuid] = useState("");
     const [joined, setJoined] = useState(false);
-    const [update, setUpdate] = useState(false)
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
         // Recover the username if the user already has one
@@ -54,21 +54,21 @@ const PlanView = () => {
         setLoading(true);
 
         //call update username endpoint
-        updateUsername(name).then(r => {
+        updateUsername(name).then((r) => {
             // Call post endpoint
             addParticipant(id, uuid)
                 .then(() => {
                     toast.success("Join successfull");
                     setJoined(true);
                     setLoading(false);
-                    setUpdate(!update)
+                    setUpdate(!update);
                 })
                 .catch((e) => {
                     setLoading(false);
                     toast.error("Can't join into the plan");
                     console.log(e.toString());
                 });
-        })
+        });
     };
 
     useEffect(() => {
@@ -124,8 +124,8 @@ const PlanView = () => {
                                             currentUserUuid={uuid}
                                             planId={id}
                                             adminId={author}
-                                            participants = {participants}
-                                            setParticipants = {setParticipants}
+                                            participants={participants}
+                                            setParticipants={setParticipants}
                                             key={user}
                                         />
                                     ))}
