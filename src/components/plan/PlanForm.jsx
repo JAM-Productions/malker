@@ -4,7 +4,7 @@ import Input from "../form/Input";
 import Button from "../Button";
 import { toast } from "react-toastify";
 import BigInput from "../form/BigInput";
-import { createPlan } from "../../comutils";
+import {createPlan, getUserData, updateUsername} from "../../comutils";
 import LoadingView from "../loader/LoadingView";
 
 const PlanForm = () => {
@@ -17,6 +17,7 @@ const PlanForm = () => {
     const [description, setDescription] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState("")
 
     useEffect(() => {
         const savedState = localStorage.getItem("planFormState");
@@ -28,6 +29,14 @@ const PlanForm = () => {
             setLocation(parsedState.location);
             setDescription(parsedState.description);
         }
+        getUserData().then(r => {
+            if (r.data.username){
+                setUsername(r.data.username)
+                setAuthor(r.data.username)
+            }
+        }).catch(e => {
+            console.log('could not fetch user data' + e)
+        })
         setLoading(false);
     }, []);
 
@@ -54,19 +63,28 @@ const PlanForm = () => {
         // Format the date
         const formattedDate = formatDate(date);
 
-        // Call the post endpoint
-        createPlan(title, description, formattedDate, location)
-            .then((r) => {
-                resetForm();
-                //setLoading(false);
-                toast.success("Plan created successfully");
-                navigate(`/plan/${r.data.id}`);
-            })
-            .catch((error) => {
-                setLoading(false);
-                console.error("Error creating plan:", error);
-                toast.error("Error creating plan. Please try again.");
-            });
+        // Call the update username enpoint
+        updateUsername(author).then(r => {
+            // Call the post endpoint
+            createPlan(title, description, formattedDate, location)
+                .then((r) => {
+                    //resetForm();
+                    //setLoading(false);
+                    toast.success("Plan created successfully");
+                    navigate(`/plan/${r.data.id}`);
+                })
+                .catch((error) => {
+                    setLoading(false);
+                    console.error("Error creating plan:", error);
+                    toast.error("Error creating plan. Please try again.");
+                });
+        })
+        .catch((error) => {
+            setLoading(false);
+            console.error("Error updating username (prior to plan creation):", error);
+            toast.error("Error creating plan. Please try again.");
+
+        })
     };
 
     // Function to format the date
@@ -81,15 +99,15 @@ const PlanForm = () => {
 
     const resetForm = () => {
         setTitle("");
-        setAuthor("");
         setDate("");
         setLocation("");
         setDescription("");
         setError("");
+        setAuthor(username)
     };
 
     const handleClear = () => {
-        resetForm();
+        resetForm(true);
         toast.info("Form cleared");
     };
 
