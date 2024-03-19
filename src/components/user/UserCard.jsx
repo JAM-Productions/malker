@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "../Button.jsx";
 import { deleteParticipant } from "../../comutils";
 import { toast } from "react-toastify";
@@ -16,7 +16,6 @@ const UserCard = ({
         if (userUuid === currentUserUuid || currentUserUuid === adminId) {
             deleteParticipant(planId, userUuid).then((r) => {
                 toast.success("Participant deleted");
-                // Ejemplo: Eliminar la fila con id igual a 2
                 setParticipants(
                     participants.filter(function (e) {
                         return e.uuid !== userUuid;
