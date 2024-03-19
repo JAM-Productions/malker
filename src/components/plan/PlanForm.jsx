@@ -109,7 +109,7 @@ const PlanForm = () => {
     };
 
     const handleClear = () => {
-        resetForm(true);
+        resetForm();
         toast.info("Form cleared");
     };
 
