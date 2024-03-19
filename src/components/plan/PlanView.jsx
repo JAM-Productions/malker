@@ -124,8 +124,8 @@ const PlanView = () => {
                                             currentUserUuid={uuid}
                                             planId={id}
                                             adminId={author}
-                                            update = {update}
-                                            setUpdate = {setUpdate}
+                                            participants = {participants}
+                                            setParticipants = {setParticipants}
                                             key={user}
                                         />
                                     ))}

@@ -3,13 +3,14 @@ import Button from "../Button.jsx";
 import {deleteParticipant} from "../../comutils";
 import {toast} from "react-toastify";
 
-const UserCard = ({ user, userUuid, currentUserUuid, planId, adminId, update, setUpdate}) => {
+const UserCard = ({ user, userUuid, currentUserUuid, planId, adminId, participants, setParticipants}) => {
 
     const leavePlan = () => {
         if (userUuid === currentUserUuid || currentUserUuid === adminId){
             deleteParticipant(planId, userUuid).then(r => {
                 toast.success('Participant deleted')
-                setUpdate(!update)
+                // Ejemplo: Eliminar la fila con id igual a 2
+                setParticipants(participants.filter(function(e) { return e.uuid !== userUuid;}))
             })
         }
     }
