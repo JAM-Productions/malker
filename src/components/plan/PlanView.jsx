@@ -126,7 +126,7 @@ const PlanView = () => {
                                             adminId={author}
                                             participants={participants}
                                             setParticipants={setParticipants}
-                                            key={user}
+                                            key={user.uuid}
                                         />
                                     ))}
                                 </div>
