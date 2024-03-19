@@ -4,7 +4,7 @@ import { IoMdShare } from "react-icons/io";
 import { toast } from "react-toastify";
 import AddToCalendar from "../add-to-calendar/AddToCalendar";
 
-const DropdownPlan = ({ title, date, location, description, author }) => {
+const DropdownPlan = ({ title, date, location, description }) => {
     const [open, setOpen] = useState(true);
     const [descriptionHeight, setDescriptionHeight] = useState("auto");
     const descriptionRef = useRef(null);
@@ -133,7 +133,6 @@ const DropdownPlan = ({ title, date, location, description, author }) => {
                 <div ref={descriptionRef}>
                     <hr className="mb-5 mt-3 h-px border-0 bg-slate-400"></hr>
                     <p>{renderDescription()}</p>
-                    <p className="mt-5 text-right">{author}</p>
                 </div>
             </div>
         </div>
