@@ -26,6 +26,7 @@ const PlanView = () => {
     const [error, setError] = useState("");
     const [uuid, setUuid] = useState("");
     const [joined, setJoined] = useState(false);
+    const [update, setUpdate] = useState(false)
 
     useEffect(() => {
         // Recover the username if the user already has one
@@ -60,6 +61,7 @@ const PlanView = () => {
                     toast.success("Join successfull");
                     setJoined(true);
                     setLoading(false);
+                    setUpdate(!update)
                 })
                 .catch((e) => {
                     setLoading(false);
@@ -97,7 +99,7 @@ const PlanView = () => {
                 console.log(e.toString());
                 navigate("/malker/");
             });
-    }, [id]);
+    }, [id, update]);
 
     return (
         <LoadingView loading={loading}>
@@ -122,6 +124,8 @@ const PlanView = () => {
                                             currentUserUuid={uuid}
                                             planId={id}
                                             adminId={author}
+                                            update = {update}
+                                            setUpdate = {setUpdate}
                                             key={user}
                                         />
                                     ))}

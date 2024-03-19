@@ -3,19 +3,13 @@ import Button from "../Button.jsx";
 import {deleteParticipant} from "../../comutils";
 import {toast} from "react-toastify";
 
-const UserCard = ({ user, userUuid, currentUserUuid, planId, adminId}) => {
-
-    useEffect(() => {
-        console.log('adminid: '+adminId)
-        console.log('currentuseruuid: '+currentUserUuid)
-        console.log('carduseruuid: '+userUuid)
-        console.log('-----------------------------------')
-    },[])
+const UserCard = ({ user, userUuid, currentUserUuid, planId, adminId, update, setUpdate}) => {
 
     const leavePlan = () => {
         if (userUuid === currentUserUuid || currentUserUuid === adminId){
             deleteParticipant(planId, userUuid).then(r => {
                 toast.success('Participant deleted')
+                setUpdate(!update)
             })
         }
     }
