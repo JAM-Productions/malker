@@ -26,7 +26,7 @@ const BackButton = () => {
             <IoMdArrowRoundBack
                 onClick={goBack}
                 className="
-                    cursor-pointer 
+                    cursor-pointer
                     text-2xl
                     text-blue-500
                 "
