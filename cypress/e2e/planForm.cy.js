@@ -38,11 +38,11 @@ describe("Functionality Tests", () => {
         cy.get('input[id="location"]').clear();
         cy.get('textarea[id="description"]').clear();
 
-        cy.get('input[id="title"]').type("Test Plan Title");
-        cy.get('input[id="author"]').type("Test Author");
+        cy.get('input[id="title"]').type("Cypress Test");
+        cy.get('input[id="author"]').type("Cypress Test");
         cy.get('input[id="date"]').type("2024-02-11");
-        cy.get('input[id="location"]').type("Test Location");
-        cy.get('textarea[id="description"]').type("Test Description");
+        cy.get('input[id="location"]').type("Cypress Test");
+        cy.get('textarea[id="description"]').type("Cypress Test");
 
         cy.get('button[id="Clear"]').click();
 
@@ -60,17 +60,17 @@ describe("Functionality Tests", () => {
         cy.get('input[id="location"]').clear();
         cy.get('textarea[id="description"]').clear();
 
-        cy.get('input[id="title"]').type("Test Plan Title");
-        cy.get('input[id="author"]').type("Test Author");
+        cy.get('input[id="title"]').type("Cypress Test");
+        cy.get('input[id="author"]').type("Cypress Test");
         cy.get('input[id="date"]').type("2024-02-11");
-        cy.get('input[id="location"]').type("Test Location");
-        cy.get('textarea[id="description"]').type("Test Description");
+        cy.get('input[id="location"]').type("Cypress Test");
+        cy.get('textarea[id="description"]').type("Cypress Test");
 
-        cy.get('input[id="title"]').should("have.value", "Test Plan Title");
-        cy.get('input[id="author"]').should("have.value", "Test Author");
+        cy.get('input[id="title"]').should("have.value", "Cypress Test");
+        cy.get('input[id="author"]').should("have.value", "Cypress Test");
         cy.get('input[id="date"]').should("have.value", "2024-02-11");
-        cy.get('input[id="location"]').should("have.value", "Test Location");
-        cy.get('textarea[id="description"]').should("have.value", "Test Description");
+        cy.get('input[id="location"]').should("have.value", "Cypress Test");
+        cy.get('textarea[id="description"]').should("have.value", "Cypress Test");
 
         cy.get('button[id="Create"]').click();
 
