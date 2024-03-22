@@ -58,8 +58,6 @@ function AddToCalendar({ date, title, description, location }) {
                     <a
                         className="flex cursor-pointer items-center px-2.5 py-1 hover:bg-malker-175 "
                         href={onAddToCalendar("apple")}
-                        target="_blank"
-                        rel="noreferrer"
                     >
                         <FaApple className="mr-1.5 h-5 w-5" />
                         <span className="truncate">Apple Calendar</span>

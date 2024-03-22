@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import DropdownPlan from "../dropdown/DropdownPlan";
 import BackButton from "../navigation/BackButton";
-import { getPlanData, getUserData, addParticipant } from "../../comutils";
+import { getPlanData, getUserData, addParticipant, updateUsername } from "../../comutils";
 import Input from "../form/Input";
 import Button from "../Button";
 import UserCard from "../user/UserCard";
@@ -26,6 +26,7 @@ const PlanView = () => {
     const [error, setError] = useState("");
     const [uuid, setUuid] = useState("");
     const [joined, setJoined] = useState(false);
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
         // Recover the username if the user already has one
@@ -52,18 +53,22 @@ const PlanView = () => {
         }
         setLoading(true);
 
-        // Call post endpoint
-        addParticipant(id, uuid)
-            .then(() => {
-                toast.success("Join successfull");
-                setJoined(true);
-                setLoading(false);
-            })
-            .catch((e) => {
-                setLoading(false);
-                toast.error("Can't join into the plan");
-                console.log(e.toString());
-            });
+        //call update username endpoint
+        updateUsername(name).then((r) => {
+            // Call post endpoint
+            addParticipant(id, uuid)
+                .then(() => {
+                    toast.success("Join successfull");
+                    setJoined(true);
+                    setLoading(false);
+                    setUpdate(!update);
+                })
+                .catch((e) => {
+                    setLoading(false);
+                    toast.error("Can't join into the plan");
+                    console.log(e.toString());
+                });
+        });
     };
 
     useEffect(() => {
@@ -80,7 +85,7 @@ const PlanView = () => {
         getPlanData(id)
             .then((r) => {
                 setTitle(r.data.name);
-                setAuthor(r.data.author);
+                setAuthor(r.data.admin);
                 setDate(r.data.date);
                 setLocation(r.data.location);
                 setDescription(r.data.description);
@@ -94,7 +99,7 @@ const PlanView = () => {
                 console.log(e.toString());
                 navigate("/");
             });
-    }, [id]);
+    }, [id, update]);
 
     return (
         <LoadingView loading={loading}>
@@ -117,7 +122,11 @@ const PlanView = () => {
                                             user={user.username}
                                             userUuid={user.uuid}
                                             currentUserUuid={uuid}
-                                            key={user}
+                                            planId={id}
+                                            adminId={author}
+                                            participants={participants}
+                                            setParticipants={setParticipants}
+                                            key={user.uuid}
                                         />
                                     ))}
                                 </div>
