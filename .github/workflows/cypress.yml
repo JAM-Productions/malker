@@ -1,0 +1,48 @@
+name: Cypress Tests
+
+on:
+    push:
+        branches: [main, develop]
+    pull_request:
+        branches: [main, develop]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Python config
+              uses: actions/setup-python@v2
+              with:
+                  python-version: "3.10.13" # Reemplaza con tu versión de Python
+
+            - name: Install backend dependencies
+              run: |
+                  cd backend
+                  python -m venv venv
+                  source venv/bin/activate
+                  pip install -r requirements.txt
+
+            - name: Init backend
+              run: |
+                  cd backend
+                  source venv/bin/activate
+                  python app.py &
+
+            - name: Wait for backend to be ready
+              run: sleep 10 # Ajusta el tiempo de espera según sea necesario
+
+            - name: Install frontend dependencies
+              run: npm install
+
+            - name: Init frontend
+              run: npm run dev
+
+            - name: Wait for frontend to be ready
+              run: sleep 10 # Ajusta el tiempo de espera según sea necesario
+
+            - name: Run Cypress tests
+              run: npm run cypress
