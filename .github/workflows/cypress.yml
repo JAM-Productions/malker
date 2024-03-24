@@ -39,7 +39,7 @@ jobs:
               run: npm install
 
             - name: Init frontend
-              run: npm run dev
+              run: npm run dev &
 
             - name: Wait for frontend to be ready
               run: sleep 10 # Ajusta el tiempo de espera según sea necesario
