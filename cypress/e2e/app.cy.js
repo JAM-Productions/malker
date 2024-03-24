@@ -33,7 +33,7 @@ describe("Functionality Tests PlanForm", () => {
         cy.visit("http://localhost:5173/malker");
     });
 
-    it('Fill in the fields and delete them with the "Clear" button', () => {
+    it("Form cleanup check", () => {
         cy.get('input[id="title"]').clear();
         cy.get('input[id="author"]').clear();
         cy.get('input[id="date"]').clear();
@@ -55,7 +55,7 @@ describe("Functionality Tests PlanForm", () => {
         cy.get('textarea[id="description"]').should("have.value", "");
     });
 
-    it("Fill in the fields and create a plan", () => {
+    it("Create plan check", () => {
         cy.get('input[id="title"]').clear();
         cy.get('input[id="author"]').clear();
         cy.get('input[id="date"]').clear();
@@ -85,7 +85,7 @@ describe("Functionality Tests PlanForm", () => {
         });
     });
 
-    it("Create an empty plan", () => {
+    it("Create an empty plan check", () => {
         cy.get('input[id="title"]').clear();
         cy.get('input[id="author"]').clear();
         cy.get('input[id="date"]').clear();
@@ -155,19 +155,19 @@ describe("Functionality Tests PlanView", () => {
         cy.visit("http://localhost:5173/malker#/plan/" + planId);
     });
 
-    it("Dropdown button click", () => {
+    it("Dropdown button check", () => {
         cy.get("button[id=dropdown-button]").click();
         cy.get("#dropdown-icon").should("have.class", "rotate-0");
     });
 
-    it("Join plan without name", () => {
+    it("Join plan without name check", () => {
         cy.get('input[id="name"]').clear();
         cy.get('button[id="Join"]').click();
         cy.get('input[id="name"]').should("exist");
         cy.get('button[id="Join"]').should("exist");
     });
 
-    it("Join plan and Leave plan", () => {
+    it("Join plan and Leave plan check", () => {
         //cy.get('input[id="name"]').type("Cypress Test");
         //cy.get('button[id="Join"]').click();
         //cy.get('div[id="user-card"]').should("exist");
