@@ -29,6 +29,7 @@ const UserCard = ({
     };
     return (
         <div
+            id="user-card"
             className="flex w-80 flex-row items-center rounded-md bg-malker-200 px-2 py-4 shadow-sm"
             key={user}
         >
@@ -38,9 +39,28 @@ const UserCard = ({
                 className="ml-1 mr-2 h-9 w-9"
             />
             <div className="mx-2 flex flex-col justify-center">
-                <p className="text-sm font-bold">{user === null ? "unknown name" : user}</p>
-                {userUuid === currentUserUuid && <p className="text-sm">You {showAdminTag()}</p>}
-                {userUuid !== currentUserUuid && <p className="text-sm">Member {showAdminTag()}</p>}
+                <p
+                    id="user-card-name"
+                    className="text-sm font-bold"
+                >
+                    {user === null ? "unknown name" : user}
+                </p>
+                {userUuid === currentUserUuid && (
+                    <p
+                        id="user-card-tag"
+                        className="text-sm"
+                    >
+                        You {showAdminTag()}
+                    </p>
+                )}
+                {userUuid !== currentUserUuid && (
+                    <p
+                        id="user-card-tag"
+                        className="text-sm"
+                    >
+                        Member {showAdminTag()}
+                    </p>
+                )}
             </div>
 
             <div className="flex-grow" />

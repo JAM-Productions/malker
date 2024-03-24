@@ -137,7 +137,7 @@ const PlanView = () => {
                                 <div className="flex flex-col items-center justify-center">
                                     <div className="p-2">
                                         <Input
-                                            label={"Name"}
+                                            label={"name"}
                                             type={"text"}
                                             value={name}
                                             onChange={setName}
