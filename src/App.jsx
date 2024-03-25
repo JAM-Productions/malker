@@ -22,11 +22,6 @@ function App() {
     }, []);
 
     return (
-
-
-
-
-        
         <HashRouter>
             <div className="min-h-screen bg-malker-100">
                 <Header />
