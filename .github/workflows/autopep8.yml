@@ -27,4 +27,7 @@ jobs:
 
     - name: Check code style
       run: |
-        autopep8 --recursive --exclude venv --diff .
+        if autopep8 --recursive --exclude venv --diff . | grep -E '^\+'; then
+          echo "Code style issues found. Please run autopep8 to fix them."
+          exit 1
+        fi
