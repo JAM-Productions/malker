@@ -8,7 +8,8 @@ def test_login_success(client, sample_user):
     """
     data = {'username': sample_user.username}
 
-    res = client.post('/api/login', data=json.dumps(data), content_type='application/json')
+    res = client.post('/api/login', data=json.dumps(data),
+                      content_type='application/json')
     assert res.status_code == 200
 
     response_data = json.loads(res.get_data(as_text=True))

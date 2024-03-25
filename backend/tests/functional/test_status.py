@@ -4,6 +4,7 @@ Module containing tests for the Flask app.
 
 import json
 
+
 def test_index(client):
     """
     Test for the main route that checks if the response is as expected.

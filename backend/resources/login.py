@@ -24,10 +24,11 @@ class Login(Resource):
             if 'username' in data.keys():
                 u = User(data['username'])
             else:
-               u = User()
+                u = User()
             u.add_user()
 
-            jwt_token = create_access_token(identity=u.uuid, expires_delta=False)
+            jwt_token = create_access_token(
+                identity=u.uuid, expires_delta=False)
             data = u.json()
             data['token'] = jwt_token
             return make_response(jsonify(data), 200)

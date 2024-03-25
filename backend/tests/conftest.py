@@ -10,12 +10,14 @@ from models.user import User
 from models.plan import Plan
 from datetime import datetime
 
+
 @pytest.fixture
 def app():
     """
     Fixture to provide the Flask app instance for testing.
     """
     yield flask_app
+
 
 @pytest.fixture
 def client(app):
@@ -25,11 +27,15 @@ def client(app):
     return app.test_client()
 
 # Fixture to create a sample user for testing
+
+
 @pytest.fixture
 def sample_user():
     return User(username="test_user")
 
 # Fixture to create a sample plan for testing
+
+
 @pytest.fixture
 def sample_plan(sample_user):
     return Plan(name="Test Plan",
