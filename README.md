@@ -198,5 +198,5 @@ npm run lint
 Run the following command:
 
 ```sh
-npm run format
+make fmt
 ```

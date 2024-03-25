@@ -23,10 +23,12 @@ def test_get_user_authenticated(client, sample_user):
 
         sample_user.uuid = decoded_token['sub']
 
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
         # Now try to access the user endpoint
-        res = client.get('/api/user', headers={'Authorization': f'Bearer {jwt_token}'})
+        res = client.get(
+            '/api/user', headers={'Authorization': f'Bearer {jwt_token}'})
 
         assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
@@ -59,13 +61,14 @@ def test_put_user_authenticated(client, sample_user):
 
         sample_user.uuid = decoded_token['sub']
 
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
         # Update the username using PUT operation
         new_username = 'new_username'
         headers = {'Authorization': f'Bearer {jwt_token}'}
         update_response = client.put('/api/user', data=json.dumps({'username': new_username}),
-                                     content_type='application/json', headers= headers)
+                                     content_type='application/json', headers=headers)
 
         assert update_response.status_code == 200, f"Expected status code 200, but got {update_response.status_code}"
 
@@ -87,7 +90,8 @@ def test_delete_all_user_tests(client, sample_user):
 
     # Authenticate the user by creating a token
     with client.application.app_context():
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to delete all users with the name "Cypress Test"
     headers = {'Authorization': f'Bearer {jwt_token}'}
@@ -99,6 +103,7 @@ def test_delete_all_user_tests(client, sample_user):
     assert response_data['message'] == "All users with name 'Cypress Test' deleted"
     sample_user.delete_user()
 
+
 def test_get_user_from_token(client, sample_user):
     """
     Test getting the user from a token.
@@ -108,11 +113,12 @@ def test_get_user_from_token(client, sample_user):
     sample_user.username = 'test_user'
     # Authenticate the user by creating a token
     with client.application.app_context():
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to get the user from the token
     headers = {'Authorization': f'Bearer {jwt_token}'}
-    res = client.get(f'/api/getUserFromToken/{jwt_token}' , headers=headers)
+    res = client.get(f'/api/getUserFromToken/{jwt_token}', headers=headers)
     assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     response_data = json.loads(res.get_data(as_text=True))
