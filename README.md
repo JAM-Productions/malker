@@ -168,7 +168,15 @@ python app.py
 
 ### Frontend
 
-[TODO]
+Start runing the command below:
+```sh
+npx cypress open
+```
+1. Then select the type of testing ( in our case its E2E ).
+
+2. Select where the tests will run. I recommend to use Chrome.
+
+3. Open specs tab and open the file app.cy.js, this will test the entire aplication.
 
 ### Backend
 
