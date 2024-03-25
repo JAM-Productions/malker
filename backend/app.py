@@ -25,12 +25,15 @@ CORS(app, resources={r"*": {"origins": "*"}})
 api.add_resource(Login, '/api/login')
 api.add_resource(PlanAPI, '/api/plan', '/api/plan/<string:id>')
 api.add_resource(UserAPI, '/api/user', '/api/user/<string:uuid>')
-api.add_resource(AddPartcipants, '/api/plan/<string:plan_id>/add/<string:user_id>')
-api.add_resource(DeleteParticipants, '/api/plan/<string:plan_id>/delete/<string:user_id>')
+api.add_resource(
+    AddPartcipants, '/api/plan/<string:plan_id>/add/<string:user_id>')
+api.add_resource(DeleteParticipants,
+                 '/api/plan/<string:plan_id>/delete/<string:user_id>')
 api.add_resource(DeleteAllPlanTests, '/api/deleteAllPlanTests')
 api.add_resource(DeleteAllUserTests, '/api/deleteAllUserTests')
 api.add_resource(GetAllPlans, '/api/<string:id>/plans')
 api.add_resource(GetUserFromToken, '/api/getUserFromToken/<string:token>')
+
 
 @app.route('/')
 def index():
@@ -59,6 +62,7 @@ def git_update():
                      origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
     origin.pull()
     return '', 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)
