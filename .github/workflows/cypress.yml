@@ -49,7 +49,7 @@ jobs:
                   python app.py &
 
             - name: Wait for backend to be ready
-              run: sleep 10 # Ajusta el tiempo de espera según sea necesario
+              run: sleep 10
 
             - name: Install frontend dependencies
               run: npm install
@@ -58,7 +58,7 @@ jobs:
               run: npm run dev &
 
             - name: Wait for frontend to be ready
-              run: sleep 10 # Ajusta el tiempo de espera según sea necesario
+              run: sleep 10
 
             - name: Run Cypress tests
               run: npm run cypress
