@@ -8,6 +8,7 @@ def test_new_plan(sample_plan):
     assert sample_plan.name == "Test Plan"
     assert sample_plan.uid == "test_plan_id"
 
+
 def test_plan_json(sample_plan, sample_user):
     expected = {
         'id': 'test_plan_id',

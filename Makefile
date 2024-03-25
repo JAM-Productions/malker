@@ -1,8 +1,5 @@
-# Makefile for Vite/React frontend and Flask backend
-
 .PHONY: frontend setup-frontend backend setup-backend backend-test deps
 
-# Detect the operating system
 ifeq ($(OS),Windows_NT)
     ACTIVATE = venv\Scripts\activate
 else
@@ -35,6 +32,10 @@ create-venv:
 	@echo "Creating virtual environment..."
 	cd backend && python3 -m venv venv
 
-deps: setup-frontend setup-backend
+fmt:
+	@echo "Formatting frontend code..."
+	npm run format
+	@echo "Formatting backend code..."
+	cd backend && . $(ACTIVATE) && autopep8 --recursive --exclude venv --in-place .
 
-# Add other targets or commands as needed
+deps: setup-frontend setup-backend
