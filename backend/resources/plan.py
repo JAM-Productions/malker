@@ -39,7 +39,8 @@ class PlanAPI(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True)
         parser.add_argument('description', type=str, required=True)
-        parser.add_argument('date', type=lambda x: datetime.strptime(x, '%d/%m/%Y'), required=True)
+        parser.add_argument('date', type=lambda x: datetime.strptime(
+            x, '%d/%m/%Y'), required=True)
         parser.add_argument('location', type=str, required=True)
         p = parser.parse_args()
 
@@ -78,12 +79,13 @@ class PlanAPI(Resource):
         except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
             return {'message': e.message}, 400
         except Exception as e:
-            return {'message':f'Error performing deletion for provided plan'}, 500
+            return {'message': f'Error performing deletion for provided plan'}, 500
 
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=False)
         parser.add_argument('description', type=str, required=False)
-        parser.add_argument('date', type=lambda x: datetime.strptime(x, '%d/%m/%Y'), required=False)
+        parser.add_argument('date', type=lambda x: datetime.strptime(
+            x, '%d/%m/%Y'), required=False)
         parser.add_argument('location', type=str, required=False)
         parser.add_argument('admin', type=str, required=False)
         p = parser.parse_args()
@@ -138,7 +140,8 @@ class PlanAPI(Resource):
         except (PlanCreationError, UserCreationError, PlanDeletingError) as e:
             return {'message': e.message}, 400
         except Exception as e:
-            return {'message':f'Error performing deletion for provided plan'}, 500
+            return {'message': f'Error performing deletion for provided plan'}, 500
+
 
 class GetAllPlans(Resource):
     @jwt_required()
@@ -156,6 +159,7 @@ class GetAllPlans(Resource):
             return {'message': e.message}, 404
         except Exception as e:
             return {'message': f'Could not retrieve plans for user with id {id}'}, 400
+
 
 class DeleteAllPlanTests(Resource):
     def delete(self):

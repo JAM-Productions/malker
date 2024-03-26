@@ -23,7 +23,8 @@ class Plan:
         self._admin = admin  # aka the creator
         self.date: datetime = date
         self.location: str = location
-        self._participants: list = [admin] if participants is None else participants
+        self._participants: list = [
+            admin] if participants is None else participants
 
     def get_plan_admin_id(self) -> str:
         return self._admin.uuid if isinstance(self._admin, User) else self._admin
@@ -177,7 +178,8 @@ class Plan:
 
     def remove_participant(self, uuid: str):
         if uuid not in self.get_plan_participants_id():
-            raise UserNotFoundError(uuid, msg=f'User with id {uuid} not found in plan with id {self.uid}')
+            raise UserNotFoundError(
+                uuid, msg=f'User with id {uuid} not found in plan with id {self.uid}')
         try:
             if not isinstance(uuid, User):
                 user = User.get_user(uuid)

@@ -9,7 +9,8 @@
     "lint": "npx oxlint && npx eslint",
     "preview": "vite preview",
     "start-api": "cd backend && venv/bin/flask run --no-debugger",
-    "format": "prettier --write 'src/**/*.{js,jsx}'",
+    "format": "prettier --write 'src/**/*.{js,jsx}'", 
+    "check-format": "prettier --check 'src/**/*.{js,jsx}'",
     "cypress": "npx cypress run --spec cypress/e2e/app.cy.js"
   },
   "dependencies": {

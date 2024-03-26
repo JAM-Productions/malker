@@ -2,6 +2,7 @@ from db import db
 import datetime
 from exceptions.user_errors import UserNotFoundError, UserCreationError, UserDBAddingError
 
+
 class User:
     """
     Class that defines user model in firestore db and interacts with it
@@ -10,7 +11,8 @@ class User:
     def __init__(self, username: str = None, uuid: str = None, joined: datetime = None):
         self.username: str = username
         self.uuid: str = uuid
-        self.joined: datetime = joined if joined is not None else datetime.datetime.now(tz=datetime.timezone.utc)
+        self.joined: datetime = joined if joined is not None else datetime.datetime.now(
+            tz=datetime.timezone.utc)
 
     @classmethod
     def from_dict(cls, d: dict):
@@ -29,7 +31,8 @@ class User:
         :return: None
         """
         try:
-            update_time, us_ref = db.collection(u'users').add({u'username': self.username, u'joined': self.joined}, timeout=90)
+            update_time, us_ref = db.collection(u'users').add(
+                {u'username': self.username, u'joined': self.joined}, timeout=90)
             self.uuid = us_ref.id
         except Exception as e:
             raise UserDBAddingError(self) from e
@@ -75,7 +78,8 @@ class User:
         :param name: the specific name for the User
         :return: list of User obj
         """
-        users = db.collection(u'users').where(u'username', u'==', name).stream()
+        users = db.collection(u'users').where(
+            u'username', u'==', name).stream()
         users_list = []
         for u in users:
             u_dict = u.to_dict()
