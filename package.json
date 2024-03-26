@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "start-api": "cd backend && venv/bin/flask run --no-debugger",
     "format": "prettier --write 'src/**/*.{js,jsx}'", 
-    "check-format": "prettier --check 'src/**/*.{js,jsx}'"
+    "check-format": "prettier --check 'src/**/*.{js,jsx}'",
+    "cypress": "npx cypress run --spec cypress/e2e/app.cy.js"
   },
   "dependencies": {
     "axios": "^1.6.8",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
+    "cypress": "^13.7.1",
     "eslint": "^8.45.0",
     "eslint-plugin-oxlint": "^0.2.3",
     "eslint-plugin-react": "^7.32.2",

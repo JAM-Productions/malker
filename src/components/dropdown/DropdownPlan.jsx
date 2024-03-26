@@ -75,17 +75,27 @@ const DropdownPlan = ({ title, date, location, description }) => {
     };
 
     return (
-        <div className="container mx-auto px-0 pb-10 pt-24 sm:px-5">
+        <div
+            id="dropdown-plan"
+            className="container mx-auto px-0 pb-10 pt-24 sm:px-5"
+        >
             <div className="mx-auto flex w-11/12 flex-col justify-between sm:w-10/12 md:flex-row">
                 <div className="flex flex-col">
                     <div className="flex flex-row items-center">
-                        <h1 className="text-2xl font-medium text-gray-900 sm:truncate">{title}</h1>
+                        <h1
+                            id="plan-title"
+                            className="text-2xl font-medium text-gray-900 sm:truncate"
+                        >
+                            {title}
+                        </h1>
                         <div className="ml-3 flex">
                             <button
+                                id="dropdown-button"
                                 className="align-self-end"
                                 onClick={toggleDropdown}
                             >
                                 <FaChevronDown
+                                    id="dropdown-icon"
                                     className={`h-5 w-5 text-blue-500 hover:text-blue-600 
                                     ${open ? "rotate-180" : "rotate-0"} 
                                     duration-400 transform transition-transform`}
@@ -96,16 +106,24 @@ const DropdownPlan = ({ title, date, location, description }) => {
                     <div className="mt-3 flex flex-col gap-2 text-base sm:flex-row sm:items-center">
                         <div className="flex items-center text-base">
                             <FaCalendar className="mr-2 text-gray-500" />
-                            <span>{date}</span>
+                            <span id="plan-date">{date}</span>
                         </div>
                         <div className="flex items-center text-base">
                             <FaMapMarkerAlt className="mr-2 text-gray-500" />
-                            <span className="sm:truncate">{location}</span>
+                            <span
+                                id="plan-location"
+                                className="sm:truncate"
+                            >
+                                {location}
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-row gap-2 pt-2 sm:flex-col sm:justify-end sm:pt-2">
-                    <div className="flex gap-2 sm:flex-row">
+                    <div
+                        id="plan-actions"
+                        className="flex gap-2 sm:flex-row"
+                    >
                         <AddToCalendar
                             date={date}
                             title={title}
@@ -132,7 +150,7 @@ const DropdownPlan = ({ title, date, location, description }) => {
             >
                 <div ref={descriptionRef}>
                     <hr className="mb-5 mt-3 h-px border-0 bg-slate-400"></hr>
-                    <p>{renderDescription()}</p>
+                    <p id="plan-description">{renderDescription()}</p>
                 </div>
             </div>
         </div>
