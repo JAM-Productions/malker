@@ -26,3 +26,4 @@ dist-ssr
 backend/venv/*
 malker-jam-firebase-adminsdk.json
 .env
+cypress/screenshots
