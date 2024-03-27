@@ -13,9 +13,9 @@ It is also deployed in OnRender (very slow):
 
 ## What is *malker*?
 
-Malker is a web application designed to facilitate the management of social plans with friends. Unlike traditional platforms, Malker doesn't require users to log in; instead, it operates seamlessly using tokens and shared URLs.
+It is a web application to manage the social plan with your friends. It does not require login, it works using cookies and sharing the URL.
 
-The application architecture comprises React for the frontend, Flask for the backend, and Firebase for the database.
+It uses React as frontend, Flask as backend and Firebase as database.
 
 ## How it works?
 
@@ -164,17 +164,19 @@ cd backend
 python app.py
 ```
 
-## Testing
+## Test
 
 ### Frontend
 
-Start running the command below:
+Start runing the command below:
 ```sh
 npx cypress open
 ```
-1. Then select the type of testing (in our case, it's E2E).
-2. Select where the tests will run. We recommend using Chrome.
-3. Open the specs tab and open the file app.cy.js; this will test the entire application.
+1. Then select the type of testing ( in our case its E2E ).
+
+2. Select where the tests will run. I recommend to use Chrome.
+
+3. Open specs tab and open the file app.cy.js, this will test the entire aplication.
 
 ### Backend
 
@@ -205,17 +207,4 @@ Run the following command:
 
 ```sh
 make fmt
-```
-
-### Format frontend
-
-```sh
-npm run format
-```
-
-### Format backend
-
-```sh
-cd backend
-autopep8 --recursive --exclude venv --in-place .
 ```
