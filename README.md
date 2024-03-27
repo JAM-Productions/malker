@@ -174,7 +174,7 @@ npx cypress open
 ```
 1. Then select the type of testing (in our case, it's E2E).
 2. Select where the tests will run. We recommend using Chrome.
-3. Open the specs tab and open the file app.cy.js; this will test the entire application.
+3. Open the specs tab and open the file `app.cy.js`; this will test the entire application.
 
 ### Backend
 
