@@ -168,6 +168,15 @@ python app.py
 
 ### Frontend
 
+#### Using the terminal
+
+Run the following command:
+
+```sh
+npm run cypress
+```
+
+#### Using the UI
 Start running the command below:
 ```sh
 npx cypress open
