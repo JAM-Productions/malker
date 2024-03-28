@@ -29,7 +29,7 @@ const Header = () => {
     }, [prevScrollPos]);
 
     return (
-        <div>
+        <div id="header">
             {isNavBarOpen && (
                 <Navbar
                     onClose={() => {

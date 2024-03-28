@@ -32,7 +32,8 @@ def test_create_plan(client, sample_user):
     """
     # Authenticate the user by creating a token
     with client.application.app_context():
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to create a new plan
     plan_data = {
@@ -42,7 +43,8 @@ def test_create_plan(client, sample_user):
         'location': 'Test Location'
     }
     headers = {'Authorization': f'Bearer {jwt_token}'}
-    res = client.post('/api/plan', data=json.dumps(plan_data), content_type='application/json', headers=headers)
+    res = client.post('/api/plan', data=json.dumps(plan_data),
+                      content_type='application/json', headers=headers)
     assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     response_data = json.loads(res.get_data(as_text=True))
@@ -64,7 +66,8 @@ def test_update_plan(client, sample_user, sample_plan):
     # Authenticate the user by creating a token
     with client.application.app_context():
         sample_user.add_user()
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to update an existing plan
     updated_name = 'Updated Test Plan'
@@ -104,7 +107,8 @@ def test_delete_plan(client, sample_user, sample_plan):
     # Authenticate the user by creating a token
     with client.application.app_context():
         sample_user.add_user()
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to delete an existing plan
     sample_plan.add_plan()
@@ -118,6 +122,7 @@ def test_delete_plan(client, sample_user, sample_plan):
     sample_plan.delete_plan()
     sample_user.delete_user()
 
+
 def test_delete_all_plan_tests(client, sample_user):
     """
     Test deleting all plans with name "Cypress Test".
@@ -125,7 +130,8 @@ def test_delete_all_plan_tests(client, sample_user):
     # Authenticate the user by creating a token
     with client.application.app_context():
         sample_user.add_user()
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to create a few plans with the name "Cypress Test"
     plan_data = {
@@ -138,7 +144,8 @@ def test_delete_all_plan_tests(client, sample_user):
     headers = {'Authorization': f'Bearer {jwt_token}'}
 
     for _ in range(3):
-        res = client.post('/api/plan', data=json.dumps(plan_data), content_type='application/json', headers=headers)
+        res = client.post('/api/plan', data=json.dumps(plan_data),
+                          content_type='application/json', headers=headers)
         assert res.status_code == 200, f"Expected status code 200, but got {res.status_code}"
 
     # Now try to delete all plans with name "Cypress Test"
@@ -155,6 +162,7 @@ def test_delete_all_plan_tests(client, sample_user):
 
     sample_user.delete_user()
 
+
 def test_get_all_plans(client, sample_user, sample_plan):
     """
     Test getting all plans for a user.
@@ -162,7 +170,8 @@ def test_get_all_plans(client, sample_user, sample_plan):
     # Authenticate the user by creating a token
     with client.application.app_context():
         sample_user.add_user()
-        jwt_token = create_access_token(identity=sample_user.uuid, expires_delta=False)
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
 
     # Now try to get all plans for the user
     sample_plan.add_plan()

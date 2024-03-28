@@ -61,6 +61,7 @@ class DeleteAllUserTests(Resource):
         except Exception as e:
             return {'message': 'Error performing deletion for users with name "Cypress Test"'}, 500
 
+
 class GetUserFromToken(Resource):
     @jwt_required()
     def get(self, token):

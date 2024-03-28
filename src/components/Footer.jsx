@@ -4,6 +4,7 @@ import { version } from "../../package.json";
 const Footer = () => {
     return (
         <footer
+            id="footer"
             className="
             body-font
             text-gray-600
