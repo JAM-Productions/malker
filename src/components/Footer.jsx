@@ -83,7 +83,7 @@ const Footer = () => {
                         <svg
                             aria-hidden="true"
                             height="24"
-                            version="1.1"
+                            version="2.44.0"
                             viewBox="0 0 16 16"
                             width="24"
                         >
