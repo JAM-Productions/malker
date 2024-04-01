@@ -27,7 +27,7 @@ jobs:
 
             - name: create-json
               id: create-json
-              uses: jsdaniell/create-json@1.2.2
+              uses: jsdaniell/create-json@v1.2.2
               with:
                   name: "backend/malker-jam-firebase-adminsdk.json"
                   json: ${{ secrets.FIREBASE_CREDENTIALS }}
