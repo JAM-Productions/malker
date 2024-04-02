@@ -36,7 +36,6 @@ const PlanView = () => {
                 if (r.data.username !== null) {
                     setName(r.data.username);
                 }
-                setLoading(false);
             })
             .catch((e) => {
                 setLoading(false);
