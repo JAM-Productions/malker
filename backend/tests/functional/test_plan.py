@@ -58,6 +58,7 @@ def test_create_plan(client, sample_user):
     retrieved_plan = Plan.get_plan_by_id(response_data['id'])
     retrieved_plan.delete_plan()
 
+
 def test_create_plan_bigger_than_5000(client, sample_user):
     """
     Test creating a new plan with a description bigger than 5000 characters.
@@ -82,6 +83,7 @@ def test_create_plan_bigger_than_5000(client, sample_user):
     response_data = json.loads(res.get_data(as_text=True))
     assert 'message' in response_data
     assert response_data['message'] == 'Description cannot be longer than 5000 characters'
+
 
 def test_update_plan(client, sample_user, sample_plan):
     """
