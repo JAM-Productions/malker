@@ -179,7 +179,7 @@ const PlanForm = () => {
                                     onChange={setDescription}
                                     value={description}
                                     error={error && !description}
-                                    maxLength={250}
+                                    maxLength={5000}
                                 />
                             </div>
 
