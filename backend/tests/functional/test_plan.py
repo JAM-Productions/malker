@@ -58,6 +58,30 @@ def test_create_plan(client, sample_user):
     retrieved_plan = Plan.get_plan_by_id(response_data['id'])
     retrieved_plan.delete_plan()
 
+def test_create_plan_bigger_than_5000(client, sample_user):
+    """
+    Test creating a new plan with a description bigger than 5000 characters.
+    """
+    # Authenticate the user by creating a token
+    with client.application.app_context():
+        jwt_token = create_access_token(
+            identity=sample_user.uuid, expires_delta=False)
+
+    # Now try to create a new plan
+    plan_data = {
+        'name': 'Test Plan',
+        'description': 'A' * 5001,
+        'date': '01/01/2023',
+        'location': 'Test Location'
+    }
+    headers = {'Authorization': f'Bearer {jwt_token}'}
+    res = client.post('/api/plan', data=json.dumps(plan_data),
+                      content_type='application/json', headers=headers)
+    assert res.status_code == 400, f"Expected status code 400, but got {res.status_code}"
+
+    response_data = json.loads(res.get_data(as_text=True))
+    assert 'message' in response_data
+    assert response_data['message'] == 'Description cannot be longer than 5000 characters'
 
 def test_update_plan(client, sample_user, sample_plan):
     """
