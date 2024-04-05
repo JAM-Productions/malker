@@ -1,6 +1,6 @@
 import { ProgressBar } from "react-loader-spinner";
 
-const Loader = ({ height = "47", width = "47", barColor = "#0789c2", borderColor = "#3dc2f3" }) => {
+const Loader = ({ height = "47", width = "47", barColor = "#3C82F6", borderColor = "#3C82F6" }) => {
     return (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
             <ProgressBar
