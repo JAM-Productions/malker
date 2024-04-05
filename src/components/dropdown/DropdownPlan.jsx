@@ -96,8 +96,8 @@ const DropdownPlan = ({ title, date, location, description }) => {
                             >
                                 <FaChevronDown
                                     id="dropdown-icon"
-                                    className={`h-5 w-5 text-blue-500 hover:text-blue-600 
-                                    ${open ? "rotate-180" : "rotate-0"} 
+                                    className={`h-5 w-5 text-blue-500 hover:text-blue-600
+                                    ${open ? "rotate-180" : "rotate-0"}
                                     duration-400 transform transition-transform`}
                                 />
                             </button>
@@ -150,7 +150,10 @@ const DropdownPlan = ({ title, date, location, description }) => {
             >
                 <div ref={descriptionRef}>
                     <hr className="mb-5 mt-3 h-px border-0 bg-slate-400"></hr>
-                    <p id="plan-description">{renderDescription()}</p>
+                    <div
+                        id="plan-description"
+                        dangerouslySetInnerHTML={{ __html: renderDescription() }}
+                    />
                 </div>
             </div>
         </div>
