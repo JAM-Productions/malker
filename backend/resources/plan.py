@@ -48,6 +48,8 @@ class PlanAPI(Resource):
         p['admin'] = uuid
         p['participants'] = [uuid]
 
+        if len(p['description']) > 5000:
+            return {'message': 'Description cannot be longer than 5000 characters'}, 400
         try:
             plan = Plan.from_dict(p)
             plan.add_plan()
