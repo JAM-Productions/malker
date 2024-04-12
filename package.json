@@ -9,7 +9,7 @@
     "lint": "npx oxlint && npx eslint",
     "preview": "vite preview",
     "start-api": "cd backend && venv/bin/flask run --no-debugger",
-    "format": "prettier --write 'src/**/*.{js,jsx}'", 
+    "format": "prettier --write 'src/**/*.{js,jsx}'",
     "check-format": "prettier --check 'src/**/*.{js,jsx}'",
     "cypress": "npx cypress run --spec cypress/e2e/app.cy.js"
   },
@@ -38,6 +38,6 @@
     "postcss": "^8.4.31",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.3.5",
-    "vite": "^4.5.2"
+    "vite": "^4.5.3"
   }
 }
