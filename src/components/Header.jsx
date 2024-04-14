@@ -61,14 +61,10 @@ const Header = () => {
                 >
                     <div
                         className="
-                        flex
-                        cursor-pointer
-                        flex-row
                         border-b-[1px]
                         border-blue-600
                         py-2
                         "
-                        onClick={() => navigate("/")}
                     >
                         <RxHamburgerMenu
                             className="
@@ -87,26 +83,35 @@ const Header = () => {
                                 setIsNavBarOpen(!isNavBarOpen);
                             }}
                         />
-                        <img
-                            src="/malker/malker.webp"
-                            alt="Logo"
-                            className="mr-2 h-8 w-8"
-                        />
-                        <span
+                        <div
                             className="
-                            mt-1
-                            text-lg
-                            font-bold
-                            text-white
-                            transition-colors
-                            duration-300
-                            ease-in-out
-                            hover:text-blue-300
-                        "
-                            style={{ fontFamily: "Montserrat" }}
+                            flex
+                            cursor-pointer
+                            flex-row
+                            "
+                            onClick={() => navigate("/")}
                         >
-                            Malker
-                        </span>
+                            <img
+                                src="/malker/malker.webp"
+                                alt="Logo"
+                                className="mr-2 h-8 w-8"
+                            />
+                            <span
+                                className="
+                                    mt-1
+                                    text-lg
+                                    font-bold
+                                    text-white
+                                    transition-colors
+                                    duration-300
+                                    ease-in-out
+                                    hover:text-blue-300
+                                "
+                                style={{ fontFamily: "Montserrat" }}
+                            >
+                                Malker
+                            </span>
+                        </div>
                     </div>
                     <MdGeneratingTokens
                         className="

@@ -60,6 +60,10 @@ const PlanForm = () => {
             toast.error("Please fill out all fields");
             return;
         }
+
+        // Replace description line breaks with "<br>"
+        const formattedDescription = description.replace(/\n/g, "<br>");
+
         setLoading(true);
 
         // Format the date
@@ -69,7 +73,7 @@ const PlanForm = () => {
         updateUsername(author)
             .then((r) => {
                 // Call the post endpoint
-                createPlan(title, description, formattedDate, location)
+                createPlan(title, formattedDescription, formattedDate, location)
                     .then((r) => {
                         //resetForm();
                         //setLoading(false);
@@ -179,7 +183,7 @@ const PlanForm = () => {
                                     onChange={setDescription}
                                     value={description}
                                     error={error && !description}
-                                    maxLength={250}
+                                    maxLength={5000}
                                 />
                             </div>
 
