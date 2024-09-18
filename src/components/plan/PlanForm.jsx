@@ -60,19 +60,11 @@ const PlanForm = () => {
             toast.error("Please fill out all fields");
             return;
         }
-
-        // Replace description line breaks with "<br>"
         const formattedDescription = description.replace(/\n/g, "<br>");
-
         setLoading(true);
-
-        // Format the date
         const formattedDate = formatDate(date);
-
-        // Call the update username enpoint
         updateUsername(author)
-            .then((r) => {
-                // Call the post endpoint
+            .then(() => {
                 createPlan(title, formattedDescription, formattedDate, location)
                     .then((r) => {
                         //resetForm();
@@ -93,7 +85,6 @@ const PlanForm = () => {
             });
     };
 
-    // Function to format the date
     const formatDate = (inputDate) => {
         const dateObject = new Date(inputDate);
         const day = String(dateObject.getDate()).padStart(2, "0");

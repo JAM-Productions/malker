@@ -14,7 +14,7 @@ const UserCard = ({
 }) => {
     const leavePlan = () => {
         if (userUuid === currentUserUuid || currentUserUuid === adminId) {
-            deleteParticipant(planId, userUuid).then((r) => {
+            deleteParticipant(planId, userUuid).then(() => {
                 toast.success("Participant deleted");
                 setParticipants(
                     participants.filter(function (e) {
