@@ -53,7 +53,7 @@ const PlanView = () => {
         setLoading(true);
 
         //call update username endpoint
-        updateUsername(name).then((r) => {
+        updateUsername(name).then(() => {
             // Call post endpoint
             addParticipant(id, uuid)
                 .then(() => {
