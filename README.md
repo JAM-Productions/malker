@@ -1,4 +1,4 @@
-# Malker [React + Vite + Flask]
+# Malker [React + Flask + Firebase]
 
 Try it: https://jam-productions.github.io/malker
 
